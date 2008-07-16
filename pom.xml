@@ -1,16 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.fragstealers</groupId>
+    <groupId>net.sf.ipsedixit</groupId>
     <artifactId>ipsedixit</artifactId>
     <packaging>jar</packaging>
-    <version>1.1-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
     <name>ipsedixit</name>
     <url>http://ipsedixit.fragstealers.com</url>
-    <description>
-        Ipsedixit - ip-sah diks-it; Providing your test data since 2008.
-    </description>
-
-
+    <description> Ipsedixit - ip-sah diks-it; Providing your test data since 2008. </description>
     <licenses>
         <license>
             <name>Apache 2</name>
@@ -18,31 +14,30 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
     <scm>
-        <connection>scm:svn:http://ipsedixit.googlecode.com/svn/trunk/</connection>
-        <developerConnection>scm:svn:https://ipsedixit.googlecode.com/svn/trunk/</developerConnection>
-        <url>http://code.google.com/p/ipsedixit/source/browse</url>
+        <connection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/trunk</connection>
+        <developerConnection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/trunk/</developerConnection>
+        <url>http://ipsedixit.svn.sourceforge.net/viewvc/ipsedixit/trunk</url>
     </scm>
-
     <distributionManagement>
-        <site>
-            <name>Ipsedixit</name>
-            <!-- FTP is busted in Maven, so this doesn't work yet... -->
-            <url>ftp://www.fragstealers.com</url>
-        </site>
-
         <repository>
-            <id>ftp-repository</id>
-            <url>ftp://www.fragstealers.com</url>
+            <id>sourceforge.net</id>
+            <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/m2repo/release</url>
         </repository>
+        <snapshotRepository>
+            <id>sourceforge.net</id>
+            <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/m2repo/snapshot</url>
+        </snapshotRepository>
+        <site>
+            <id>sourceforge.net</id>
+            <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs</url>
+        </site>
     </distributionManagement>
-
+    
     <issueManagement>
-        <system>Google Issue Tracker</system>
-        <url>http://code.google.com/p/ipsedixit/issues/list</url>
+        <system>Sourceforge Tracker</system>
+        <url>http://sourceforge.net/tracker/?group_id=234053</url>
     </issueManagement>
-
     <developers>
         <developer>
             <id>jroyals</id>
@@ -55,7 +50,6 @@
             <timezone>+10</timezone>
         </developer>
     </developers>
-
     <dependencies>
         <dependency>
             <groupId>commons-lang</groupId>
@@ -88,15 +82,7 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
-
     <build>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ftp</artifactId>
-                <version>1.0-beta-2</version>
-            </extension>
-        </extensions>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -106,7 +92,6 @@
                     <target>1.5</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-idea-plugin</artifactId>
@@ -132,7 +117,6 @@
                     <headerLocation>${checkstyle.header.location}</headerLocation>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
@@ -152,7 +136,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
@@ -172,42 +155,8 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>ftp</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <ftp server="www.fragstealers.com" remotedir="/" userid="ipsedixit@fragstealers.com" password="${ftp.password}" verbose="yes" depends="yes">
-                                    <fileset dir="target/site" />
-                                </ftp>
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>ant</groupId>
-                        <artifactId>ant-commons-net</artifactId>
-                        <version>1.6.5</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>commons-net</groupId>
-                        <artifactId>commons-net</artifactId>
-                        <version>1.4.1</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
         </plugins>
     </build>
-
     <reporting>
         <plugins>
             <plugin>
@@ -255,14 +204,11 @@
                     <targetJdk>1.5</targetJdk>
                 </configuration>
             </plugin>
-
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
-
         </plugins>
     </reporting>
-
     <properties>
         <checkstyle.config.location>etc/checkstyle/checkstyle.xml</checkstyle.config.location>
         <checkstyle.header.location>etc/checkstyle/LICENSE.txt</checkstyle.header.location>
