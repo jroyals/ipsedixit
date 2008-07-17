@@ -5,7 +5,7 @@
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>ipsedixit</name>
-    <url>http://ipsedixit.fragstealers.com</url>
+    <url>http://ipsedixit.sourceforge.net</url>
     <description>
         Ipsedixit is a lightweight provider of arbitrary data, mocks and dummies for your
         Java testing pleasure. It is designed to reduce the amount of boilerplate setup

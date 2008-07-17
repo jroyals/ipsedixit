@@ -20,9 +20,9 @@
     <bannerLeft>
         <name>Ipsedixit</name>
         <src>images/ipsedixit.jpg</src>
-        <href>http://ipsedixit.fragstealers.com/</href>
+        <href>http://ipsedixit.sourceforge.net/</href>
     </bannerLeft>
-    
+
     <bannerRight>
         <name>Sourceforge</name>
         <src>http://sflogo.sourceforge.net/sflogo.php?group_id=234053&amp;type=5</src>
@@ -42,7 +42,7 @@
             <item name="Introduction" href="introduction.html"/>
             <item name="Usage" href="usage.html"/>
             <item name="Examples" href="examples.html"/>
-            <item name="Project Home" href="http://sourceforge.net/projects/ipsedixit/"/>
+            <item name="SF Project Home" href="http://sourceforge.net/projects/ipsedixit/"/>
             <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=234053"/>
             <item name="Wiki" href="wiki"/>
         </menu>
