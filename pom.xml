@@ -6,7 +6,12 @@
     <version>0.1-SNAPSHOT</version>
     <name>ipsedixit</name>
     <url>http://ipsedixit.fragstealers.com</url>
-    <description> Ipsedixit - ip-sah diks-it; Providing your test data since 2008. </description>
+    <description>
+        Ipsedixit is a lightweight provider of arbitrary data, mocks and dummies for your
+        Java testing pleasure. It is designed to reduce the amount of boilerplate setup
+        code in your tests, allowing you to spend more time solving more interesting
+        problems.
+    </description>
     <licenses>
         <license>
             <name>Apache 2</name>
@@ -33,7 +38,7 @@
             <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs</url>
         </site>
     </distributionManagement>
-    
+
     <issueManagement>
         <system>Sourceforge Tracker</system>
         <url>http://sourceforge.net/tracker/?group_id=234053</url>
