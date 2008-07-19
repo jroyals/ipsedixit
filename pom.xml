@@ -35,7 +35,7 @@
         </snapshotRepository>
         <site>
             <id>sourceforge.net</id>
-            <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs</url>
+            <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/site</url>
         </site>
     </distributionManagement>
 
