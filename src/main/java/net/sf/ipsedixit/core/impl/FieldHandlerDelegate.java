@@ -20,18 +20,33 @@ import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandlerFinder;
 import net.sf.ipsedixit.core.FieldHandler;
 
+/**
+ * TODO - this class has a smell.  Can we get rid of this class?
+ */
 public class FieldHandlerDelegate implements FieldHandler {
 
     private final FieldHandlerFinder fieldHandlerFinder;
 
+    /**
+     * Create a new FieldHandlerDelegate.
+     *
+     * @param fieldHandlerFinder the FieldHandlerFinder to use.
+     */
     public FieldHandlerDelegate(FieldHandlerFinder fieldHandlerFinder) {
         this.fieldHandlerFinder = fieldHandlerFinder;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object getValueFor(MutableField mutableField) {
         return fieldHandlerFinder.findFieldHandler(mutableField).getValueFor(mutableField);
     }
 
+    /**
+     * TODO - fix this smell.
+     * {@inheritDoc}
+     */
     public boolean supports(MutableField mutableField) {
         return false;
     }

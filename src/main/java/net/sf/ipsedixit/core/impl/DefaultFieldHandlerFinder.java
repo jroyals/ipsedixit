@@ -22,15 +22,27 @@ import net.sf.ipsedixit.core.FieldHandler;
 
 import java.util.List;
 
+/**
+ * Default implementation of {@link net.sf.ipsedixit.core.FieldHandlerFinder}.
+ */
 public class DefaultFieldHandlerFinder implements FieldHandlerFinder {
     private final List<FieldHandler> fieldHandlers;
     private final FieldHandler defaultFieldHandler;
 
+    /**
+     * Create a new DefaultFieldHandlerFinder.
+     * @param fieldHandlers a List of {@link net.sf.ipsedixit.core.FieldHandler} objects, which acts as a repository
+     * on which this object will search.
+     * @param defaultFieldHandler If no handlers are found in the fieldHandlers list, return this default FieldHandler.
+     */
     public DefaultFieldHandlerFinder(List<FieldHandler> fieldHandlers, FieldHandler defaultFieldHandler) {
         this.fieldHandlers = fieldHandlers;
         this.defaultFieldHandler = defaultFieldHandler;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public FieldHandler findFieldHandler(MutableField mutableField) {
         for (FieldHandler fieldHandler : fieldHandlers) {
             if (fieldHandler.supports(mutableField)) {
@@ -38,8 +50,5 @@ public class DefaultFieldHandlerFinder implements FieldHandlerFinder {
             }
         }
         return defaultFieldHandler;
-    }
-
-    public void add(FieldHandler fieldHandler) {
     }
 }

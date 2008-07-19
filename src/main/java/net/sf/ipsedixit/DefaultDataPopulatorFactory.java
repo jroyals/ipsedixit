@@ -29,6 +29,9 @@ import java.util.ArrayList;
 
 public class DefaultDataPopulatorFactory implements DataPopulatorFactory {
 
+    /**
+     * {@inheritDoc}
+     */
     public DataPopulator createDefaultDataPopulator(Configuration configuration) {
         FieldHandlerFinder fieldHandlerFinder = createFieldHandlerFinder(configuration.getAdditionalFieldHandlers(),
                 configuration.getMockingFrameworkHandler());

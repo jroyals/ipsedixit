@@ -16,8 +16,18 @@
 
 package net.sf.ipsedixit.core;
 
+/**
+ * Finds a {@link net.sf.ipsedixit.core.FieldHandler} implementation for a given
+ * {@link net.sf.ipsedixit.core.MutableField}.
+ */
 public interface FieldHandlerFinder {
-    FieldHandler findFieldHandler(MutableField mutableField);
 
-    void add(FieldHandler fieldHandler);
+    /**
+     * Finds a {@link net.sf.ipsedixit.core.FieldHandler} implementation for a given
+     * {@link net.sf.ipsedixit.core.MutableField}.  This method must not return <code>null</code>
+     * @param mutableField the mutableField.
+     * @return a {@link net.sf.ipsedixit.core.FieldHandler} that can handle the
+     * {@link net.sf.ipsedixit.core.MutableField}
+     */
+    FieldHandler findFieldHandler(MutableField mutableField);
 }
