@@ -17,7 +17,7 @@
 package net.sf.ipsedixit.plugin;
 
 /**
- * Implementations of this interface need to be able to create a {@link net.sf.ipsedixit.plugin.Configuration}
+ * Implementations of this interface can create a {@link net.sf.ipsedixit.plugin.Configuration},
  * given a class to configure from.
  */
 public interface ConfigurationProvider {

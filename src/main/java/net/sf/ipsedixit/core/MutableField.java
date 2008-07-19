@@ -19,7 +19,7 @@ package net.sf.ipsedixit.core;
 import java.lang.annotation.Annotation;
 
 /**
- * Abstraction over a declared field in a class that is <em>mutable</em>.  Mutable in this
+ * Abstraction over a declared field in a object.  Mutable in this
  * sense is in the context of the class being checked, not necessarily any modifiers
  * applied to the field.  Mutable fields are, by definition, able to have their value changed.
  */
@@ -50,7 +50,8 @@ public interface MutableField {
      * exist, the method must return <code>null</code>.
      *
      * @param annotationClass the type of annotation.
-     * @return the Annotation instance of type <code>&lt;T&gt;</code>
+     * @param <A> the annotation class.
+     * @return the Annotation instance of type <code>&lt;A&gt;</code>
      */
-    <T extends Annotation> T getAnnotation(Class<T> annotationClass);
+    <A extends Annotation> A getAnnotation(Class<A> annotationClass);
 }

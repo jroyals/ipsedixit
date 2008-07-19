@@ -70,7 +70,6 @@ under the License.
             <property name="allowUndeclaredRTE" value="true"/>
         </module>
 
-
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
         <module name="ConstantName"/>

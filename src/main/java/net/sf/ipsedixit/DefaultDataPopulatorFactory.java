@@ -37,7 +37,7 @@ public class DefaultDataPopulatorFactory implements DataPopulatorFactory {
                 configuration.getMockingFrameworkHandler());
 
         FieldHandler fieldHandler = new FieldHandlerDelegate(fieldHandlerFinder);
-        return new DefaultDataPopulator(fieldHandler, configuration.getClassAnalyser());
+        return new DefaultDataPopulator(fieldHandler, configuration.getObjectAnalyser());
     }
 
     private FieldHandlerFinder createFieldHandlerFinder(List<? extends FieldHandler> additionalHandlers,

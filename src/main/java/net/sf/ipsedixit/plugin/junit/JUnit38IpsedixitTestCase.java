@@ -31,30 +31,48 @@ import junit.framework.TestCase;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * To use Ipsedixit with JUnit 3.x, simply extend this class instead of {@link junit.framework.TestCase}.
+ * <p/>
+ * <strong>Make sure you call <code>super.setUp()</code> in your own test <code>setUp</code> method, otherwise Ipsedixit
+ * will not work!</strong>
+ */
 public class JUnit38IpsedixitTestCase extends TestCase implements Configuration, ConfigurationProvider {
 
+    /**
+     * {@inheritDoc}
+     */
     public void setUp() {
         Configuration configuration = getConfiguration(getClass());
         DataPopulator dataPopulator = DataPopulatorFactory.INSTANCE.createDefaultDataPopulator(configuration);
         dataPopulator.populate(this);
     }
 
-    public ObjectAnalyser getClassAnalyser() {
+    /**
+     * {@inheritDoc}
+     */
+    public ObjectAnalyser getObjectAnalyser() {
         return new NonFinalFieldObjectAnalyser();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public FieldHandler getMockingFrameworkHandler() {
         return new EasyMock2ClassExtensionFieldHandler();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public List<? extends FieldHandler> getAdditionalFieldHandlers() {
         return Collections.EMPTY_LIST;
     }
 
     /**
-     * Override only if you want to use a different Configuration mechanism.  By default this method returns an
-     * {@link net.sf.ipsedixit.annotation.AnnotationConfiguration} instance.
+     * Override only if you want to use a different Configuration mechanism.  By default this method returns an {@link
+     * net.sf.ipsedixit.annotation.AnnotationConfiguration} instance.
      *
      * @param testClass the class under test.
      * @return the {@link net.sf.ipsedixit.plugin.Configuration} to use.

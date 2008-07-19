@@ -39,7 +39,7 @@ public class NonAnnotatedClassOverrideClassAnalyserIntegrationTest extends Ipsed
         assertNull(mock);
     }
 
-    public ObjectAnalyser getClassAnalyser() {
+    public ObjectAnalyser getObjectAnalyser() {
         return new AnnotationOnlyObjectAnalyser(); // yeah a bit weird in a non-annotated test, but it tests what it needs to test...
     }
 }

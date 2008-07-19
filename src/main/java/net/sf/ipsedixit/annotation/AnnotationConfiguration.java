@@ -32,7 +32,7 @@ public class AnnotationConfiguration implements Configuration {
         this.clazz = clazz;
     }
 
-    public ObjectAnalyser getClassAnalyser() {
+    public ObjectAnalyser getObjectAnalyser() {
         return IPSEDIXIT_ANNOTATION_HELPER.getClassAnalyser(clazz);
     }
 

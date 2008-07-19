@@ -27,7 +27,7 @@ import java.util.List;
 
 public class DefaultTestConfiguration implements Configuration {
 
-    public ObjectAnalyser getClassAnalyser() {
+    public ObjectAnalyser getObjectAnalyser() {
         return new NonFinalFieldObjectAnalyser();
     }
 

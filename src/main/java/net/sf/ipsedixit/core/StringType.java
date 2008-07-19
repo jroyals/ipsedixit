@@ -16,6 +16,9 @@
 
 package net.sf.ipsedixit.core;
 
+/**
+ * Defines a semantic type of String.
+ */
 public enum StringType {
     ALPHA,
     NUMERIC,

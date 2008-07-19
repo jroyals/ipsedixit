@@ -28,29 +28,49 @@ public class DefaultMutableField implements MutableField {
     private final Field field;
     private final Object obj;
 
+    /**
+     * Creates a DefaultMutableField.
+     * @param field the Field to wrap.
+     * @param obj the Object that contains an instance of the Field.
+     */
     public DefaultMutableField(Field field, Object obj) {
         this.field = field;
         this.obj = obj;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setValue(Object value) {
         if (value != null) {
             tryToSetFieldTo(value);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public String getName() {
         return field.getName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Class getType() {
         return field.getType();
     }
 
-    public <T extends Annotation> T getAnnotation(Class<T> annotationClass) {
+    /**
+     * {@inheritDoc}
+     */
+    public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {
         return field.getAnnotation(annotationClass);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     private void tryToSetFieldTo(Object value) {
         try {
             field.setAccessible(true);

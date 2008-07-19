@@ -24,20 +24,42 @@ import net.sf.ipsedixit.plugin.ConfigurationProvider;
 import org.junit.internal.runners.InitializationError;
 import org.junit.internal.runners.JUnit4ClassRunner;
 
+/**
+ * Integration with JUnit4 by providing an extension of {@link org.junit.internal.runners.JUnit4ClassRunner}. Add this
+ * annotation to your unit tests to use Ipsedixit:
+ * <p/>
+ * <code>@RunWith(JUnit4IpsedixitTestRunner.class)</code>
+ */
 public class JUnit4IpsedixitTestRunner extends JUnit4ClassRunner implements ConfigurationProvider {
 
     private final DataPopulator dataPopulator;
 
+    /**
+     * Create a new JUnit4IpsedixitTestRunner.  This is usually called by the JUnit4 runtime.
+     * @param clazz the test class.
+     * @throws InitializationError if something goes pop.
+     */
     public JUnit4IpsedixitTestRunner(Class clazz) throws InitializationError {
         super(clazz);
         Configuration configuration = getConfiguration(clazz);
         dataPopulator = getDefaultDataPopulator(configuration);
     }
 
+    /**
+     * Get the default DataPopulator instance.
+     * @param configuration the {@link net.sf.ipsedixit.plugin.Configuration} to use when getting the DataPopulator.
+     * @return the DataPopulator to use.
+     */
     protected DataPopulator getDefaultDataPopulator(Configuration configuration) {
         return DataPopulatorFactory.INSTANCE.createDefaultDataPopulator(configuration);
     }
 
+    /**
+     * Overrides the JUnit4ClassRunner by using the DataPopulator to populate the test object before running it.
+     *
+     * @return the test object.
+     * @throws Exception if something goes bang.
+     */
     protected Object createTest() throws Exception {
         Object test = super.createTest();
         dataPopulator.populate(test);
@@ -45,8 +67,8 @@ public class JUnit4IpsedixitTestRunner extends JUnit4ClassRunner implements Conf
     }
 
     /**
-     * Override only if you want to use a different Configuration mechanism.  By default this method returns an
-     * {@link net.sf.ipsedixit.annotation.AnnotationConfiguration} instance.
+     * Override only if you want to use a different Configuration mechanism.  By default this method returns an {@link
+     * net.sf.ipsedixit.annotation.AnnotationConfiguration} instance.
      *
      * @param testClass the class under test.
      * @return the {@link net.sf.ipsedixit.plugin.Configuration} to use.

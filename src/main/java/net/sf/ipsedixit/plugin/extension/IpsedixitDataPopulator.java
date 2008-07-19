@@ -30,6 +30,11 @@ import net.sf.ipsedixit.plugin.ConfigurationProvider;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Extend this class if you cannot use annotations, but still want to use Ipsedixit to populate your data.
+ *
+ * This class defines a few callbacks for configuring Ipsedixit.
+ */
 public class IpsedixitDataPopulator implements Configuration, ConfigurationProvider {
 
     public IpsedixitDataPopulator() {
@@ -38,14 +43,23 @@ public class IpsedixitDataPopulator implements Configuration, ConfigurationProvi
         dataPopulator.populate(this);
     }
 
-    public ObjectAnalyser getClassAnalyser() {
+    /**
+     * {@inheritDoc}
+     */
+    public ObjectAnalyser getObjectAnalyser() {
         return new NonFinalFieldObjectAnalyser();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public FieldHandler getMockingFrameworkHandler() {
         return new EasyMock2ClassExtensionFieldHandler();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public List<? extends FieldHandler> getAdditionalFieldHandlers() {
         return Collections.EMPTY_LIST;

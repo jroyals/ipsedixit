@@ -70,9 +70,10 @@ public final class TestData {
      * Picks out a value from the enumeration and returns it.
      *
      * @param enumClass the type of enum.
+     * @param <E> an Enum type.
      * @return one of the values from the enum.
      */
-    public static <T extends Enum> T randomEnum(Class<T> enumClass) {
+    public static <E extends Enum> E randomEnum(Class<E> enumClass) {
         return RANDOM_DATA_PROVIDER.randomEnumValue(enumClass);
     }
 
@@ -80,6 +81,7 @@ public final class TestData {
      * Picks out a random value from an array and returns it.
      *
      * @param array an array of values to pick from.
+     * @param <T> any Object type.
      * @return a random value from the array.
      */
     public static <T> T randomArrayElement(T[] array) {

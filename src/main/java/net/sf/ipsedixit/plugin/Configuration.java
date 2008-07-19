@@ -21,11 +21,24 @@ import net.sf.ipsedixit.core.FieldHandler;
 
 import java.util.List;
 
+/**
+ * Defines an Ipsedixit configuration.
+ */
 public interface Configuration {
 
-    ObjectAnalyser getClassAnalyser();
+    /**
+     * @return the ObjectAnalyser to use in this invocation of Ipsedixit.
+     */
+    ObjectAnalyser getObjectAnalyser();
 
+    /**
+     * @return the implementation of {@link net.sf.ipsedixit.core.FieldHandler} to use when providing a mock.
+     */
     FieldHandler getMockingFrameworkHandler();
 
+    /**
+     * @return a List of additional {@link net.sf.ipsedixit.core.FieldHandler}'s to use, over and above the standard
+     * set of FieldHandler's.
+     */
     List<? extends FieldHandler> getAdditionalFieldHandlers();
 }
