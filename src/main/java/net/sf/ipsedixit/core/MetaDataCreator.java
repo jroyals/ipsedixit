@@ -16,8 +16,16 @@
 
 package net.sf.ipsedixit.core;
 
-public interface MetaDataCreator<T> {
+/**
+ * Gets the metadata information from a MutableField.  The type of MetaData depends on the type of Field.
+ * @param <T> the type of MetaData to return.
+ */
+public interface MetaDataCreator<T extends FieldMetaData> {
 
+    /**
+     * @param mutableField the MutableField to get metadata from.
+     * @return the MetaData from the field.
+     */
     T getMetaData(MutableField mutableField);
 
 }

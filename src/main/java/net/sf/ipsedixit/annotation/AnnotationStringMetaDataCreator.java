@@ -21,8 +21,17 @@ import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.StringMetaData;
 import net.sf.ipsedixit.core.StringType;
 
+/**
+ * Creates StringMetaData from annotations found on a String field.
+ */
 public class AnnotationStringMetaDataCreator implements MetaDataCreator<StringMetaData> {
 
+    /**
+     * Returns a {@link net.sf.ipsedixit.core.StringMetaData} instance that contains the metadata on this field.
+     *
+     * @param mutableField the field to look for annotations.
+     * @return the StringMetaData instance encapsulating all metadata on this field.
+     */
     public StringMetaData getMetaData(MutableField mutableField) {
         InternalStringMetaData stringMetaData = new InternalStringMetaData();
 

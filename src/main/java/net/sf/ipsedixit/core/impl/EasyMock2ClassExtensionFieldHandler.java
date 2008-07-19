@@ -22,11 +22,28 @@ import org.easymock.classextension.EasyMock;
 
 import java.lang.reflect.Modifier;
 
+/**
+ * A specialised field handler that returns EasyMock 2 mock objects. The specific implementation of EasyMock 2 is
+ * org.easymock.classextension.EasyMock, so mocks can be provided over interfaces and classes through CGLIB.
+ */
 public class EasyMock2ClassExtensionFieldHandler implements FieldHandler {
+
+    /**
+     * Creates an EasyMock 2 mock object for the type encapsulated in the MutableField.
+     * @param mutableField the mutableField.
+     * @return an EasyMock 2 mock of the correct type.
+     */
     public Object getValueFor(MutableField mutableField) {
         return EasyMock.createMock(mutableField.getType());
     }
 
+    /**
+     * EasyMock 2 mocks can be provided for any non-final Class.  Final classes cannot be extended, and so cannot be
+     * mocked by CGLIB.
+     *
+     * @param mutableField a MutableField.
+     * @return true, if the type is an Object (ie, non-primitive), and the type is non-final.
+     */
     public boolean supports(MutableField mutableField) {
         Class type = mutableField.getType();
         return !Modifier.isFinal(type.getModifiers()) && Object.class.isAssignableFrom(type);

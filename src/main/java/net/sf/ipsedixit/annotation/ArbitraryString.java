@@ -24,10 +24,25 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Specifies that a random String should be included on the field.
+ */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ArbitraryString {
+
+    /**
+     * Returns the length of the string.
+     */
     int ofLength() default StringMetaData.DEFAULT_SIZE;
+
+    /**
+     * Returns a String, of which the random String must contain the value.
+     */
     String containing() default "";
+
+    /**
+     * Returns the type of String to generate.
+     */
     StringType type() default StringType.ALPHANUMERIC;
 }

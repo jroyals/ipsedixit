@@ -18,9 +18,20 @@ package net.sf.ipsedixit;
 
 import net.sf.ipsedixit.plugin.Configuration;
 
+/**
+ * Factory for creating DataPopulator instances.
+ */
 public interface DataPopulatorFactory {
 
+    /**
+     * The standard DataPopulatorFactory.
+     */
     DataPopulatorFactory INSTANCE = new DefaultDataPopulatorFactory();
 
+    /**
+     * Creates a DataPopulator instance.
+     * @param configuration the configuration to use.
+     * @return a DataPopulator, configured using the configuration.
+     */
     DataPopulator createDefaultDataPopulator(Configuration configuration);
 }

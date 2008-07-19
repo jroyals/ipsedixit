@@ -37,6 +37,9 @@ import java.util.List;
  */
 public class IpsedixitDataPopulator implements Configuration, ConfigurationProvider {
 
+    /**
+     * Creates a new IpsedixitDataPopulator.  Data is populated at this point.
+     */
     public IpsedixitDataPopulator() {
         Configuration configuration = getConfiguration(getClass());
         DataPopulator dataPopulator = DataPopulatorFactory.INSTANCE.createDefaultDataPopulator(configuration);

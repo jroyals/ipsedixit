@@ -16,16 +16,58 @@
 
 package net.sf.ipsedixit.core;
 
+/**
+ * Implementations of this interface are able to generate random data.
+ */
 public interface RandomDataProvider {
+
+    /**
+     * Generate a random String in a particular format.
+     *
+     * @param stringType the type of String to generate.
+     * @param length the length of the String.
+     * @return a random String of the given type and length.
+     */
     String randomString(StringType stringType, int length);
 
+    /**
+     * @return <code>true</code> or <code>false</code>.
+     */
     boolean randomBoolean();
 
+    /**
+     * Generate a random Long in a particular range.
+     *
+     * @param minInclusive the minimum inclusive number.
+     * @param maxInclusive the maximum inclusive number.
+     * @return a number within the specified range.
+     */
     long randomLongInRange(long minInclusive, long maxInclusive);
 
+    /**
+     * Return a randum enum value from within the specified type.
+     *
+     * @param enumType the type of Enum.
+     * @param <T> the enum type.
+     * @return a random enum value from within the given type.
+     */
     <T extends Enum> T randomEnumValue(Class<? extends T> enumType);
 
+    /**
+     * From an array, return a random element from it.
+     *
+     * @param array the array to pick a value from.
+     * @param <T> the type of array.
+     * @return a random value from the array.
+     */
     <T> T randomArrayElement(T[] array);
 
+    /**
+     * Generate a random Double in a particular range.
+     *
+     * @param minInclusive the minimum inclusive number.
+     * @param maxExclusive the maximum exclusive number.
+     * @return a number within the specified range.
+     */
     double randomDoubleInRange(double minInclusive, double maxExclusive);
 }

@@ -18,6 +18,7 @@
 package net.sf.ipsedixit;
 
 import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.FieldHandlerFinder;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.ObjectAnalyser;
 import static org.easymock.classextension.EasyMock.*;
@@ -31,7 +32,7 @@ import java.util.List;
 public class DefaultDataPopulatorUnitTest {
 
     private DefaultDataPopulator testDefaultDataProvider;
-    private FieldHandler fieldHandler;
+    private FieldHandlerFinder fieldHandlerFinder;
     private ObjectAnalyser objectAnalyser;
     private MutableField mutableField;
     private List<MutableField> mutableFields;
@@ -39,11 +40,13 @@ public class DefaultDataPopulatorUnitTest {
     private int numberOfFields;
     private Object value;
     private Object target;
+    private FieldHandler fieldHandler;
 
     @Before
     @SuppressWarnings("unchecked")
     public void setup() {
         numberOfFields = ((int) Math.random() * 100) + 1;
+        fieldHandlerFinder = createMock(FieldHandlerFinder.class);
         fieldHandler = createMock(FieldHandler.class);
         objectAnalyser = createMock(ObjectAnalyser.class);
         mutableField = createMock(MutableField.class);
@@ -51,7 +54,7 @@ public class DefaultDataPopulatorUnitTest {
         mutableFieldsIterator = createMock(Iterator.class);
         value = createMock(Object.class);
         target = createMock(Object.class);
-        testDefaultDataProvider = new DefaultDataPopulator(fieldHandler, objectAnalyser);
+        testDefaultDataProvider = new DefaultDataPopulator(fieldHandlerFinder, objectAnalyser);
     }
 
     @Test
@@ -65,10 +68,11 @@ public class DefaultDataPopulatorUnitTest {
         expect(mutableFields.iterator()).andReturn(mutableFieldsIterator);
         expect(mutableFieldsIterator.hasNext()).andReturn(true).times(numberOfFields).andReturn(false);
         expect(mutableFieldsIterator.next()).andReturn(mutableField).times(numberOfFields);
+        expect(fieldHandlerFinder.findFieldHandler(mutableField)).andReturn(fieldHandler);
         expect(fieldHandler.getValueFor(mutableField)).andReturn(value);
         mutableField.setValue(value);
-        replay(objectAnalyser, mutableFields, mutableFieldsIterator, fieldHandler, mutableField);
+        replay(objectAnalyser, mutableFields, mutableFieldsIterator, fieldHandlerFinder, fieldHandler, mutableField);
         testDefaultDataProvider.populate(target);
-        verify(objectAnalyser, mutableFields, mutableFieldsIterator, fieldHandler, mutableField);
+        verify(objectAnalyser, mutableFields, mutableFieldsIterator, fieldHandlerFinder, fieldHandler, mutableField);
     }
 }

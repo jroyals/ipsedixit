@@ -17,23 +17,38 @@
 package net.sf.ipsedixit;
 
 import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.FieldHandlerFinder;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.ObjectAnalyser;
 
 import java.util.List;
 
+/**
+ * Default implementation of DataProvider.
+ */
 public class DefaultDataPopulator implements DataPopulator {
-    private final FieldHandler fieldHandler;
+    private final FieldHandlerFinder fieldHandlerFinder;
     private final ObjectAnalyser objectAnalyser;
 
-    public DefaultDataPopulator(FieldHandler fieldHandler, ObjectAnalyser objectAnalyser) {
-        this.fieldHandler = fieldHandler;
+    /**
+     * Creates a new DefaultDataPopulator.
+     *
+     * @param fieldHandlerFinder a FieldHandlerFinder to locate the most field handlers.
+     * @param objectAnalyser an ObjectAnalyser to determine which fields are mutable and which ones are not.
+     */
+    public DefaultDataPopulator(FieldHandlerFinder fieldHandlerFinder, ObjectAnalyser objectAnalyser) {
+        this.fieldHandlerFinder = fieldHandlerFinder;
         this.objectAnalyser = objectAnalyser;
     }
 
+    /**
+     * Populate the fields of an object using the configured FieldHandlerFinder and ObjectAnalyser.
+     * @param obj the Object to populate.
+     */
     public void populate(Object obj) {
         List<MutableField> mutableFields = objectAnalyser.getMutableFields(obj);
         for (MutableField mutableField : mutableFields) {
+            FieldHandler fieldHandler = fieldHandlerFinder.findFieldHandler(mutableField);
             Object value = fieldHandler.getValueFor(mutableField);
             mutableField.setValue(value);
         }

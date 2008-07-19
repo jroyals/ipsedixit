@@ -21,15 +21,29 @@ import net.sf.ipsedixit.core.FieldHandler;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * This is a catch-all type FieldHandler that simply logs a warning to the console.
+ */
 public class LoggingNullFieldHandler implements FieldHandler {
     private static final Log LOGGER = LogFactory.getLog(LoggingNullFieldHandler.class);
 
+    /**
+     * Always returns <code>null</code>, however will log out a warning to the configured Commons Logging logger
+     * advising that a handler could not be found for a field of the type.
+     *
+     * @param mutableField the MutableField that has no FieldHandler's available.
+     * @return <code>null</code>
+     */
     public Object getValueFor(MutableField mutableField) {
         LOGGER.warn("No handlers registered for type " + mutableField.getType()
                 + " which is declared in field named " + mutableField.getName());
         return null;
     }
 
+    /**
+     * @param mutableField it doesn't matter.
+     * @return <code>true</code>, this handler supports all types.
+     */
     public boolean supports(MutableField mutableField) {
         return true;
     }

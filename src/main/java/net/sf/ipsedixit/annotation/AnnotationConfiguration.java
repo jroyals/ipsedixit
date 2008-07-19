@@ -22,24 +22,40 @@ import net.sf.ipsedixit.plugin.Configuration;
 
 import java.util.List;
 
+/**
+ * Implementation of Configuration that reads annotations on the class.
+ */
 public class AnnotationConfiguration implements Configuration {
 
     private static final IpsedixitAnnotationHelper IPSEDIXIT_ANNOTATION_HELPER = new DefaultIpsedixitAnnotationHelper();
 
     private final Class clazz;
 
+    /**
+     * Creates a new AnnotationConfiguration.
+     * @param clazz the class containing Ipsedixit annotations.
+     */
     public AnnotationConfiguration(Class clazz) {
         this.clazz = clazz;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ObjectAnalyser getObjectAnalyser() {
         return IPSEDIXIT_ANNOTATION_HELPER.getClassAnalyser(clazz);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public FieldHandler getMockingFrameworkHandler() {
         return IPSEDIXIT_ANNOTATION_HELPER.getMockFrameworkFieldHandler(clazz);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public List<? extends FieldHandler> getAdditionalFieldHandlers() {
         return IPSEDIXIT_ANNOTATION_HELPER.getAdditionalFieldHandlers(clazz);
     }

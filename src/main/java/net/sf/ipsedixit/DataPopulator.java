@@ -16,6 +16,15 @@
 
 package net.sf.ipsedixit;
 
+/**
+ * DataPopulator's are able to populate data into fields of any Object.
+ */
 public interface DataPopulator {
+
+    /**
+     * Given an Object, populate it's declared fields.
+     *
+     * @param obj the Object whose fields should be populated with data.
+     */
     void populate(Object obj);
 }

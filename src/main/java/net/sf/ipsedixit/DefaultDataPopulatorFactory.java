@@ -19,7 +19,6 @@ package net.sf.ipsedixit;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.impl.FieldHandlerRepository;
 import net.sf.ipsedixit.core.FieldHandlerFinder;
-import net.sf.ipsedixit.core.impl.FieldHandlerDelegate;
 import net.sf.ipsedixit.core.impl.DefaultFieldHandlerFinder;
 import net.sf.ipsedixit.core.impl.LoggingNullFieldHandler;
 import net.sf.ipsedixit.plugin.Configuration;
@@ -27,6 +26,16 @@ import net.sf.ipsedixit.plugin.Configuration;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Default factory class for creating DataPopulator instances.  This factory makes the following assumptions for the
+ * DataPopulator it creates:
+ *
+ * <ul>
+ * <li>Uses the DefaultFieldHandlerFinder</li>
+ * <li>Adds additional FieldHandler instances <em>before</em> the standard handlers</li>
+ * <li>The {@link net.sf.ipsedixit.core.impl.LoggingNullFieldHandler} is the default FieldHandler</li>
+ * </ul>
+ */
 public class DefaultDataPopulatorFactory implements DataPopulatorFactory {
 
     /**
@@ -36,8 +45,7 @@ public class DefaultDataPopulatorFactory implements DataPopulatorFactory {
         FieldHandlerFinder fieldHandlerFinder = createFieldHandlerFinder(configuration.getAdditionalFieldHandlers(),
                 configuration.getMockingFrameworkHandler());
 
-        FieldHandler fieldHandler = new FieldHandlerDelegate(fieldHandlerFinder);
-        return new DefaultDataPopulator(fieldHandler, configuration.getObjectAnalyser());
+        return new DefaultDataPopulator(fieldHandlerFinder, configuration.getObjectAnalyser());
     }
 
     private FieldHandlerFinder createFieldHandlerFinder(List<? extends FieldHandler> additionalHandlers,

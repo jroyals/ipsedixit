@@ -25,19 +25,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Default implementation of IpsedixitAnnotationHelper.
+ */
 public class DefaultIpsedixitAnnotationHelper implements IpsedixitAnnotationHelper {
 
+    /**
+     * {@inheritDoc}
+     */
     public ObjectAnalyser getClassAnalyser(Class<?> clazz) {
         Ipsedixit annotation = getAnnotation(clazz);
         return annotation == null ? new NonFinalFieldObjectAnalyser() : instantiateClass(annotation.value());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public FieldHandler getMockFrameworkFieldHandler(Class<?> clazz) {
         Ipsedixit annotation = getAnnotation(clazz);
         return annotation == null ? new EasyMock2ClassExtensionFieldHandler()
                 : instantiateClass(annotation.mockFrameworkHandler());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public List<FieldHandler> getAdditionalFieldHandlers(Class<?> clazz) {
         Ipsedixit annotation = getAnnotation(clazz);

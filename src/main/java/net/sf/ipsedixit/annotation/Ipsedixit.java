@@ -26,11 +26,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ElementType.TYPE, ElementType.PACKAGE})
-@Retention(RetentionPolicy.RUNTIME)
 /**
  * This annotation allows some customisation of Ipsedixit in the scope of the class, or package the class is defined in.
  */
+@Target({ElementType.TYPE, ElementType.PACKAGE})
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Ipsedixit {
 
     /**

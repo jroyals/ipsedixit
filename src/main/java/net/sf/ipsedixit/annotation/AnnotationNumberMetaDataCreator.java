@@ -20,7 +20,17 @@ import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.NumberMetaData;
 
+/**
+ * Creates StringMetaData from annotations found on a numeric field.
+ */
 public class AnnotationNumberMetaDataCreator implements MetaDataCreator<NumberMetaData> {
+
+    /**
+     * Returns a {@link net.sf.ipsedixit.core.NumberMetaData} instance that contains the metadata on this field.
+     *
+     * @param mutableField the field to look for annotations.
+     * @return the NumberMetaData instance encapsulating all metadata on this field.
+     */
     public NumberMetaData getMetaData(MutableField mutableField) {
         InternalNumberMetaData internalNumberMetaData = new InternalNumberMetaData();
 

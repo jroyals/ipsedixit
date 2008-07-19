@@ -17,27 +17,7 @@
 package net.sf.ipsedixit.core;
 
 /**
- * Metadata about a String field.
+ * Marker interface for Field Metadata.
  */
-public interface StringMetaData extends FieldMetaData {
-
-    /**
-     * Default size is 64 characters.
-     */
-    int DEFAULT_SIZE = 64;
-
-    /**
-     * @return the length of the String.
-     */
-    int length();
-
-    /**
-     * @return a String, of which the random String muct contain.
-     */
-    String contains();
-
-    /**
-     * @return the tye of String to generate.
-     */
-    StringType type();
+public interface FieldMetaData {
 }
