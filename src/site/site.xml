@@ -31,17 +31,17 @@
 
     <body>
         <links>
-            <item name="Ipsedixit Wiki" href="http://ipsedixit.fragstealers.com"/>
+            <item name="Project Home" href="http://ipsedixit.sourceforge.net"/>
             <item name="Sourceforge" href="http://www.sf.net/"/>
             <item name="Maven 2" href="http://maven.apache.org/"/>
         </links>
 
         <menu name="Ipsedixit">
-            <item name="Introduction" href="introduction.html"/>
-            <item name="Wiki" href="http://ipsedixit.fragstealers.com"/>
-            <item name="SF Project Home" href="http://sourceforge.net/projects/ipsedixit/"/>
-            <item name="Usage" href="usage.html"/>
-            <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=234053"/>
+            <!--<item name="Introduction" href="introduction.html"/>-->
+            <item name="Project Home" href="http://ipsedixit.sourceforge.net"/>
+            <item name="SourceForge Home" href="http://sourceforge.net/projects/ipsedixit/"/>
+            <!--<item name="Usage" href="usage.html"/>-->
+            <!--<item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=234053"/>-->
         </menu>
 
         <menu ref="reports"/>
