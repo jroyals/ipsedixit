@@ -22,21 +22,38 @@ import net.sf.ipsedixit.core.NumberMetaData;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.RandomDataProvider;
 
+/**
+ * Handler for Float and float fields.
+ */
 public class FloatFieldHandler implements FieldHandler {
     private final MetaDataCreator<NumberMetaData> metaDataCreator;
     private final RandomDataProvider randomDataProvider;
 
+    /**
+     * Creates a FloatFieldHandler.
+     *
+     * @param metaDataCreator to get any metadata on the field, such as maximum length.
+     * @param randomDataProvider to generate the random value.
+     */
     public FloatFieldHandler(MetaDataCreator<NumberMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
         this.metaDataCreator = metaDataCreator;
         this.randomDataProvider = randomDataProvider;
     }
 
+    /**
+     * @param mutableField the {@link net.sf.ipsedixit.core.MutableField} containing a float field.
+     * @return a random float value, constrained by any metadata that is present on the field.
+     */
     public Float getValueFor(MutableField mutableField) {
         NumberMetaData numberMetaData = metaDataCreator.getMetaData(mutableField);
         return (float) randomDataProvider.randomDoubleInRange(
                 numberMetaData.getMinValue(), numberMetaData.getMaxValue());
     }
 
+    /**
+     * @param mutableField a MutableField.
+     * @return true, if and only if the MutableField represents a float.
+     */
     public boolean supports(MutableField mutableField) {
         Class type = mutableField.getType();
         return float.class.equals(type) || Float.class.equals(type);

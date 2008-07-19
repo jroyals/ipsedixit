@@ -40,7 +40,7 @@ public interface MutableField {
     String getName();
 
     /**
-     * Get the field type as a {@link Class}
+     * Get the field type as a {@link Class}.
      * @return the field type.
      */
     Class getType();

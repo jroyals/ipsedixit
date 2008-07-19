@@ -22,21 +22,38 @@ import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.RandomDataProvider;
 
+/**
+ * Handler for Integer and int fields.
+ */
 public class IntegerFieldHandler implements FieldHandler {
     private final MetaDataCreator<NumberMetaData> metaDataCreator;
     private final RandomDataProvider randomDataProvider;
 
+    /**
+     * Creates a IntegerFieldHandler.
+     *
+     * @param metaDataCreator to get any metadata on the field, such as maximum length.
+     * @param randomDataProvider to generate the random value.
+     */
     public IntegerFieldHandler(MetaDataCreator<NumberMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
         this.metaDataCreator = metaDataCreator;
         this.randomDataProvider = randomDataProvider;
     }
 
+    /**
+     * @param mutableField the {@link net.sf.ipsedixit.core.MutableField} containing an integer field.
+     * @return a random integer value, constrained by any metadata that is present on the field.
+     */
     public Integer getValueFor(MutableField mutableField) {
         NumberMetaData numberMetaData = metaDataCreator.getMetaData(mutableField);
         return (int) randomDataProvider.randomLongInRange(
                 (int) numberMetaData.getMinValue(), (int) numberMetaData.getMaxValue());
     }
 
+    /**
+     * @param mutableField a MutableField.
+     * @return true, if and only if the MutableField represents a integer.
+     */
     public boolean supports(MutableField mutableField) {
         Class type = mutableField.getType();
         return int.class.equals(type) || Integer.class.equals(type);

@@ -19,7 +19,18 @@ package net.sf.ipsedixit.core.impl;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-public class AnnotationOnlyObjectAnalyser extends AbstractNonFinalFieldObjectAnalyser {
+/**
+ * Concrete implementation of {@link net.sf.ipsedixit.core.ObjectAnalyser} that only considers a field mutable if
+ * (and only if):
+ * <ul>
+ *   <li>The field is not final, and</li>
+ *   <li>The field is annotated by any annotation in the <code>net.sf.ipsedixit</code> package
+ * </ul>
+ * Visibility of the field is not important, private fields are fair game so long as they are not final.
+ *
+ * @see net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser
+ */
+public class AnnotationOnlyObjectAnalyser extends NonFinalFieldObjectAnalyser {
 
     protected boolean isFieldAllowed(Field field) {
         Annotation[] annotations = field.getAnnotations();

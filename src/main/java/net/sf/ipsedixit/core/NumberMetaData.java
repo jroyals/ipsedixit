@@ -16,6 +16,9 @@
 
 package net.sf.ipsedixit.core;
 
+/**
+ * Represents some metadata about a numeric field.
+ */
 public interface NumberMetaData {
 
     /**
@@ -30,7 +33,13 @@ public interface NumberMetaData {
      */
     int DEFAULT_MAXIMUM_NUMBER = Byte.MAX_VALUE;
 
+    /**
+     * @return the minimum value of the random number.
+     */
     double getMinValue();
 
+    /**
+     * @return the maximum value of the random number.
+     */
     double getMaxValue();
 }

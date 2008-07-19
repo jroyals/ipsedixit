@@ -23,9 +23,21 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Can be applied to a numeric primitive or object wrapper type.  Using this annotation also allows customisation of
+ * the value to set.
+ */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ArbitraryNumber {
+
+    /**
+     * Return the minimum inclusive value to generate.
+     */
     double min() default NumberMetaData.DEFAULT_MINIMUM_NUMBER;
+
+    /**
+     * Return the maximum number to generate.  Inclusive for integral types, exclusive for floating types.
+     */
     double max() default NumberMetaData.DEFAULT_MAXIMUM_NUMBER;
 }

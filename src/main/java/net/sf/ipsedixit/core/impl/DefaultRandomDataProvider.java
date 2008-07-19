@@ -20,7 +20,14 @@ import net.sf.ipsedixit.core.StringType;
 import net.sf.ipsedixit.core.RandomDataProvider;
 import org.apache.commons.lang.RandomStringUtils;
 
+/**
+ * Default implementation of RandomDataProvider.
+ */
 public class DefaultRandomDataProvider implements RandomDataProvider {
+
+    /**
+     * {@inheritDoc}
+     */
     public String randomString(StringType stringType, int length) {
         if (stringType == StringType.ALPHANUMERIC) {
             return RandomStringUtils.randomAlphanumeric(length);
@@ -30,22 +37,37 @@ public class DefaultRandomDataProvider implements RandomDataProvider {
         return RandomStringUtils.randomNumeric(length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean randomBoolean() {
         return randomLongInRange(0, 1) == 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public long randomLongInRange(long minInclusive, long maxInclusive) {
         return (long) (Math.random() * (maxInclusive - minInclusive + 1)) + minInclusive;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public <T extends Enum> T randomEnumValue(Class<? extends T> enumType) {
         return randomArrayElement(enumType.getEnumConstants());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public <T> T randomArrayElement(T[] array) {
         return array[(int) randomLongInRange(0, array.length - 1)];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public double randomDoubleInRange(double minInclusive, double maxExclusive) {
         return (Math.random() * (maxExclusive - minInclusive)) + minInclusive;
     }

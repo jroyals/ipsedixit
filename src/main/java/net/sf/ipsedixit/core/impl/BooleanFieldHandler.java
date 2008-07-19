@@ -20,18 +20,34 @@ import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.RandomDataProvider;
 
+/**
+ * Handler for Booelean and boolean fields.
+ */
 public class BooleanFieldHandler implements FieldHandler {
 
     private final RandomDataProvider randomDataProvider;
 
+    /**
+     * Creates a BooleanFieldHandler.
+     *
+     * @param randomDataProvider to generate the random value.
+     */
     public BooleanFieldHandler(RandomDataProvider randomDataProvider) {
         this.randomDataProvider = randomDataProvider;
     }
 
+    /**
+     * @param mutableField the {@link net.sf.ipsedixit.core.MutableField} containing a boolean field.
+     * @return a random double boolean.
+     */
     public Boolean getValueFor(MutableField mutableField) {
         return randomDataProvider.randomBoolean();
     }
 
+    /**
+     * @param mutableField a MutableField.
+     * @return true, if and only if the MutableField represents a boolean.
+     */
     public boolean supports(MutableField mutableField) {
         Class type = mutableField.getType();
         return boolean.class.equals(type) || Boolean.class.equals(type);

@@ -23,8 +23,8 @@ import net.sf.ipsedixit.core.RandomDataProvider;
 import net.sf.ipsedixit.core.impl.DefaultRandomDataProvider;
 
 /**
- * A utility class that provides methods useful for setting up random values in your tests
- * (or production code, if you really want).
+ * A utility class that provides methods useful for setting up random values in your tests (or production code, if you
+ * really want).
  */
 public final class TestData {
 
@@ -35,26 +35,23 @@ public final class TestData {
     }
 
     /**
-     * @return a random alpha-numeric string of
-     * {@link net.sf.ipsedixit.core.StringMetaData#DEFAULT_SIZE} length.
+     * @return a random alpha-numeric string of {@link net.sf.ipsedixit.core.StringMetaData#DEFAULT_SIZE} length.
      */
     public static String randomString() {
         return randomString(StringType.ALPHANUMERIC);
     }
 
     /**
-     * @param stringType a {@link net.sf.ipsedixit.core.StringType} to specify what the String
-     * should contain.
-     * @return a string of length {@link net.sf.ipsedixit.core.StringMetaData#DEFAULT_SIZE}
-     * containing characters identified by the stringType paramter.
+     * @param stringType a {@link net.sf.ipsedixit.core.StringType} to specify what the String should contain.
+     * @return a string of length {@link net.sf.ipsedixit.core.StringMetaData#DEFAULT_SIZE} containing characters
+     *         identified by the stringType paramter.
      */
     public static String randomString(StringType stringType) {
         return randomString(stringType, StringMetaData.DEFAULT_SIZE);
     }
 
     /**
-     * @param stringType a {@link net.sf.ipsedixit.core.StringType} to specify what the String
-     * should contain.
+     * @param stringType a {@link net.sf.ipsedixit.core.StringType} to specify what the String should contain.
      * @param length how long the String should be.
      * @return a String, generated to the specified length and the specified type.
      */
@@ -90,9 +87,8 @@ public final class TestData {
     }
 
     /**
-     * @return an integer between
-     * {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MINIMUM_NUMBER} and
-     * {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MAXIMUM_NUMBER}.
+     * @return an integer between {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MINIMUM_NUMBER} and {@link
+     *         net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MAXIMUM_NUMBER}.
      */
     public static int randomInt() {
         return randomInt(NumberMetaData.DEFAULT_MINIMUM_NUMBER, NumberMetaData.DEFAULT_MAXIMUM_NUMBER);
@@ -108,9 +104,8 @@ public final class TestData {
     }
 
     /**
-     * @return a long between
-     * {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MINIMUM_NUMBER} and
-     * {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MAXIMUM_NUMBER}.
+     * @return a long between {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MINIMUM_NUMBER} and {@link
+     *         net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MAXIMUM_NUMBER}.
      */
     public static long randomLong() {
         return randomLong(NumberMetaData.DEFAULT_MINIMUM_NUMBER, NumberMetaData.DEFAULT_MAXIMUM_NUMBER);
@@ -126,9 +121,8 @@ public final class TestData {
     }
 
     /**
-     * @return a double between
-     * {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MINIMUM_NUMBER} and
-     * {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MAXIMUM_NUMBER}.
+     * @return a double between {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MINIMUM_NUMBER} and {@link
+     *         net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MAXIMUM_NUMBER}.
      */
     public static double randomDouble() {
         return randomDouble(NumberMetaData.DEFAULT_MINIMUM_NUMBER, NumberMetaData.DEFAULT_MAXIMUM_NUMBER);
@@ -144,9 +138,8 @@ public final class TestData {
     }
 
     /**
-     * @return a float between
-     * {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MINIMUM_NUMBER} and
-     * {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MAXIMUM_NUMBER}.
+     * @return a float between {@link net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MINIMUM_NUMBER} and {@link
+     *         net.sf.ipsedixit.core.NumberMetaData#DEFAULT_MAXIMUM_NUMBER}.
      */
     public static float randomFloat() {
         return randomFloat(NumberMetaData.DEFAULT_MINIMUM_NUMBER, NumberMetaData.DEFAULT_MAXIMUM_NUMBER);
@@ -162,16 +155,18 @@ public final class TestData {
     }
 
     /**
-     * Gets a whitespace character from a set containing the following:
-     *
+     * Return an arbitrary String containing only whitespace characters.
+     * <p/>
+     * Gets a whitespace character from a set of whitespace value containing the following:
+     * <p/>
      * <ul>
-     *   <li>empty string</li>
-     *   <li>space</li>
-     *   <li>tab</li>
-     *   <li>\n</li>
-     *   <li>\r</li>
-     *   <li>\r\n</li>
-     *   <li>0x0</li>
+     * <li>empty string</li>
+     * <li>space</li>
+     * <li>tab</li>
+     * <li>\n</li>
+     * <li>\r</li>
+     * <li>\r\n</li>
+     * <li>0x0</li>
      * </ul>
      *
      * @return a random whitespace character.

@@ -21,6 +21,9 @@ import net.sf.ipsedixit.core.MutableField;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
+/**
+ * Default implementation of MutableField.
+ */
 public class DefaultMutableField implements MutableField {
     private final Field field;
     private final Object obj;

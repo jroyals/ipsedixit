@@ -22,21 +22,38 @@ import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.RandomDataProvider;
 import net.sf.ipsedixit.core.MutableField;
 
+/**
+ * Handler for Byte and byte fields.
+ */
 public class ByteFieldHandler implements FieldHandler {
     private final MetaDataCreator<NumberMetaData> metaDataCreator;
     private final RandomDataProvider randomDataProvider;
 
+    /**
+     * Creates a ByteFieldHandler.
+     *
+     * @param metaDataCreator to get any metadata on the field, such as maximum value.
+     * @param randomDataProvider to generate the random value.
+     */
     public ByteFieldHandler(MetaDataCreator<NumberMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
         this.metaDataCreator = metaDataCreator;
         this.randomDataProvider = randomDataProvider;
     }
 
+    /**
+     * @param mutableField the {@link net.sf.ipsedixit.core.MutableField} containing a byte field.
+     * @return a random byte value, constrained by any metadata that is present on the field.
+     */
     public Byte getValueFor(MutableField mutableField) {
         NumberMetaData numberMetaData = metaDataCreator.getMetaData(mutableField);
         return (byte) randomDataProvider.randomLongInRange(
                 (byte) numberMetaData.getMinValue(), (byte) numberMetaData.getMaxValue());
     }
 
+    /**
+     * @param mutableField a MutableField.
+     * @return true, if and only if the MutableField represents a byte.
+     */
     public boolean supports(MutableField mutableField) {
         Class type = mutableField.getType();
         return byte.class.equals(type) || Byte.class.equals(type);

@@ -22,21 +22,38 @@ import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.RandomDataProvider;
 
+/**
+ * Handler for Short and short fields.
+ */
 public class ShortFieldHandler implements FieldHandler {
     private final MetaDataCreator<NumberMetaData> metaDataCreator;
     private final RandomDataProvider randomDataProvider;
 
+    /**
+     * Creates a ShortFieldHandler.
+     *
+     * @param metaDataCreator to get any metadata on the field, such as maximum value.
+     * @param randomDataProvider to generate the random value.
+     */
     public ShortFieldHandler(MetaDataCreator<NumberMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
         this.metaDataCreator = metaDataCreator;
         this.randomDataProvider = randomDataProvider;
     }
 
+    /**
+     * @param mutableField the {@link net.sf.ipsedixit.core.MutableField} containing a short field.
+     * @return a random short value, constrained by any metadata that is present on the field.
+     */
     public Short getValueFor(MutableField mutableField) {
         NumberMetaData numberMetaData = metaDataCreator.getMetaData(mutableField);
         return (short) randomDataProvider.randomLongInRange(
                 (short) numberMetaData.getMinValue(), (short) numberMetaData.getMaxValue());
     }
 
+    /**
+     * @param mutableField a MutableField.
+     * @return true, if and only if the MutableField represents a short.
+     */
     public boolean supports(MutableField mutableField) {
         Class type = mutableField.getType();
         return short.class.equals(type) || Short.class.equals(type);

@@ -18,7 +18,7 @@ package net.sf.ipsedixit.annotation;
 
 import net.sf.ipsedixit.core.ObjectAnalyser;
 import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.core.impl.NonFinalFieldsObjectAnalyser;
+import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
 import net.sf.ipsedixit.core.impl.EasyMock2ClassExtensionFieldHandler;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class DefaultIpsedixitAnnotationHelper implements IpsedixitAnnotationHelp
 
     public ObjectAnalyser getClassAnalyser(Class<?> clazz) {
         Ipsedixit annotation = getAnnotation(clazz);
-        return annotation == null ? new NonFinalFieldsObjectAnalyser() : instantiateClass(annotation.value());
+        return annotation == null ? new NonFinalFieldObjectAnalyser() : instantiateClass(annotation.value());
     }
 
     public FieldHandler getMockFrameworkFieldHandler(Class<?> clazz) {

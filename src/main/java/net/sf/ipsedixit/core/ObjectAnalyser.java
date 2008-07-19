@@ -18,6 +18,20 @@ package net.sf.ipsedixit.core;
 
 import java.util.List;
 
+/**
+ * Instances of <code>ObjectAnalyser</code> are able to inspect an object, and find any fields that are candidates for
+ * further processing.  Fields are wrapped in instances of {@link net.sf.ipsedixit.core.MutableField} for convienience.
+ * <p/>
+ * Ipsedixit provides a few implementations of this class which can be used.  If you have special requirements, you can
+ * implement this interface yourself and configure Ipsedixit to use your implementation instead.
+ */
 public interface ObjectAnalyser {
+
+    /**
+     * Given an Object of any type, analyse it and return a List of fields that are candidates for further processing.
+     *
+     * @param obj the Object to analyse.
+     * @return a List of {@link net.sf.ipsedixit.core.MutableField}'s, or an empty List if no fields exist.
+     */
     List<MutableField> getMutableFields(Object obj);
 }

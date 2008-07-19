@@ -16,10 +16,10 @@
 
 package net.sf.ipsedixit.annotation;
 
-import net.sf.ipsedixit.core.ObjectAnalyser;
 import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.ObjectAnalyser;
 import net.sf.ipsedixit.core.impl.EasyMock2ClassExtensionFieldHandler;
-import net.sf.ipsedixit.core.impl.NonFinalFieldsObjectAnalyser;
+import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -34,18 +34,18 @@ import java.lang.annotation.Target;
 public @interface Ipsedixit {
 
     /**
-     * @return the {@link net.sf.ipsedixit.core.ObjectAnalyser} implementation to use.
+     * Return the {@link net.sf.ipsedixit.core.ObjectAnalyser} implementation to use.
      */
-    Class<? extends ObjectAnalyser> value() default NonFinalFieldsObjectAnalyser.class;
+    Class<? extends ObjectAnalyser> value() default NonFinalFieldObjectAnalyser.class;
 
     /**
-     * @return the {@link net.sf.ipsedixit.core.FieldHandler} implementation containing the mocking
+     * Return the {@link net.sf.ipsedixit.core.FieldHandler} implementation containing the mocking
      *   framework handler to use.
      */
     Class<? extends FieldHandler> mockFrameworkHandler() default EasyMock2ClassExtensionFieldHandler.class;
 
     /**
-     * @return the types of any additional {@link net.sf.ipsedixit.core.FieldHandler}'s to use.
+     * Return the types of any additional {@link net.sf.ipsedixit.core.FieldHandler}'s to use.
      */
     Class<? extends FieldHandler>[] additionalHandlers() default {};
 }

@@ -20,17 +20,32 @@ import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.RandomDataProvider;
 import net.sf.ipsedixit.core.MutableField;
 
+/**
+ * Handles Java 5 enumerations by returning a random value from within the enumeration.
+ */
 public class EnumFieldHandler implements FieldHandler {
     private final RandomDataProvider randomDataProvider;
 
+    /**
+     * Creates a new EnumFieldHandler.
+     * @param randomDataProvider a RandomDataProvider to use when creating the random emum.
+     */
     public EnumFieldHandler(RandomDataProvider randomDataProvider) {
         this.randomDataProvider = randomDataProvider;
     }
 
+    /**
+     * @param mutableField the enumeration, wrapped by the mutable field.
+     * @return a random value from within the enumerated type.
+     */
     public Enum getValueFor(MutableField mutableField) {
         return randomDataProvider.randomEnumValue((Class<? extends Enum>) mutableField.getType());
     }
 
+    /**
+     * @param mutableField an arbitrary field.
+     * @return true if, and only if, the mutableField wraps a Java 5 Enumeration.
+     */
     public boolean supports(MutableField mutableField) {
         Class type = mutableField.getType();
         return Enum.class.isAssignableFrom(type);

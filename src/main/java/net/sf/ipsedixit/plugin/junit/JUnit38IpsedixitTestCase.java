@@ -21,7 +21,7 @@ import net.sf.ipsedixit.DataPopulatorFactory;
 import net.sf.ipsedixit.core.ObjectAnalyser;
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import net.sf.ipsedixit.annotation.AnnotationConfiguration;
-import net.sf.ipsedixit.core.impl.NonFinalFieldsObjectAnalyser;
+import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.impl.EasyMock2ClassExtensionFieldHandler;
 import net.sf.ipsedixit.plugin.Configuration;
@@ -40,7 +40,7 @@ public class JUnit38IpsedixitTestCase extends TestCase implements Configuration,
     }
 
     public ObjectAnalyser getClassAnalyser() {
-        return new NonFinalFieldsObjectAnalyser();
+        return new NonFinalFieldObjectAnalyser();
     }
 
     public FieldHandler getMockingFrameworkHandler() {

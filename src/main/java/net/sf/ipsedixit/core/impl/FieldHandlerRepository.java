@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * A repository containing the standard set of {@link net.sf.ipsedixit.core.FieldHandler} objects.
+ */
 public final class FieldHandlerRepository {
     private static final RandomDataProvider RANDOM_DATA_PROVIDER = new DefaultRandomDataProvider();
 
@@ -45,6 +48,9 @@ public final class FieldHandlerRepository {
     private FieldHandlerRepository() {
     }
 
+    /**
+     * @return the List of standard {@link net.sf.ipsedixit.core.FieldHandler}'s.
+     */
     public static List<FieldHandler> getStandardFieldHandlers() {
         return FIELD_HANDLERS;
     }

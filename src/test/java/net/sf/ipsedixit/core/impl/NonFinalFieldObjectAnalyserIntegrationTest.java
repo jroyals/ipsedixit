@@ -25,13 +25,13 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class NonFinalFieldsObjectAnalyserIntegrationTest {
+public class NonFinalFieldObjectAnalyserIntegrationTest {
 
-    private NonFinalFieldsObjectAnalyser nonFinalFieldsClassAnalyser;
+    private NonFinalFieldObjectAnalyser nonFinalFieldsClassAnalyser;
 
     @Before
     public void setup() {
-        nonFinalFieldsClassAnalyser = new NonFinalFieldsObjectAnalyser();
+        nonFinalFieldsClassAnalyser = new NonFinalFieldObjectAnalyser();
     }
 
     @Test

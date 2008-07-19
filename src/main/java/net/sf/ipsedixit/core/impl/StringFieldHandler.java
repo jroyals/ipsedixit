@@ -24,21 +24,38 @@ import net.sf.ipsedixit.core.StringType;
 import net.sf.ipsedixit.core.RandomDataProvider;
 import org.apache.commons.lang.StringUtils;
 
+/**
+ * Handler for String fields.
+ */
 public class StringFieldHandler implements FieldHandler {
 
     private final MetaDataCreator<StringMetaData> metaDataProvider;
     private final RandomDataProvider randomDataProvider;
 
-    public StringFieldHandler(MetaDataCreator<StringMetaData> metaDataProvider, RandomDataProvider randomDataProvider) {
-        this.metaDataProvider = metaDataProvider;
+    /**
+     * Creates a StringFieldHandler.
+     *
+     * @param metaDataCreator to get any metadata on the field, such as maximum length.
+     * @param randomDataProvider to generate the random value.
+     */
+    public StringFieldHandler(MetaDataCreator<StringMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
+        this.metaDataProvider = metaDataCreator;
         this.randomDataProvider = randomDataProvider;
     }
 
+    /**
+     * @param mutableField a MutableField.
+     * @return true, if and only if the MutableField represents a String.
+     */
     public boolean supports(MutableField mutableField) {
         Class type = mutableField.getType();
         return String.class.equals(type);
     }
 
+    /**
+     * @param mutableField the {@link net.sf.ipsedixit.core.MutableField} containing a String field.
+     * @return a random String value, constrained by any metadata that is present on the field.
+     */
     public String getValueFor(MutableField mutableField) {
         StringBuilder stringBuilder = new StringBuilder();
         StringMetaData stringMetaData = metaDataProvider.getMetaData(mutableField);
