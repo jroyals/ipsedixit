@@ -38,7 +38,6 @@
             <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/site</url>
         </site>
     </distributionManagement>
-
     <issueManagement>
         <system>Sourceforge Tracker</system>
         <url>http://sourceforge.net/tracker/?group_id=234053</url>
@@ -60,7 +59,11 @@
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.4</version>
-            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
