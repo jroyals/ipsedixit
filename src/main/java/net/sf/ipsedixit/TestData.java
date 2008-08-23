@@ -29,7 +29,7 @@ import net.sf.ipsedixit.core.impl.DefaultRandomDataProvider;
 public final class TestData {
 
     private static final RandomDataProvider RANDOM_DATA_PROVIDER = new DefaultRandomDataProvider();
-    private static final String[] WHITESPACE = {"", " ", "\t", "\n", "\r", "\r\n", String.valueOf((char) 0x0)};
+    private static final String[] WHITESPACE = {"", " ", "\t", "\n", "\r", "\r\n"};
 
     private TestData() {
     }
