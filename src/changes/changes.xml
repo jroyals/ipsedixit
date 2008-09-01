@@ -4,7 +4,7 @@
         <author email="ipsedixit@fragstealers.com">Jason Royals</author>
     </properties>
     <body>
-        <release version="0.1.1" date="2008-19-01" description="Minor bug fixes and enhancmenet release">
+        <release version="0.1.1" date="2008-19-01" description="Minor bug fixes and enhancement release">
             <action dev="jroyals" type="add">
                 Add new StringType.ANY (Feature request 2086712).
             </action>
