@@ -48,7 +48,7 @@ public class AnnotationStringMetaDataCreator implements MetaDataCreator<StringMe
     private static class InternalStringMetaData implements StringMetaData {
         private int length = DEFAULT_SIZE;
         private String contains;
-        private StringType type = StringType.ALPHANUMERIC;
+        private StringType type = StringType.ANY;
 
         public int length() {
             return length;

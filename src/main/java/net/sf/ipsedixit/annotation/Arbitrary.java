@@ -16,9 +16,16 @@
 
 package net.sf.ipsedixit.annotation;
 
+import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * A marker annotation to indicate that a field should receive some sort of arbitrary data when using
  * the {@link net.sf.ipsedixit.core.impl.AnnotationOnlyObjectAnalyser}.
  */
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Arbitrary {
 }

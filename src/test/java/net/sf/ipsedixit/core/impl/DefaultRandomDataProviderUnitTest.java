@@ -16,12 +16,12 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import java.math.RoundingMode;
+
 import net.sf.ipsedixit.core.StringType;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.math.RoundingMode;
 
 public class DefaultRandomDataProviderUnitTest {
 
@@ -37,6 +37,8 @@ public class DefaultRandomDataProviderUnitTest {
         assertTrue(defaultRandomDataProvider.randomString(StringType.ALPHANUMERIC, 100), defaultRandomDataProvider.randomString(StringType.ALPHANUMERIC, 100).matches("[A-Za-z0-9]{100}"));
         assertTrue(defaultRandomDataProvider.randomString(StringType.NUMERIC, 100), defaultRandomDataProvider.randomString(StringType.NUMERIC, 100).matches("[0-9]{100}"));
         assertTrue(defaultRandomDataProvider.randomString(StringType.ALPHA, 100), defaultRandomDataProvider.randomString(StringType.ALPHA, 100).matches("[A-Za-z]{100}"));
+        assertTrue(defaultRandomDataProvider.randomString(StringType.ANY, 100), defaultRandomDataProvider.randomString(StringType.ANY, 100).matches("[\\x20-\\x7e]{100}"));
+        assertTrue(defaultRandomDataProvider.randomString(StringType.ANY, 100), defaultRandomDataProvider.randomString(StringType.ANY, 100).matches(".*[^A-Za-z0-9]+.*"));
     }
 
     @Test

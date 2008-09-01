@@ -3,7 +3,7 @@
     <groupId>net.sf.ipsedixit</groupId>
     <artifactId>ipsedixit</artifactId>
     <packaging>jar</packaging>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.1.1-SNAPSHOT</version>
     <name>ipsedixit</name>
     <url>http://ipsedixit.sourceforge.net</url>
     <description>

@@ -20,10 +20,11 @@
 package net.sf.ipsedixit.plugin.junit.v4;
 
 
+import net.sf.ipsedixit.annotation.Arbitrary;
 import net.sf.ipsedixit.annotation.ArbitraryString;
 import net.sf.ipsedixit.annotation.Ipsedixit;
-import net.sf.ipsedixit.plugin.junit.JUnit4IpsedixitTestRunner;
 import net.sf.ipsedixit.core.impl.AnnotationOnlyObjectAnalyser;
+import net.sf.ipsedixit.plugin.junit.JUnit4IpsedixitTestRunner;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,14 +33,17 @@ import org.junit.runner.RunWith;
 @Ipsedixit(AnnotationOnlyObjectAnalyser.class)
 public class AnnotatedClassOverrideClassAnalyserIntegrationTest {
     private String immutable = "immutable";
-    @ArbitraryString
+    @Arbitrary
     private String arbitrary;
+    @ArbitraryString(ofLength = 10)
+    private String anotherArbitrary;
     private Number mock;
 
     @Test
     public void hasWorked() {
         assertEquals("immutable", immutable);
         assertTrue(arbitrary.matches(".{64}"));
+        assertTrue(anotherArbitrary.matches(".{10}"));
         assertNull(mock);
     }
 }

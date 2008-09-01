@@ -59,8 +59,10 @@ public class StringFieldHandler implements FieldHandler {
     public String getValueFor(MutableField mutableField) {
         StringBuilder stringBuilder = new StringBuilder();
         StringMetaData stringMetaData = metaDataProvider.getMetaData(mutableField);
+
         int totalLength = stringMetaData.length();
         StringType stringType = stringMetaData.type();
+
         appendFieldNameIfRequired(stringBuilder, mutableField, stringType, totalLength);
         appendContainedStringIfRequired(stringBuilder, stringType, stringMetaData);
         stringBuilder.append(randomDataProvider.randomString(stringType, totalLength));
@@ -85,7 +87,7 @@ public class StringFieldHandler implements FieldHandler {
     }
 
     private String getSeparatorChar(StringType stringType) {
-        return stringType == StringType.NUMERIC ? "" : "_";
+        return stringType == StringType.ANY ? "_" : "";
     }
 
 }

@@ -38,7 +38,7 @@ public class StringFieldHandlerUnitTest {
     private int length = 100;
     private String prefix = "prefix";
     private String randomString = "randomString";
-    private StringType stringType = StringType.ALPHANUMERIC;
+    private StringType stringType = StringType.ANY;
 
     @Before
     public void setup() {
@@ -101,6 +101,22 @@ public class StringFieldHandlerUnitTest {
         runExpectations();
         Object result = replayAndVerifyInteractions();
         assertEquals("containsrandomString", result);
+    }
+    
+    @Test
+    public void doesNotContainUnderscoreSeparatorIfAlphaType() {
+        stringType = StringType.ALPHA;
+        runExpectations();
+        Object result = replayAndVerifyInteractions();
+        assertEquals("prefixcontainsrandomString", result);
+    }
+
+    @Test
+    public void doesNotContainUnderscoreSeparatorIfAlphaNumericType() {
+        stringType = StringType.ALPHA;
+        runExpectations();
+        Object result = replayAndVerifyInteractions();
+        assertEquals("prefixcontainsrandomString", result);
     }
 
     private void runExpectations() {

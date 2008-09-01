@@ -16,13 +16,13 @@
 
 package net.sf.ipsedixit.annotation;
 
-import net.sf.ipsedixit.core.StringType;
-import net.sf.ipsedixit.core.StringMetaData;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import net.sf.ipsedixit.core.StringMetaData;
+import net.sf.ipsedixit.core.StringType;
 
 /**
  * Specifies that a random String should be included on the field.
@@ -44,5 +44,5 @@ public @interface ArbitraryString {
     /**
      * Returns the type of String to generate.
      */
-    StringType type() default StringType.ALPHANUMERIC;
+    StringType type() default StringType.ANY;
 }

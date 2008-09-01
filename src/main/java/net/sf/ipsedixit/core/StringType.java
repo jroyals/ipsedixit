@@ -17,10 +17,26 @@
 package net.sf.ipsedixit.core;
 
 /**
- * Defines a semantic type of String.
+ * Defines the possible format of a randomised String.
  */
 public enum StringType {
+    /**
+     * Only contains characters in the range [A-Za-z].
+     */
     ALPHA,
+
+    /**
+     * Only contains characters in the range [0-9].
+     */
     NUMERIC,
-    ALPHANUMERIC
+
+    /**
+     * Only contains characters in the range [0-9A-Za-z].
+     */
+    ALPHANUMERIC,
+
+    /**
+     * Contains a mix of numeric, alpha and other printable characters.
+     */
+    ANY
 }

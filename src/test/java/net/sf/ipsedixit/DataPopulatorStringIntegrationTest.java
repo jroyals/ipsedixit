@@ -39,26 +39,23 @@ public class DataPopulatorStringIntegrationTest {
         dataPopulator.populate(target);
         assertEquals("immutable", target.immutable);
         assertEquals(StringMetaData.DEFAULT_SIZE, target.string.length());
-        assertTrue(target.string, target.string.startsWith("string_"));
+        assertTrue(target.string, target.string.matches("string_.+"));
         assertEquals(10, target.stringOfLength.length());
         assertTrue(target.stringContaining, target.stringContaining.matches(".*contains.*"));
-        assertTrue(target.alphaString, target.alphaString.matches("alphaString_[A-Za-z]+"));
+        assertTrue(target.alphaString, target.alphaString.matches("alphaString[A-Za-z]+"));
         assertTrue(target.numericString, target.numericString.matches("[0-9]+"));
-        assertTrue(target.alphaNumericString, target.alphaNumericString.matches("alphaNumericString_[A-Za-z0-9]+"));
+        assertTrue(target.alphaNumericString, target.alphaNumericString.matches("alphaNumericString[A-Za-z0-9]+"));
+        assertTrue(target.anyString, target.anyString.matches("anyString_.+"));
     }
 
     private static class Target {
         private final String immutable = "immutable";
         private String string;
-        @ArbitraryString(ofLength = 10)
-        private String stringOfLength;
-        @ArbitraryString(containing = "contains")
-        private String stringContaining;
-        @ArbitraryString(type = StringType.ALPHA)
-        private String alphaString;
-        @ArbitraryString(type = StringType.NUMERIC)
-        private String numericString;
-        @ArbitraryString(type = StringType.ALPHANUMERIC)
-        private String alphaNumericString;
+        @ArbitraryString(ofLength = 10) private String stringOfLength;
+        @ArbitraryString(containing = "contains") private String stringContaining;
+        @ArbitraryString(type = StringType.ALPHA) private String alphaString;
+        @ArbitraryString(type = StringType.NUMERIC) private String numericString;
+        @ArbitraryString(type = StringType.ALPHANUMERIC) private String alphaNumericString;
+        @ArbitraryString private String anyString;
     }
 }

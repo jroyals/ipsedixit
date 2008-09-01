@@ -33,8 +33,10 @@ public class DefaultRandomDataProvider implements RandomDataProvider {
             return RandomStringUtils.randomAlphanumeric(length);
         } else if (stringType == StringType.ALPHA) {
             return RandomStringUtils.randomAlphabetic(length);
+        } else if (stringType == StringType.NUMERIC) {
+            return RandomStringUtils.randomNumeric(length);
         }
-        return RandomStringUtils.randomNumeric(length);
+        return RandomStringUtils.randomAscii(length);
     }
 
     /**
