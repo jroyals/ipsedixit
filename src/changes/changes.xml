@@ -5,7 +5,7 @@
     </properties>
     <body>
         <release version="0.1.1" date="2008-19-01" description="Minor bug fixes and enhancmenet release">
-            <action dev="jroyals" type="add"n delete >
+            <action dev="jroyals" type="add">
                 Add new StringType.ANY (Feature request 2086712).
             </action>
             <action dev="jroyals" type="fix" issue="2069064">
