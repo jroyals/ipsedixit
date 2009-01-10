@@ -101,7 +101,7 @@ public final class TestData {
      * @param maxValue the maximum inclusive value.
      * @return an integer between minValue and maxValue, inclusive.
      */
-    private static int randomInt(int minValue, int maxValue) {
+    public static int randomInt(int minValue, int maxValue) {
         return (int) randomLong(minValue, maxValue);
     }
 
