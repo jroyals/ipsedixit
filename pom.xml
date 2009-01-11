@@ -1,11 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf.ipsedixit</groupId>
-    <artifactId>ipsedixit</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>ipsedixit-parent</artifactId>
+    <packaging>pom</packaging>
     <version>0.1.2-SNAPSHOT</version>
-    <name>ipsedixit</name>
+    <name>ipsedixit-parent</name>
     <url>http://ipsedixit.sourceforge.net</url>
+
+    <modules>
+        <module>ipsedixit</module>
+        <module>ipsedixit-easymock</module>
+    </modules>
+
     <description>
         Ipsedixit is a lightweight provider of arbitrary data, mocks and dummies for your
         Java testing pleasure. It is designed to reduce the amount of boilerplate setup
@@ -21,7 +29,8 @@
     </licenses>
     <scm>
         <connection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/trunk</connection>
-        <developerConnection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/trunk/</developerConnection>
+        <developerConnection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/trunk/
+        </developerConnection>
         <url>http://ipsedixit.svn.sourceforge.net/viewvc/ipsedixit/trunk</url>
     </scm>
     <distributionManagement>
@@ -54,42 +63,16 @@
             <timezone>+10</timezone>
         </developer>
     </developers>
+
     <dependencies>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.4</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>2.5</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring</artifactId>
-            <version>2.5</version>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.4</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.easymock</groupId>
-            <artifactId>easymockclassextension</artifactId>
-            <version>2.3</version>
-            <optional>true</optional>
+            <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -150,7 +133,7 @@
                 <configuration>
                     <check>
                         <haltOnFailure>true</haltOnFailure>
-                        <totalBranchRate>85</totalBranchRate>
+                        <totalBranchRate>75</totalBranchRate>
                         <totalLineRate>85</totalLineRate>
                     </check>
                 </configuration>
@@ -226,13 +209,15 @@
                     </reportSet>
                 </reportSets>
                 <configuration>
-                    <issueLinkTemplate>%URL%?group_id=234053&amp;atid=1092098&amp;func=detail&amp;aid=%ISSUE%</issueLinkTemplate>
+                    <issueLinkTemplate>%URL%?group_id=234053&amp;atid=1092098&amp;func=detail&amp;aid=%ISSUE%
+                    </issueLinkTemplate>
                 </configuration>
             </plugin>
         </plugins>
     </reporting>
+
     <properties>
-        <checkstyle.config.location>etc/checkstyle/checkstyle.xml</checkstyle.config.location>
-        <checkstyle.header.location>etc/checkstyle/LICENSE.txt</checkstyle.header.location>
+        <checkstyle.config.location>${basedir}/etc/checkstyle/checkstyle.xml</checkstyle.config.location>
+        <checkstyle.header.location>${basedir}/etc/checkstyle/LICENSE.txt</checkstyle.header.location>
     </properties>
 </project>
