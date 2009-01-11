@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+  ~  Copyright 2008 the original author or authors.
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  -->
+
+<project>
+    <bannerLeft>
+        <name>Ipsedixit</name>
+        <src>images/ipsedixit.jpg</src>
+        <href>http://ipsedixit.sourceforge.net/</href>
+    </bannerLeft>
+
+    <bannerRight>
+        <name>Sourceforge</name>
+        <src>http://sflogo.sourceforge.net/sflogo.php?group_id=234053&amp;type=5</src>
+        <href>http://sourceforge.net/</href>
+    </bannerRight>
+
+    <body>
+        <links>
+            <item name="Project Home" href="http://ipsedixit.sourceforge.net"/>
+            <item name="Sourceforge" href="http://www.sf.net/"/>
+            <item name="Maven 2" href="http://maven.apache.org/"/>
+        </links>
+
+        <menu name="Ipsedixit">
+            <!--<item name="Introduction" href="introduction.html"/>-->
+            <item name="Project Home" href="http://ipsedixit.sourceforge.net"/>
+            <item name="SourceForge Home" href="http://sourceforge.net/projects/ipsedixit/"/>
+            <!--<item name="Usage" href="usage.html"/>-->
+            <!--<item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=234053"/>-->
+        </menu>
+
+        <menu ref="reports"/>
+    </body>
+</project>
