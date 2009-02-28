@@ -19,7 +19,7 @@ package net.sf.ipsedixit.core;
 /**
  * Represents some metadata about a numeric field.
  */
-public interface NumberMetaData extends FieldMetaData {
+public interface NumberMetaData {
 
     /**
      * Default minimum number is 1.

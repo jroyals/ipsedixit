@@ -20,11 +20,11 @@ import java.util.Random;
 
 import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
 import net.sf.ipsedixit.core.fieldhandler.impl.IntegerFieldHandler;
-import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.NumberMetaData;
 import net.sf.ipsedixit.core.RandomDataProvider;
 import static net.sf.ipsedixit.test.CustomTestMethods.*;
+import net.sf.ipsedixit.annotation.NumberMetaDataRetriever;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -33,7 +33,7 @@ import org.junit.Test;
 public class IntegerFieldHandlerUnitTest {
 
     private IntegerFieldHandler integerFieldHandler;
-    private MetaDataCreator<NumberMetaData> metaDataCreator;
+    private NumberMetaDataRetriever metaDataRetriever;
     private RandomDataProvider randomDataProvider;
     private NumberMetaData numberMetaData;
     private MutableField mutableField;
@@ -46,11 +46,11 @@ public class IntegerFieldHandlerUnitTest {
         minValue = new Random().nextInt(100);
         maxValue = new Random().nextInt(100);
         randomInteger = new Random().nextInt(100);
-        metaDataCreator = createMock(MetaDataCreator.class);
+        metaDataRetriever = createMock(NumberMetaDataRetriever.class);
         randomDataProvider = createMock(RandomDataProvider.class);
         numberMetaData = createMock(NumberMetaData.class);
         mutableField = createMock(MutableField.class);
-        integerFieldHandler = new IntegerFieldHandler(metaDataCreator, randomDataProvider);
+        integerFieldHandler = new IntegerFieldHandler(metaDataRetriever, randomDataProvider);
     }
 
     @Test
@@ -66,13 +66,13 @@ public class IntegerFieldHandlerUnitTest {
 
     @Test
     public void generatesRandomInteger() {
-        expect(metaDataCreator.getMetaData(mutableField)).andReturn(numberMetaData);
+        expect(metaDataRetriever.getMetaData(mutableField)).andReturn(numberMetaData);
         expect(numberMetaData.getMinValue()).andReturn(minValue);
         expect(numberMetaData.getMaxValue()).andReturn(maxValue);
         expect(randomDataProvider.randomLongInRange((int) minValue, (int) maxValue)).andReturn((long) randomInteger);
-        replay(metaDataCreator, numberMetaData, randomDataProvider);
+        replay(metaDataRetriever, numberMetaData, randomDataProvider);
         Object result = integerFieldHandler.getValueFor(mutableField);
-        verify(metaDataCreator, numberMetaData, randomDataProvider);
+        verify(metaDataRetriever, numberMetaData, randomDataProvider);
         assertSame(randomInteger, result);
     }
 }

@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import net.sf.ipsedixit.annotation.AnnotationNumberMetaDataCreator;
-import net.sf.ipsedixit.annotation.AnnotationStringMetaDataCreator;
+import net.sf.ipsedixit.annotation.AnnotationNumberMetaDataRetriever;
+import net.sf.ipsedixit.annotation.AnnotationStringMetaDataRetriever;
 import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
 import net.sf.ipsedixit.core.fieldhandler.impl.BooleanFieldHandler;
 import net.sf.ipsedixit.core.fieldhandler.impl.ByteFieldHandler;
@@ -43,16 +43,16 @@ public final class FieldHandlerRepository {
 
     private static final List<FieldHandler> FIELD_HANDLERS = Collections.unmodifiableList(
             new ArrayList<FieldHandler>() {{
-        add(new StringFieldHandler(new AnnotationStringMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new IntegerFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
+        add(new StringFieldHandler(new AnnotationStringMetaDataRetriever(), RANDOM_DATA_PROVIDER));
+        add(new IntegerFieldHandler(new AnnotationNumberMetaDataRetriever(), RANDOM_DATA_PROVIDER));
         add(new BooleanFieldHandler(RANDOM_DATA_PROVIDER));
         add(new EnumFieldHandler(RANDOM_DATA_PROVIDER));
-        add(new LongFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new ShortFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new CharacterFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new ByteFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new DoubleFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new FloatFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
+        add(new LongFieldHandler(new AnnotationNumberMetaDataRetriever(), RANDOM_DATA_PROVIDER));
+        add(new ShortFieldHandler(new AnnotationNumberMetaDataRetriever(), RANDOM_DATA_PROVIDER));
+        add(new CharacterFieldHandler(new AnnotationNumberMetaDataRetriever(), RANDOM_DATA_PROVIDER));
+        add(new ByteFieldHandler(new AnnotationNumberMetaDataRetriever(), RANDOM_DATA_PROVIDER));
+        add(new DoubleFieldHandler(new AnnotationNumberMetaDataRetriever(), RANDOM_DATA_PROVIDER));
+        add(new FloatFieldHandler(new AnnotationNumberMetaDataRetriever(), RANDOM_DATA_PROVIDER));
     }});
 
     private FieldHandlerRepository() {

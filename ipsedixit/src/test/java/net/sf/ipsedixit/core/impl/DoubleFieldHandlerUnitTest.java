@@ -16,24 +16,24 @@
 
 package net.sf.ipsedixit.core.impl;
 
-import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
-import net.sf.ipsedixit.core.fieldhandler.impl.DoubleFieldHandler;
-import net.sf.ipsedixit.core.MetaDataCreator;
+import java.util.Random;
+
+import net.sf.ipsedixit.annotation.NumberMetaDataRetriever;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.NumberMetaData;
 import net.sf.ipsedixit.core.RandomDataProvider;
+import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
+import net.sf.ipsedixit.core.fieldhandler.impl.DoubleFieldHandler;
 import static net.sf.ipsedixit.test.CustomTestMethods.*;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Random;
-
 public class DoubleFieldHandlerUnitTest {
 
     private DoubleFieldHandler doubleFieldHandler;
-    private MetaDataCreator<NumberMetaData> metaDataCreator;
+    private NumberMetaDataRetriever metaDataRetriever;
     private RandomDataProvider randomDataProvider;
     private NumberMetaData numberMetaData;
     private MutableField mutableField;
@@ -46,11 +46,11 @@ public class DoubleFieldHandlerUnitTest {
         minValue = new Random().nextInt(100);
         maxValue = new Random().nextInt(100);
         randomDouble = Math.random() * 100;
-        metaDataCreator = createMock(MetaDataCreator.class);
+        metaDataRetriever = createMock(NumberMetaDataRetriever.class);
         randomDataProvider = createMock(RandomDataProvider.class);
         numberMetaData = createMock(NumberMetaData.class);
         mutableField = createMock(MutableField.class);
-        doubleFieldHandler = new DoubleFieldHandler(metaDataCreator, randomDataProvider);
+        doubleFieldHandler = new DoubleFieldHandler(metaDataRetriever, randomDataProvider);
     }
 
     @Test
@@ -66,13 +66,13 @@ public class DoubleFieldHandlerUnitTest {
 
     @Test
     public void generatesRandomDouble() {
-        expect(metaDataCreator.getMetaData(mutableField)).andReturn(numberMetaData);
+        expect(metaDataRetriever.getMetaData(mutableField)).andReturn(numberMetaData);
         expect(numberMetaData.getMinValue()).andReturn(minValue);
         expect(numberMetaData.getMaxValue()).andReturn(maxValue);
         expect(randomDataProvider.randomDoubleInRange(minValue, maxValue)).andReturn(randomDouble);
-        replay(metaDataCreator, numberMetaData, randomDataProvider);
+        replay(metaDataRetriever, numberMetaData, randomDataProvider);
         Object result = doubleFieldHandler.getValueFor(mutableField);
-        verify(metaDataCreator, numberMetaData, randomDataProvider);
+        verify(metaDataRetriever, numberMetaData, randomDataProvider);
         assertEquals(randomDouble, result);
     }
 }

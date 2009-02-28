@@ -17,13 +17,12 @@
 package net.sf.ipsedixit.annotation;
 
 import net.sf.ipsedixit.core.MutableField;
-import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.NumberMetaData;
 
 /**
  * Creates StringMetaData from annotations found on a numeric field.
  */
-public class AnnotationNumberMetaDataCreator implements MetaDataCreator<NumberMetaData> {
+public class AnnotationNumberMetaDataRetriever implements NumberMetaDataRetriever {
 
     /**
      * Returns a {@link net.sf.ipsedixit.core.NumberMetaData} instance that contains the metadata on this field.

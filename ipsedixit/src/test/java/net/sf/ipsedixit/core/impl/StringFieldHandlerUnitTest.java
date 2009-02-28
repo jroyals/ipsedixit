@@ -16,13 +16,13 @@
 
 package net.sf.ipsedixit.core.impl;
 
-import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
-import net.sf.ipsedixit.core.fieldhandler.impl.StringFieldHandler;
-import net.sf.ipsedixit.core.MetaDataCreator;
+import net.sf.ipsedixit.annotation.StringMetaDataRetriever;
 import net.sf.ipsedixit.core.MutableField;
+import net.sf.ipsedixit.core.RandomDataProvider;
 import net.sf.ipsedixit.core.StringMetaData;
 import net.sf.ipsedixit.core.StringType;
-import net.sf.ipsedixit.core.RandomDataProvider;
+import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
+import net.sf.ipsedixit.core.fieldhandler.impl.StringFieldHandler;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import org.junit.Test;
 
 public class StringFieldHandlerUnitTest {
     private StringFieldHandler stringFieldHandler;
-    private MetaDataCreator<StringMetaData> metaDataProvider;
+    private StringMetaDataRetriever metaDataProvider;
     private RandomDataProvider randomDataProvider;
     private StringMetaData stringMetaData;
     private MutableField mutableField;
@@ -43,7 +43,7 @@ public class StringFieldHandlerUnitTest {
 
     @Before
     public void setup() {
-        metaDataProvider = createMock(MetaDataCreator.class);
+        metaDataProvider = createMock(StringMetaDataRetriever.class);
         randomDataProvider = createMock(RandomDataProvider.class);
         stringMetaData = createMock(StringMetaData.class);
         mutableField = createMock(MutableField.class);

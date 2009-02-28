@@ -16,7 +16,6 @@
 
 package net.sf.ipsedixit.annotation;
 
-import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.StringMetaData;
 import net.sf.ipsedixit.core.StringType;
@@ -24,7 +23,7 @@ import net.sf.ipsedixit.core.StringType;
 /**
  * Creates StringMetaData from annotations found on a String field.
  */
-public class AnnotationStringMetaDataCreator implements MetaDataCreator<StringMetaData> {
+public class AnnotationStringMetaDataRetriever implements StringMetaDataRetriever {
 
     /**
      * Returns a {@link net.sf.ipsedixit.core.StringMetaData} instance that contains the metadata on this field.

@@ -19,7 +19,7 @@ package net.sf.ipsedixit.core;
 /**
  * Metadata about a String field.
  */
-public interface StringMetaData extends FieldMetaData {
+public interface StringMetaData {
 
     /**
      * Default size is 64 characters.

@@ -50,7 +50,8 @@ public class NonFinalFieldObjectAnalyser implements ObjectAnalyser {
     }
 
     /**
-     * Is the current field in the set of non-final fields considered mutable?
+     * Is the current field in the set of non-final fields considered mutable?  This method is a template method,
+     * and is meant to be overridden by more sophisticated ObjectAnalyser implementations.
      *
      * @param field the field under analysis.  It will not be final.
      * @return <code>true</code> if the field should be considered mutable.

@@ -1,0 +1,12 @@
+<ipsedixit-extensions>
+    <field-handlers>
+        <field-handler>
+            <class>net.sf.ipsedixit.easymock.EasyMock2ClassExtensionFieldHandler</class>
+            <priority>AFTER-STANDARD</priority>
+        </field-handler>
+    </field-handlers>
+
+    <annotations>
+        <annotation>net.sf.ipsedixit.easymock.annotation.Mock</annotation>
+    </annotations>
+</ipsedixit-extensions>

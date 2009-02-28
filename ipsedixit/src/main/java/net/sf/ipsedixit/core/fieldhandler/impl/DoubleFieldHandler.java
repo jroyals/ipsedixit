@@ -16,27 +16,27 @@
 
 package net.sf.ipsedixit.core.fieldhandler.impl;
 
-import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
-import net.sf.ipsedixit.core.MetaDataCreator;
-import net.sf.ipsedixit.core.NumberMetaData;
+import net.sf.ipsedixit.annotation.NumberMetaDataRetriever;
 import net.sf.ipsedixit.core.MutableField;
+import net.sf.ipsedixit.core.NumberMetaData;
 import net.sf.ipsedixit.core.RandomDataProvider;
+import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
 
 /**
  * Handler for Double and double fields.
  */
 public class DoubleFieldHandler implements FieldHandler {
-    private final MetaDataCreator<NumberMetaData> metaDataCreator;
+    private final NumberMetaDataRetriever metaDataRetriever;
     private final RandomDataProvider randomDataProvider;
 
     /**
      * Creates a DoubleFieldHandler.
      *
-     * @param metaDataCreator to get any metadata on the field, such as maximum and minimum number.
+     * @param metaDataRetriever to get any metadata on the field, such as maximum and minimum number.
      * @param randomDataProvider to generate the random value.
      */
-    public DoubleFieldHandler(MetaDataCreator<NumberMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
-        this.metaDataCreator = metaDataCreator;
+    public DoubleFieldHandler(NumberMetaDataRetriever metaDataRetriever, RandomDataProvider randomDataProvider) {
+        this.metaDataRetriever = metaDataRetriever;
         this.randomDataProvider = randomDataProvider;
     }
 
@@ -45,7 +45,7 @@ public class DoubleFieldHandler implements FieldHandler {
      * @return a random double value, constrained by any metadata that is present on the field.
      */
     public Double getValueFor(MutableField mutableField) {
-        NumberMetaData numberMetaData = metaDataCreator.getMetaData(mutableField);
+        NumberMetaData numberMetaData = metaDataRetriever.getMetaData(mutableField);
         return randomDataProvider.randomDoubleInRange(numberMetaData.getMinValue(), numberMetaData.getMaxValue());
     }
 

@@ -18,25 +18,25 @@ package net.sf.ipsedixit.core.fieldhandler.impl;
 
 import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
 import net.sf.ipsedixit.core.NumberMetaData;
-import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.RandomDataProvider;
+import net.sf.ipsedixit.annotation.NumberMetaDataRetriever;
 
 /**
  * Handler for Long and long fields.
  */
 public class LongFieldHandler implements FieldHandler {
-    private final MetaDataCreator<NumberMetaData> metaDataCreator;
+    private final NumberMetaDataRetriever metaDataRetriever;
     private final RandomDataProvider randomDataProvider;
 
     /**
      * Creates a LongFieldHandler.
      *
-     * @param metaDataCreator to get any metadata on the field, such as maximum value.
+     * @param metaDataRetriever to get any metadata on the field, such as maximum value.
      * @param randomDataProvider to generate the random value.
      */
-    public LongFieldHandler(MetaDataCreator<NumberMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
-        this.metaDataCreator = metaDataCreator;
+    public LongFieldHandler(NumberMetaDataRetriever metaDataRetriever, RandomDataProvider randomDataProvider) {
+        this.metaDataRetriever = metaDataRetriever;
         this.randomDataProvider = randomDataProvider;
     }
 
@@ -45,7 +45,7 @@ public class LongFieldHandler implements FieldHandler {
      * @return a random long value, constrained by any metadata that is present on the field.
      */
     public Long getValueFor(MutableField mutableField) {
-        NumberMetaData numberMetaData = metaDataCreator.getMetaData(mutableField);
+        NumberMetaData numberMetaData = metaDataRetriever.getMetaData(mutableField);
         return randomDataProvider.randomLongInRange(
                 (long) numberMetaData.getMinValue(), (long) numberMetaData.getMaxValue());
     }

@@ -17,11 +17,11 @@
 package net.sf.ipsedixit.core.fieldhandler.impl;
 
 import net.sf.ipsedixit.core.MutableField;
-import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.StringMetaData;
 import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
 import net.sf.ipsedixit.core.StringType;
 import net.sf.ipsedixit.core.RandomDataProvider;
+import net.sf.ipsedixit.annotation.StringMetaDataRetriever;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -29,17 +29,17 @@ import org.apache.commons.lang.StringUtils;
  */
 public class StringFieldHandler implements FieldHandler {
 
-    private final MetaDataCreator<StringMetaData> metaDataProvider;
+    private final StringMetaDataRetriever metaDataRetriever;
     private final RandomDataProvider randomDataProvider;
 
     /**
      * Creates a StringFieldHandler.
      *
-     * @param metaDataCreator to get any metadata on the field, such as maximum length.
+     * @param metaDataRetriever to get any metadata on the field, such as maximum length.
      * @param randomDataProvider to generate the random value.
      */
-    public StringFieldHandler(MetaDataCreator<StringMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
-        this.metaDataProvider = metaDataCreator;
+    public StringFieldHandler(StringMetaDataRetriever metaDataRetriever, RandomDataProvider randomDataProvider) {
+        this.metaDataRetriever = metaDataRetriever;
         this.randomDataProvider = randomDataProvider;
     }
 
@@ -58,7 +58,7 @@ public class StringFieldHandler implements FieldHandler {
      */
     public String getValueFor(MutableField mutableField) {
         StringBuilder stringBuilder = new StringBuilder();
-        StringMetaData stringMetaData = metaDataProvider.getMetaData(mutableField);
+        StringMetaData stringMetaData = metaDataRetriever.getMetaData(mutableField);
 
         int totalLength = stringMetaData.length();
         StringType stringType = stringMetaData.type();

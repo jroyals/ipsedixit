@@ -16,24 +16,24 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import java.util.Random;
+
 import net.sf.ipsedixit.core.MutableField;
-import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
-import net.sf.ipsedixit.core.fieldhandler.impl.FloatFieldHandler;
-import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.NumberMetaData;
 import net.sf.ipsedixit.core.RandomDataProvider;
-import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
+import net.sf.ipsedixit.core.fieldhandler.FieldHandler;
+import net.sf.ipsedixit.core.fieldhandler.impl.FloatFieldHandler;
+import static net.sf.ipsedixit.test.CustomTestMethods.*;
+import net.sf.ipsedixit.annotation.NumberMetaDataRetriever;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Random;
-
 public class FloatFieldHandlerUnitTest {
 
     private FloatFieldHandler floatFieldHandler;
-    private MetaDataCreator<NumberMetaData> metaDataCreator;
+    private NumberMetaDataRetriever metaDataRetriever;
     private RandomDataProvider randomDataProvider;
     private NumberMetaData numberMetaData;
     private MutableField mutableField;
@@ -46,11 +46,11 @@ public class FloatFieldHandlerUnitTest {
         minValue = new Random().nextInt(100);
         maxValue = new Random().nextInt(100);
         randomFloat = (float) Math.random() * 100;
-        metaDataCreator = createMock(MetaDataCreator.class);
+        metaDataRetriever = createMock(NumberMetaDataRetriever.class);
         randomDataProvider = createMock(RandomDataProvider.class);
         numberMetaData = createMock(NumberMetaData.class);
         mutableField = createMock(MutableField.class);
-        floatFieldHandler = new FloatFieldHandler(metaDataCreator, randomDataProvider);
+        floatFieldHandler = new FloatFieldHandler(metaDataRetriever, randomDataProvider);
     }
 
     @Test
@@ -66,13 +66,13 @@ public class FloatFieldHandlerUnitTest {
 
     @Test
     public void generatesRandomFloat() {
-        expect(metaDataCreator.getMetaData(mutableField)).andReturn(numberMetaData);
+        expect(metaDataRetriever.getMetaData(mutableField)).andReturn(numberMetaData);
         expect(numberMetaData.getMinValue()).andReturn(minValue);
         expect(numberMetaData.getMaxValue()).andReturn(maxValue);
         expect(randomDataProvider.randomDoubleInRange(minValue, maxValue)).andReturn((double) randomFloat);
-        replay(metaDataCreator, numberMetaData, randomDataProvider);
+        replay(metaDataRetriever, numberMetaData, randomDataProvider);
         Object result = floatFieldHandler.getValueFor(mutableField);
-        verify(metaDataCreator, numberMetaData, randomDataProvider);
+        verify(metaDataRetriever, numberMetaData, randomDataProvider);
         assertEquals(randomFloat, result);
     }
 }
