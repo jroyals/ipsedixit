@@ -35,8 +35,8 @@ public class LoggingNullFieldHandler implements FieldHandler {
      * @return <code>null</code>
      */
     public Object getValueFor(MutableField mutableField) {
-        LOGGER.warn("No handlers registered for type " + mutableField.getType()
-                + " which is declared in field named " + mutableField.getName());
+        LOGGER.warn("No handlers registered for type " + mutableField.getType() +
+                " which is declared in field named " + mutableField.getName());
         return null;
     }
 

@@ -16,15 +16,14 @@
 
 package net.sf.ipsedixit;
 
+import java.util.ArrayList;
+import java.util.List;
 import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.core.impl.FieldHandlerRepository;
 import net.sf.ipsedixit.core.FieldHandlerFinder;
 import net.sf.ipsedixit.core.impl.DefaultFieldHandlerFinder;
+import net.sf.ipsedixit.core.impl.FieldHandlerRepository;
 import net.sf.ipsedixit.core.impl.LoggingNullFieldHandler;
 import net.sf.ipsedixit.plugin.Configuration;
-
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Default factory class for creating DataPopulator instances.  This factory makes the following assumptions for the
@@ -42,25 +41,21 @@ public class DefaultDataPopulatorFactory implements DataPopulatorFactory {
      * {@inheritDoc}
      */
     public DataPopulator createDefaultDataPopulator(Configuration configuration) {
-        FieldHandlerFinder fieldHandlerFinder = createFieldHandlerFinder(configuration.getAdditionalFieldHandlers(),
-                configuration.getMockingFrameworkHandler());
+        FieldHandlerFinder fieldHandlerFinder = createFieldHandlerFinder(configuration.getAdditionalFieldHandlers());
 
         return new DefaultDataPopulator(fieldHandlerFinder, configuration.getObjectAnalyser());
     }
 
-    private FieldHandlerFinder createFieldHandlerFinder(List<? extends FieldHandler> additionalHandlers,
-            FieldHandler mockingFrameworkFieldHandler) {
+    private FieldHandlerFinder createFieldHandlerFinder(List<? extends FieldHandler> additionalHandlers) {
 
-        return new DefaultFieldHandlerFinder(composeFieldHandlers(additionalHandlers, mockingFrameworkFieldHandler),
+        return new DefaultFieldHandlerFinder(composeFieldHandlers(additionalHandlers),
                 new LoggingNullFieldHandler());
     }
 
-    private List<FieldHandler> composeFieldHandlers(List<? extends FieldHandler> additionalHandlers,
-            FieldHandler mockingFrameworkFieldHandler) {
+    private List<FieldHandler> composeFieldHandlers(List<? extends FieldHandler> additionalHandlers) {
         List<FieldHandler> fieldHandlers = new ArrayList<FieldHandler>();
         fieldHandlers.addAll(additionalHandlers);
         fieldHandlers.addAll(FieldHandlerRepository.getStandardFieldHandlers());
-        fieldHandlers.add(mockingFrameworkFieldHandler);
         return fieldHandlers;
     }
 }

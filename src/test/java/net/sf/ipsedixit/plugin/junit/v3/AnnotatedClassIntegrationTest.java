@@ -21,6 +21,8 @@ package net.sf.ipsedixit.plugin.junit.v3;
 
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import net.sf.ipsedixit.plugin.junit.JUnit38IpsedixitTestCase;
+import org.hamcrest.Matchers;
+import static org.junit.Assert.*;
 
 @Ipsedixit
 public class AnnotatedClassIntegrationTest extends JUnit38IpsedixitTestCase {
@@ -31,6 +33,6 @@ public class AnnotatedClassIntegrationTest extends JUnit38IpsedixitTestCase {
     public void testHasWorked() {
         assertEquals("immutable", immutable);
         assertTrue(arbitrary.matches(".{64}"));
-        assertTrue(mock.toString().contains("EasyMock"));
+        assertThat(mock.toString(), Matchers.containsString("Proxy for java.lang.Number defined by field mock"));
     }
 }

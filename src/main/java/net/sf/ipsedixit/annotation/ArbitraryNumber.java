@@ -16,12 +16,11 @@
 
 package net.sf.ipsedixit.annotation;
 
-import net.sf.ipsedixit.core.NumberMetaData;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import net.sf.ipsedixit.core.NumberMetaData;
 
 /**
  * Can be applied to a numeric primitive or object wrapper type.  Using this annotation also allows customisation of

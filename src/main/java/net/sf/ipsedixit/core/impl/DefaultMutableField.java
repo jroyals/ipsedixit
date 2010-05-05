@@ -16,10 +16,9 @@
 
 package net.sf.ipsedixit.core.impl;
 
-import net.sf.ipsedixit.core.MutableField;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import net.sf.ipsedixit.core.MutableField;
 
 /**
  * Default implementation of MutableField.

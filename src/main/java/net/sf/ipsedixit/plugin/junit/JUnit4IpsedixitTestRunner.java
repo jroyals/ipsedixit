@@ -21,16 +21,16 @@ import net.sf.ipsedixit.DataPopulatorFactory;
 import net.sf.ipsedixit.annotation.AnnotationConfiguration;
 import net.sf.ipsedixit.plugin.Configuration;
 import net.sf.ipsedixit.plugin.ConfigurationProvider;
-import org.junit.internal.runners.InitializationError;
-import org.junit.internal.runners.JUnit4ClassRunner;
+import org.junit.runners.BlockJUnit4ClassRunner;
+import org.junit.runners.model.InitializationError;
 
 /**
- * Integration with JUnit4 by providing an extension of {@link org.junit.internal.runners.JUnit4ClassRunner}. Add this
+ * Integration with JUnit4 by providing an extension of {@link org.junit.runners.BlockJUnit4ClassRunner}. Add this
  * annotation to your unit tests to use Ipsedixit:
  * <p/>
  * <code>@RunWith(JUnit4IpsedixitTestRunner.class)</code>
  */
-public class JUnit4IpsedixitTestRunner extends JUnit4ClassRunner implements ConfigurationProvider {
+public class JUnit4IpsedixitTestRunner extends BlockJUnit4ClassRunner implements ConfigurationProvider {
 
     private final DataPopulator dataPopulator;
 

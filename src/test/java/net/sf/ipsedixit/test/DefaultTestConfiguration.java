@@ -16,23 +16,17 @@
 
 package net.sf.ipsedixit.test;
 
-import net.sf.ipsedixit.core.ObjectAnalyser;
-import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
-import net.sf.ipsedixit.core.impl.EasyMock2ClassExtensionFieldHandler;
-import net.sf.ipsedixit.plugin.Configuration;
-
 import java.util.Collections;
 import java.util.List;
+import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.ObjectAnalyser;
+import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
+import net.sf.ipsedixit.plugin.Configuration;
 
 public class DefaultTestConfiguration implements Configuration {
 
     public ObjectAnalyser getObjectAnalyser() {
         return new NonFinalFieldObjectAnalyser();
-    }
-
-    public FieldHandler getMockingFrameworkHandler() {
-        return new EasyMock2ClassExtensionFieldHandler();
     }
 
     @SuppressWarnings("unchecked")

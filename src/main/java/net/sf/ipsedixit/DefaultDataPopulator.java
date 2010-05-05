@@ -16,12 +16,11 @@
 
 package net.sf.ipsedixit;
 
+import java.util.List;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.FieldHandlerFinder;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.ObjectAnalyser;
-
-import java.util.List;
 
 /**
  * Default implementation of DataProvider.

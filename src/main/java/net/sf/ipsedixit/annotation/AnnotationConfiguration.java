@@ -16,11 +16,10 @@
 
 package net.sf.ipsedixit.annotation;
 
-import net.sf.ipsedixit.core.ObjectAnalyser;
-import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.plugin.Configuration;
-
 import java.util.List;
+import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.ObjectAnalyser;
+import net.sf.ipsedixit.plugin.Configuration;
 
 /**
  * Implementation of Configuration that reads annotations on the class.
@@ -44,13 +43,6 @@ public class AnnotationConfiguration implements Configuration {
      */
     public ObjectAnalyser getObjectAnalyser() {
         return IPSEDIXIT_ANNOTATION_HELPER.getClassAnalyser(clazz);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public FieldHandler getMockingFrameworkHandler() {
-        return IPSEDIXIT_ANNOTATION_HELPER.getMockFrameworkFieldHandler(clazz);
     }
 
     /**

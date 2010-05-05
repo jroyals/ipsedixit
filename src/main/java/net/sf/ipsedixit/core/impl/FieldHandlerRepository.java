@@ -16,14 +16,13 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import net.sf.ipsedixit.annotation.AnnotationNumberMetaDataCreator;
 import net.sf.ipsedixit.annotation.AnnotationStringMetaDataCreator;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.RandomDataProvider;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * A repository containing the standard set of {@link net.sf.ipsedixit.core.FieldHandler} objects.
@@ -43,6 +42,8 @@ public final class FieldHandlerRepository {
         add(new ByteFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
         add(new DoubleFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
         add(new FloatFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
+        add(new AnyInterfaceFieldHandler());
+        add(new AnyClassFieldHandler());
     }});
 
     private FieldHandlerRepository() {

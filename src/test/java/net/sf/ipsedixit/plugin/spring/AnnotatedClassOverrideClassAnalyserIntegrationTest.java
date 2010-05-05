@@ -23,19 +23,18 @@ package net.sf.ipsedixit.plugin.spring;
 import net.sf.ipsedixit.annotation.ArbitraryString;
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import net.sf.ipsedixit.core.impl.AnnotationOnlyObjectAnalyser;
-import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestExecutionListeners({IpsedixitTestExecutionListener.class})
 @Ipsedixit(AnnotationOnlyObjectAnalyser.class)
 public class AnnotatedClassOverrideClassAnalyserIntegrationTest {
     private String immutable = "immutable";
-    @ArbitraryString
-    private String arbitrary;
+    @ArbitraryString private String arbitrary;
     private Number mock;
 
     @Test

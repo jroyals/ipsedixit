@@ -16,11 +16,10 @@
 
 package net.sf.ipsedixit.core.impl;
 
-import net.sf.ipsedixit.core.MutableField;
-import net.sf.ipsedixit.core.FieldHandlerFinder;
-import net.sf.ipsedixit.core.FieldHandler;
-
 import java.util.List;
+import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.FieldHandlerFinder;
+import net.sf.ipsedixit.core.MutableField;
 
 /**
  * Default implementation of {@link net.sf.ipsedixit.core.FieldHandlerFinder}.

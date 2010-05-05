@@ -16,14 +16,12 @@
 
 package net.sf.ipsedixit.annotation;
 
-import net.sf.ipsedixit.core.ObjectAnalyser;
-import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
-import net.sf.ipsedixit.core.impl.EasyMock2ClassExtensionFieldHandler;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.ObjectAnalyser;
+import net.sf.ipsedixit.core.impl.AnnotationOnlyObjectAnalyser;
 
 /**
  * Default implementation of IpsedixitAnnotationHelper.
@@ -35,16 +33,7 @@ public class DefaultIpsedixitAnnotationHelper implements IpsedixitAnnotationHelp
      */
     public ObjectAnalyser getClassAnalyser(Class<?> clazz) {
         Ipsedixit annotation = getAnnotation(clazz);
-        return annotation == null ? new NonFinalFieldObjectAnalyser() : instantiateClass(annotation.value());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public FieldHandler getMockFrameworkFieldHandler(Class<?> clazz) {
-        Ipsedixit annotation = getAnnotation(clazz);
-        return annotation == null ? new EasyMock2ClassExtensionFieldHandler()
-                : instantiateClass(annotation.mockFrameworkHandler());
+        return annotation == null ? new AnnotationOnlyObjectAnalyser() : instantiateClass(annotation.value());
     }
 
     /**

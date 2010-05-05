@@ -22,15 +22,12 @@ package net.sf.ipsedixit.plugin.junit.v4;
 
 import net.sf.ipsedixit.annotation.Arbitrary;
 import net.sf.ipsedixit.annotation.ArbitraryString;
-import net.sf.ipsedixit.annotation.Ipsedixit;
-import net.sf.ipsedixit.core.impl.AnnotationOnlyObjectAnalyser;
 import net.sf.ipsedixit.plugin.junit.JUnit4IpsedixitTestRunner;
-import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 
 @RunWith(JUnit4IpsedixitTestRunner.class)
-@Ipsedixit(AnnotationOnlyObjectAnalyser.class)
 public class AnnotatedClassOverrideClassAnalyserIntegrationTest {
     private String immutable = "immutable";
     @Arbitrary

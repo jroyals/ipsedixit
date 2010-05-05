@@ -16,13 +16,12 @@
 
 package net.sf.ipsedixit.core.impl;
 
-import net.sf.ipsedixit.core.ObjectAnalyser;
-import net.sf.ipsedixit.core.MutableField;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
+import net.sf.ipsedixit.core.MutableField;
+import net.sf.ipsedixit.core.ObjectAnalyser;
 
 /**
  * Concrete implementation of {@link net.sf.ipsedixit.core.ObjectAnalyser} that assumes any field declared in the class,

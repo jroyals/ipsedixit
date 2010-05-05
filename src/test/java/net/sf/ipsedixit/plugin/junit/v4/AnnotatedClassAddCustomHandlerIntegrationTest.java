@@ -20,24 +20,28 @@
 package net.sf.ipsedixit.plugin.junit.v4;
 
 
+import java.util.Calendar;
+import java.util.Date;
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import net.sf.ipsedixit.plugin.junit.JUnit4IpsedixitTestRunner;
 import net.sf.ipsedixit.test.TodaysDateFieldHandler;
-import static org.junit.Assert.*;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.Date;
+import static org.apache.commons.lang.time.DateUtils.*;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 @RunWith(JUnit4IpsedixitTestRunner.class)
 @Ipsedixit(additionalHandlers = {TodaysDateFieldHandler.class})
 public class AnnotatedClassAddCustomHandlerIntegrationTest {
     private Date today;
-    private Date mockDate;
+    private Date stubDate;
 
     @Test
     public void hasWorked() {
-        assertTrue(mockDate.toString().contains("EasyMock")); // this is still a mock
-        assertFalse(today.toString().contains("EasyMock")); // this is not, it is handled by TodaysDateFieldHandler
+        assertThat(stubDate.toString(), Matchers.containsString("Proxy for java.util.Date defined by field stubDate"));
+        Date todaysDate = truncate(new Date(), Calendar.DATE);
+        assertThat(today.getTime(), equalTo(todaysDate.getTime()));
     }
 }

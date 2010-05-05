@@ -19,23 +19,30 @@
  */
 package net.sf.ipsedixit.plugin.spring;
 
-import static org.junit.Assert.*;
+import java.util.EventListener;
+import net.sf.ipsedixit.annotation.Ipsedixit;
+import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestExecutionListeners({IpsedixitTestExecutionListener.class})
+@Ipsedixit(NonFinalFieldObjectAnalyser.class)
 public class NonAnnotatedClassIntegrationTest {
     private final String immutable = "immutable";
     private String arbitrary;
-    private Number mock;
+    private Number stubClass;
+    private EventListener stubInterface;
 
     @Test
     public void hasWorked() {
         assertEquals("immutable", immutable);
         assertTrue(arbitrary.matches(".{64}"));
-        assertTrue(mock.toString().contains("EasyMock"));
+        assertThat(stubClass.toString(), Matchers.containsString("Proxy for java.lang.Number defined by field stubClass"));
+        assertThat(stubInterface.toString(), Matchers.containsString("Proxy for java.util.EventListener defined by field stubInterface"));
     }
 }

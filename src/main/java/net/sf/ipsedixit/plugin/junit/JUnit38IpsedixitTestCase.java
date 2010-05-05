@@ -16,20 +16,19 @@
 
 package net.sf.ipsedixit.plugin.junit;
 
-import net.sf.ipsedixit.DataPopulator;
-import net.sf.ipsedixit.DataPopulatorFactory;
-import net.sf.ipsedixit.core.ObjectAnalyser;
-import net.sf.ipsedixit.annotation.Ipsedixit;
-import net.sf.ipsedixit.annotation.AnnotationConfiguration;
-import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
-import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.core.impl.EasyMock2ClassExtensionFieldHandler;
-import net.sf.ipsedixit.plugin.Configuration;
-import net.sf.ipsedixit.plugin.ConfigurationProvider;
-import junit.framework.TestCase;
-
 import java.util.Collections;
 import java.util.List;
+import junit.framework.TestCase;
+import net.sf.ipsedixit.DataPopulator;
+import net.sf.ipsedixit.DataPopulatorFactory;
+import net.sf.ipsedixit.annotation.AnnotationConfiguration;
+import net.sf.ipsedixit.annotation.Ipsedixit;
+import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.ObjectAnalyser;
+import net.sf.ipsedixit.core.impl.AnnotationOnlyObjectAnalyser;
+import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
+import net.sf.ipsedixit.plugin.Configuration;
+import net.sf.ipsedixit.plugin.ConfigurationProvider;
 
 /**
  * To use Ipsedixit with JUnit 3.x, simply extend this class instead of {@link junit.framework.TestCase}.
@@ -52,14 +51,10 @@ public class JUnit38IpsedixitTestCase extends TestCase implements Configuration,
      * {@inheritDoc}
      */
     public ObjectAnalyser getObjectAnalyser() {
+        if (isAnnotated()) {
+            return new AnnotationOnlyObjectAnalyser();
+        }
         return new NonFinalFieldObjectAnalyser();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public FieldHandler getMockingFrameworkHandler() {
-        return new EasyMock2ClassExtensionFieldHandler();
     }
 
     /**
@@ -86,7 +81,7 @@ public class JUnit38IpsedixitTestCase extends TestCase implements Configuration,
     }
 
     private boolean isAnnotated() {
-        return this.getClass().isAnnotationPresent(Ipsedixit.class)
-                || this.getClass().getPackage().isAnnotationPresent(Ipsedixit.class);
+        return this.getClass().isAnnotationPresent(Ipsedixit.class) ||
+                this.getClass().getPackage().isAnnotationPresent(Ipsedixit.class);
     }
 }

@@ -19,12 +19,16 @@
  */
 package net.sf.ipsedixit.plugin.junit.v4;
 
+import net.sf.ipsedixit.annotation.Ipsedixit;
+import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
 import net.sf.ipsedixit.plugin.junit.JUnit4IpsedixitTestRunner;
-import static org.junit.Assert.*;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 
 @RunWith(JUnit4IpsedixitTestRunner.class)
+@Ipsedixit(NonFinalFieldObjectAnalyser.class)
 public class NonAnnotatedClassIntegrationTest {
     private final String immutable = "immutable";
     private String arbitrary;
@@ -34,6 +38,6 @@ public class NonAnnotatedClassIntegrationTest {
     public void hasWorked() {
         assertEquals("immutable", immutable);
         assertTrue(arbitrary.matches(".{64}"));
-        assertTrue(mock.toString().contains("EasyMock"));
+        assertThat(mock.toString(), Matchers.containsString("Proxy for java.lang.Number defined by field mock"));
     }
 }

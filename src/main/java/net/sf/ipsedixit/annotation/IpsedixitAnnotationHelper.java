@@ -16,10 +16,9 @@
 
 package net.sf.ipsedixit.annotation;
 
-import net.sf.ipsedixit.core.ObjectAnalyser;
-import net.sf.ipsedixit.core.FieldHandler;
-
 import java.util.List;
+import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.ObjectAnalyser;
 
 /**
  * Helper class to get values from Ipsedixit annotations.
@@ -31,12 +30,6 @@ public interface IpsedixitAnnotationHelper {
      * @return the ObjectAnalyser to use in this invocation of Ipsedixit.
      */
     ObjectAnalyser getClassAnalyser(Class<?> clazz);
-
-    /**
-     * @param clazz the class that contains the annotations.
-     * @return the implementation of {@link net.sf.ipsedixit.core.FieldHandler} to use when providing a mock.
-     */
-    FieldHandler getMockFrameworkFieldHandler(Class<?> clazz);
 
     /**
      * @param clazz the class that contains the annotations.

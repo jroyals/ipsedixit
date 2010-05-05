@@ -1,118 +1,116 @@
-<?xml version="1.0"?>
-<!--
-Licensed to the Apache Software Foundation (ASF) under one
-or more contributor license agreements.  See the NOTICE file
-distributed with this work for additional information
-regarding copyright ownership.  The ASF licenses this file
-to you under the Apache License, Version 2.0 (the
-"License"); you may not use this file except in compliance
-with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing,
-software distributed under the License is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
-specific language governing permissions and limitations
-under the License.
--->
-
-<!DOCTYPE module PUBLIC
-        "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
-        "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
-
-<!--
-
-    - some best practices
-
-  Checkstyle is very configurable. Be sure to read the documentation at
-  http://checkstyle.sf.net (or in your downloaded distribution).
-
-  Most Checks are configurable, be sure to consult the documentation.
-
-  To completely disable a check, just comment it out or delete it from the file.
-
-  Finally, it is worth reading the documentation.
-
--->
+<?xml version="1.0" ?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 
 <module name="Checker">
+    <!-- If translations are done, make sure that they are complete. -->
+    <module name="Translation"/>
 
-    <!-- Checks that a package.html file exists for each package.     -->
-    <!-- See http://checkstyle.sf.net/config_javadoc.html#PackageHtml -->
-    <!--<module name="PackageHtml"/>-->
+    <!-- The maximum number of lines allow in any source file is 1200. -->
+    <module name="FileLength">
+        <property name="max" value="1200"/>
+    </module>
 
-    <!-- Checks whether files end with a new line.                        -->
-    <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
-    <module name="NewlineAtEndOfFile"/>
-
-    <!-- Checks that property files contain the same keys.         -->
-    <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
-    <!--<module name="Translation"/>-->
-
+    <!-- Tab characters are not allowed in source files. -->
+    <!--        <module name="TabCharacter" />-->
+    <!-- TabCharacter replaced by FileTabCharacter in v5                               -->
+    <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+    <module name="FileTabCharacter"/>
 
     <module name="TreeWalker">
+        <module name="FileContentsHolder"/>
+        <property name="cacheFile" value="checkstyle.cache"/>
+        <!-- Where Tabs are used (they shouldn't be), assume they indent four spaces worth, as that is the indentation depth -->
+        <property name="tabWidth" value="4"/>
+        <!-- Only check java files. -->
+        <property name="fileExtensions" value="java"/>
 
-        <property name="cacheFile" value="${checkstyle.cache.file}"/>
-
-        <!-- Checks for Javadoc comments.                     -->
-        <!-- See http://checkstyle.sf.net/config_javadoc.html -->
-        <!--<module name="JavadocMethod"/>-->
-        <!--<module name="JavadocVariable"/>-->
-
-        <module name="JavadocType">
-            <property name="scope" value="public"/>
-        </module>
-        <module name="JavadocStyle"/>
-        <module name="JavadocMethod">
-            <property name="scope" value="public"/>
-            <property name="allowUndeclaredRTE" value="true"/>
+        <!-- HTML Modules -->
+        <module name="JavadocStyle">
+            <!-- We want to ensure that the javadoc is stylistically correct -->
+            <property name="scope" value="protected"/>
         </module>
 
-        <!-- Checks for Naming Conventions.                  -->
-        <!-- See http://checkstyle.sf.net/config_naming.html -->
-        <module name="ConstantName"/>
-        <module name="LocalFinalVariableName"/>
-        <module name="LocalVariableName"/>
-        <module name="MemberName"/>
-        <module name="MethodName"/>
-        <module name="PackageName"/>
-        <module name="ParameterName"/>
-        <module name="StaticVariableName"/>
-        <module name="TypeName"/>
+        <!-- Naming Conventions -->
+        <module name="ConstantName">
+            <!-- Static final constant names should begin with an uppercase letter, followed by any number of uppercase letters or digits, possibly separated by underscores. e.g. LIKE_THIS -->
+            <property name="format" value="^[A-Z]([A-Z0-9_]*[A-Z0-9])?$"/>
+        </module>
+        <module name="MemberName">
+            <!-- Both static (non-final) and non-static data member names should begin with an underscore, followed by a single lowercase letter, followed by any number of alphanumeric characters (upper or lower case letters or digits). e.g. _likeThis -->
+            <property name="format" value="^[_a-z][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="StaticVariableName">
+            <!-- Both static (non-final) and non-static data member names should begin with an underscore, followed by a single lowercase letter, followed by any number of alphanumeric characters (upper or lower case letters or digits). e.g. _likeThis -->
+            <property name="format" value="^[_a-z][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="PackageName">
+            <!-- Packages should be all lower case, with numbers if needed -->
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+        </module>
 
-        <!-- Checks for imports                              -->
-        <!-- See http://checkstyle.sf.net/config_import.html -->
+        <!-- Import Checks -->
+        <!-- Use of the &quot;import package.*&quot; is not permitted. Explicit imports only -->
         <module name="AvoidStarImport"/>
+        <!-- Certain packages should not be used by our code. By default, this restricts access to the sun.* packages -->
         <module name="IllegalImport"/>
-        <!-- defaults to sun.* packages -->
+        <!-- Redundant imports are not allowed. A redundant import is one where the class is already visible (either through an earlier explicit import or due to the Java access rules -->
         <module name="RedundantImport"/>
+        <!-- Unused imports clutter up the code (especially when forced to be explicit), and should be prevented -->
         <module name="UnusedImports"/>
-
-        <!-- Checks for Size Violations.                    -->
-        <!-- See http://checkstyle.sf.net/config_sizes.html -->
-        <module name="FileLength"/>
-        <module name="LineLength">
-            <property name="max" value="120"/>
-            <property name="ignorePattern" value="@version|@see|@todo|TODO|import"/>
+        <module name="ImportOrder">
+            <!-- It would be good if we could define a list of packages to come _last_ -->
+            <property name="groups" value="java,javax"/>
+            <property name="ordered" value="false"/>
+            <!-- Should be true, but can't be as we want au.com.suncorp to be last -->
         </module>
 
-        <module name="MethodLength"/>
-        <module name="ParameterNumber"/>
+        <!-- Size Violations -->
+        <!-- The maximum allowed line length is 120 characters. Rationale: 120 characters is the default for most IDEs. -->
+        <module name="LineLength">
+            <!-- Ignore the maximum line length restriction for import statements. -->
+            <property name="ignorePattern" value="^import"/>
+            <property name="max" value="150"/>
+        </module>
+        <!-- The maximum number of lines allowed in any method is 25. Rationale: Too many lines makes it hard to read. A method should be able to be displayed, in its entirety, within an IDE, in a reasonable screen resolution. -->
+        <module name="MethodLength">
+            <property name="max" value="25"/>
+        </module>
+        <!-- No more than seven parameters are to be allowed to a method. More than seven is unreadable. -->
+        <module name="ParameterNumber">
+            <property name="max" value="7"/>
+        </module>
 
-        <!-- Checks for whitespace                               -->
-        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-        <module name="EmptyForIteratorPad"/>
-        <module name="MethodParamPad"/>
-        <module name="NoWhitespaceAfter"/>
-        <module name="NoWhitespaceBefore"/>
-        <module name="OperatorWrap"/>
+        <!-- Whitespace Checks -->
+        <!-- We want to have a space where a for loop has an empty iterator. -->
+        <module name="EmptyForIteratorPad">
+            <property name="option" value="space"/>
+        </module>
+        <!-- Don't allow whitespace after typical unary operators (but not array initialisors). -->
+        <module name="NoWhitespaceAfter">
+            <property name="tokens" value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
+            <property name="allowLineBreaks" value="false"/>
+        </module>
+        <!-- Don't allow whitespace before the typical unary operators, either -->
+        <module name="NoWhitespaceBefore">
+            <property name="allowLineBreaks" value="false"/>
+        </module>
+        <!-- Line wraps should occur _after_ operators, not before them. The one exception is the colon operator as part of the ternary conditional operator. -->
+        <module name="OperatorWrap">
+            <property name="option" value="eol"/>
+            <property name="tokens"
+                      value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR, LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR"/>
+        </module>
+        <module name="OperatorWrap">
+            <property name="option" value="nl"/>
+            <property name="tokens" value="COLON"/>
+        </module>
+        <!-- There should be no whitespace after an opening parenthesis or before a closing parenthesis. -->
         <module name="ParenPad"/>
+        <!-- No whitespaces inside of a typecast -->
         <module name="TypecastParenPad"/>
-        <module name="TabCharacter"/>
+        <!-- Enforce whitespace after commas, semi-colons, and typecasts -->
         <module name="WhitespaceAfter"/>
-
+        <!-- Enforce whitespace around most other typical operators. -->
         <module name="WhitespaceAround">
             <property name="tokens" value="ASSIGN"/>
             <property name="tokens" value="BAND"/>
@@ -166,67 +164,119 @@ under the License.
             <!--<property name="tokens" value="WILDCARD_TYPE"/>-->
         </module>
 
-
-        <!-- Modifier Checks                                    -->
-        <!-- See http://checkstyle.sf.net/config_modifiers.html -->
+        <!-- Modifiers -->
+        <!-- Enforce modifiers are declared as per the Java Language Specification -->
         <module name="ModifierOrder"/>
+        <!-- Ensure that redundant modifiers aren't permitted. -->
         <module name="RedundantModifier"/>
 
-        <!-- Checks for blocks. You know, those {}'s         -->
-        <!-- See http://checkstyle.sf.net/config_blocks.html -->
-        <module name="AvoidNestedBlocks"/>
+        <!-- Block Checks -->
+        <!-- We don't allow empty blocks; if an empty block is needed, please comment on why -->
         <module name="EmptyBlock"/>
-        <module name="LeftCurly"/>
+        <!-- While we do not have a policy on where the left curly brace goes, we have a strong preference for it being on the end of the line. -->
+        <!-- <module name="LeftCurly" /> -->
+        <!-- All blocks require braces; no implicit one-statement blocks -->
         <module name="NeedBraces"/>
+        <!-- Right curly braces should be on the same line as the following left curly brace, where there is (e.g. sequential if else, catches) -->
         <module name="RightCurly"/>
+        <!-- Unnecessarily nested blocks aren't permitted -->
+        <module name="AvoidNestedBlocks"/>
 
-        <!-- Checks for common coding problems               -->
-        <!-- See http://checkstyle.sf.net/config_coding.html -->
-        <!--<module name="AvoidInlineConditionals" />-->
+        <!-- Coding Problem Checks -->
+        <!-- Not Desired <module name="ArrayTrailingComma" /> -->
+        <!-- Not Desired <module name="AvoidInlineConditionals" /> -->
+        <!-- If you declare an equals() method taking anything but Object, you have to define the Object part as well. -->
+        <module name="CovariantEquals"/>
+        <!-- Disallows Double Checked Locking -->
         <module name="DoubleCheckedLocking"/>
+        <!-- Disllows empty statements -->
         <module name="EmptyStatement"/>
+        <!-- If you declare an equals() method, you need to declare hashCode as well -->
         <module name="EqualsHashCode"/>
-        <!--<module name="HiddenField" />-->
-        <module name="IllegalInstantiation"/>
+        <!-- Not Desired <module name="FinalLocalVariable" /> This would be cute, but it's a lot of pain to remember to do. -->
+        <!-- Don't allow the following classes to be instantiated directly -->
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.lang.Boolean"/>
+        </module>
+        <!-- Only allow assignments as the primary point of a method, not as a side-effect -->
         <module name="InnerAssignment"/>
-        <!--<module name="MagicNumber" />-->
+        <!--	Magic Number checking is disabled as it reports too many false positives; e.g. Base64.java
+                <module name="MagicNumber"/>
+        -->
+        <!-- Switch statements need to have a default case -->
         <module name="MissingSwitchDefault"/>
+        <!-- Methods should not declare subclasses of types of exceptions (though they can document them). This helps avoid proliferation of exceptions -->
         <module name="RedundantThrows"/>
-        <module name="SimplifyBooleanExpression"/>
+        <!-- Not Desired: <module name="SimplifyBooleanExpression" /> Specifying boolean values (e.g. bool == true, bool == false) promotes readability -->
+        <!-- Don't use complicated boolean logic for return statements -->
         <module name="SimplifyBooleanReturn"/>
-
-        <!-- Checks for class design                         -->
-        <!-- See http://checkstyle.sf.net/config_design.html -->
-        <!--<module name="DesignForExtension" />-->
-        <module name="FinalClass"/>
-        <module name="HideUtilityClassConstructor"/>
-        <module name="InterfaceIsType"/>
-        <module name="VisibilityModifier"/>
-
-        <!-- Miscellaneous other checks.                   -->
-        <!-- See http://checkstyle.sf.net/config_misc.html -->
-        <module name="ArrayTypeStyle"/>
-        <!--<module name="FinalParameters" />-->
-        <module name="GenericIllegalRegexp">
-            <property name="format" value="\s+$"/>
-            <property name="message" value="Line has trailing spaces."/>
-        </module>
-        <module name="TodoComment"/>
-        <module name="UpperEll"/>
-
-
-        <!-- Additinal checks over Sun ones -->
-        <module name="CyclomaticComplexity">
-            <property name="max" value="7"/>
-        </module>
-        <module name="UnnecessaryParentheses"/>
-        <module name="ParameterAssignment"/>
-        <module name="JavaNCSS">
-            <property name="methodMaximum" value="15"/>
-            <property name="classMaximum" value="150"/>
-        </module>
+        <!-- Dont allow for the use of == for String comparisions -->
+        <module name="StringLiteralEquality"/>
+        <!-- Don't allow deeply nested if statements -->
         <module name="NestedIfDepth">
             <property name="max" value="1"/>
         </module>
+        <!-- Don't allow deeply nested if statements -->
+        <module name="NestedTryDepth">
+            <property name="max" value="1"/>
+        </module>
+        <!-- If you clone an object, invoke super.clone()! -->
+        <module name="SuperClone"/>
+        <!-- If you finalize an object, invoke super.clone()! -->
+        <module name="SuperFinalize"/>
+        <!-- Not Desired: <module name="IllegalCatch" /> This would be good, but too many other APIs throw Exception. -->
+        <!-- All classes should have packages. -->
+        <module name="PackageDeclaration"/>
+        <!-- Quick check to ensure that JUnit tests are set up right -->
+        <module name="JUnitTestCase"/>
+        <!-- Quick check to ensure that there aren't too many return statements in a method-->
+        <module name="ReturnCount">
+            <property name="max" value="4"/>
+        </module>
+        <!-- An excellent check to help ensure people aren't coding to concrete classes -->
+        <module name="IllegalType"/>
+        <!-- Enforce the declaration order. Declaration orders aren't really that big a deal, but they are described, so they should be enforced. -->
+        <module name="DeclarationOrder"/>
+        <!-- Rationale: Parameter assignment is often considered poor programming practice. Forcing developers to declare parameters as final is often onerous. Having a check ensure that parameters are never assigned would give the best of both worlds -->
+        <module name="ParameterAssignment"/>
+        <!-- Not Desired: <module name="ExplicitInitialization" />; indicating the default value is good practise, especially for junior developers. The minor inefficency is exactly that: minor. -->
+
+        <!-- Class Design Problems Checks -->
+        <!-- Ensure non-final members are private -->
+        <module name="VisibilityModifier"/>
+        <!-- Ensure that a class with only a private constructor is final; this is about expression of intent -->
+        <module name="FinalClass"/>
+        <!-- Interfaces should represent types. As such, interfaces with no methods (but a heap of constants) are not appropriate. The use of marker interfaces (e.g. Serializable) is okay, however -->
+        <module name="InterfaceIsType">
+            <property name="allowMarkerInterfaces" value="true"/>
+        </module>
+        <!-- Utitlity classes should not have constructors. However, please note it is better to create first-class objects than collections of utility methods -->
+        <module name="HideUtilityClassConstructor"/>
+        <!-- Not Desired: <module name="DesignForExtension"/> It's an interesting idea, but it's a pain to remember to declare all the methods as final -->
+        <!-- Ensure that exceptions are immutable -->
+        <module name="MutableException"/>
+        <!-- Limit the number of exceptions that can be thrown by a method. -->
+        <module name="ThrowsCount">
+            <property name="max" value="3"/>
+        </module>
+
+        <!-- Complexity checks -->
+        <module name="CyclomaticComplexity">
+            <property name="max" value="7"/>
+        </module>
+
+        <!-- Misc. Checks -->
+        <!-- ToDos are explicitly permitted; they show up in the IntelliJ tabs -->
+        <!--        <module name="TodoComment" />-->
+        <!-- Make sure people use upper-case Ls -->
+        <module name="UpperEll"/>
+        <!-- Arrays should be declared type[] name, not type name[] -->
+        <module name="ArrayTypeStyle"/>
+    </module>
+
+    <module name="SuppressionCommentFilter">
+        <property name="offCommentFormat" value="CHECKSTYLE\:OFF ([\w\|]+)"/>
+        <property name="onCommentFormat" value="CHECKSTYLE\:ON ([\w\|]+)"/>
+        <property name="checkFormat" value="$1"/>
     </module>
 </module>
