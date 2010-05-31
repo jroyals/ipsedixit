@@ -14,24 +14,25 @@
  *  limitations under the License.
  */
 
-package net.sf.ipsedixit;
+package net.sf.ipsedixit.integration;
 
-import net.sf.ipsedixit.integration.Configuration;
+import java.util.List;
+import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.ObjectAnalyser;
 
 /**
- * Factory for creating DataPopulator instances.
+ * Defines an Ipsedixit configuration.
  */
-public interface DataPopulatorFactory {
+public interface Configuration {
 
     /**
-     * The standard DataPopulatorFactory.
+     * @return the ObjectAnalyser to use in this invocation of Ipsedixit.
      */
-    DataPopulatorFactory INSTANCE = new DefaultDataPopulatorFactory();
+    ObjectAnalyser getObjectAnalyser();
 
     /**
-     * Creates a DataPopulator instance.
-     * @param configuration the configuration to use.
-     * @return a DataPopulator, configured using the configuration.
+     * @return a List of additional {@link net.sf.ipsedixit.core.FieldHandler}'s to use, over and above the standard
+     * set of FieldHandler's.
      */
-    DataPopulator createDefaultDataPopulator(Configuration configuration);
+    List<? extends FieldHandler> getAdditionalFieldHandlers();
 }

@@ -23,7 +23,7 @@ import net.sf.ipsedixit.core.FieldHandlerFinder;
 import net.sf.ipsedixit.core.impl.DefaultFieldHandlerFinder;
 import net.sf.ipsedixit.core.impl.FieldHandlerRepository;
 import net.sf.ipsedixit.core.impl.LoggingNullFieldHandler;
-import net.sf.ipsedixit.plugin.Configuration;
+import net.sf.ipsedixit.integration.Configuration;
 
 /**
  * Default factory class for creating DataPopulator instances.  This factory makes the following assumptions for the

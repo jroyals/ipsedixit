@@ -19,7 +19,7 @@ package net.sf.ipsedixit.annotation;
 import java.util.List;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.ObjectAnalyser;
-import net.sf.ipsedixit.plugin.Configuration;
+import net.sf.ipsedixit.integration.Configuration;
 
 /**
  * Implementation of Configuration that reads annotations on the class.

@@ -14,24 +14,17 @@
  *  limitations under the License.
  */
 
-package net.sf.ipsedixit;
-
-import net.sf.ipsedixit.integration.Configuration;
+package net.sf.ipsedixit.integration;
 
 /**
- * Factory for creating DataPopulator instances.
+ * Implementations of this interface can create a {@link Configuration},
+ * given a class to configure from.
  */
-public interface DataPopulatorFactory {
+public interface ConfigurationProvider {
 
     /**
-     * The standard DataPopulatorFactory.
+     * @param testClass the class.
+     * @return a {@link Configuration} object.
      */
-    DataPopulatorFactory INSTANCE = new DefaultDataPopulatorFactory();
-
-    /**
-     * Creates a DataPopulator instance.
-     * @param configuration the configuration to use.
-     * @return a DataPopulator, configured using the configuration.
-     */
-    DataPopulator createDefaultDataPopulator(Configuration configuration);
+    Configuration getConfiguration(Class<?> testClass);
 }

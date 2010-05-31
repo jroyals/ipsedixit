@@ -14,24 +14,23 @@
  *  limitations under the License.
  */
 
-package net.sf.ipsedixit;
-
-import net.sf.ipsedixit.integration.Configuration;
-
 /**
- * Factory for creating DataPopulator instances.
+ *
  */
-public interface DataPopulatorFactory {
+package net.sf.ipsedixit.integration.junit.v3;
 
-    /**
-     * The standard DataPopulatorFactory.
-     */
-    DataPopulatorFactory INSTANCE = new DefaultDataPopulatorFactory();
+import net.sf.ipsedixit.integration.junit.JUnit38IpsedixitTestCase;
+import org.hamcrest.Matchers;
+import static org.junit.Assert.*;
 
-    /**
-     * Creates a DataPopulator instance.
-     * @param configuration the configuration to use.
-     * @return a DataPopulator, configured using the configuration.
-     */
-    DataPopulator createDefaultDataPopulator(Configuration configuration);
+public class NonAnnotatedClassIntegrationTest extends JUnit38IpsedixitTestCase {
+    private final String immutable = "immutable";
+    private String arbitrary;
+    private Number mock;
+
+    public void testHasWorked() {
+        assertEquals("immutable", immutable);
+        assertTrue(arbitrary.matches(".{64}"));
+        assertThat(mock.toString(), Matchers.containsString("Proxy for java.lang.Number defined by field mock"));
+    }
 }
