@@ -4,6 +4,10 @@
         <author email="ipsedixit@fragstealers.com">Jason Royals</author>
     </properties>
     <body>
+        <release version="1.0.1" date="2010-07-17" description="Patch">
+            <action dev="jroyals" type="fix" issue="3045963">Add strategy to look up the right class loader to use when AIFH attempts to create a proxy.</action>
+        </release>
+
         <release version="1.0.0" date="2010-06-01" description="Major release">
             <action dev="jroyals" type="add" issue="2498997">Remove EasyMock dependency.</action>
             <action dev="jroyals" type="add" issue="2499195">@Arbitrary annotation doesnt make sense for mocks.</action>

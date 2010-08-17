@@ -25,9 +25,32 @@ public class AnyInterfaceFieldHandler implements FieldHandler {
 
     public Object getValueFor(MutableField mutableField) {
         return Proxy.newProxyInstance(
-                Thread.currentThread().getContextClassLoader(),
+                resolveClassloader(mutableField),
                 new Class[]{mutableField.getType()},
                 new MutableFieldAwareInvocationHandler(mutableField));
+    }
+
+    private ClassLoader resolveClassloader(MutableField mutableField) {
+        String typeName = mutableField.getType().getName();
+        ClassLoader cl = getClass().getClassLoader();
+        if (canLoaderResolveClass(typeName, cl)) {
+            return cl;
+        }
+        
+        cl = Thread.currentThread().getContextClassLoader();
+        if (canLoaderResolveClass(typeName, cl)) {
+            return cl;
+        }
+        throw new RuntimeException("No class loader could load class " + typeName);
+    }
+
+    private boolean canLoaderResolveClass(String typeName, ClassLoader cl) {
+        try {
+            Class.forName(typeName, false, cl);
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
 
     public boolean supports(MutableField mutableField) {
