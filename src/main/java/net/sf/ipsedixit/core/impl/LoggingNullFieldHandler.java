@@ -16,16 +16,15 @@
 
 package net.sf.ipsedixit.core.impl;
 
-import net.sf.ipsedixit.core.MutableField;
+import java.util.logging.Logger;
 import net.sf.ipsedixit.core.FieldHandler;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import net.sf.ipsedixit.core.MutableField;
 
 /**
  * This is a catch-all type FieldHandler that simply logs a warning to the console.
  */
 public class LoggingNullFieldHandler implements FieldHandler {
-    private static final Log LOGGER = LogFactory.getLog(LoggingNullFieldHandler.class);
+    private static final Logger LOGGER = Logger.getLogger(LoggingNullFieldHandler.class.getName());
 
     /**
      * Always returns <code>null</code>, however will log out a warning to the configured Commons Logging logger
@@ -35,7 +34,7 @@ public class LoggingNullFieldHandler implements FieldHandler {
      * @return <code>null</code>
      */
     public Object getValueFor(MutableField mutableField) {
-        LOGGER.warn("No handlers registered for type " + mutableField.getType() +
+        LOGGER.warning("No handlers registered for type " + mutableField.getType() +
                 " which is declared in field named " + mutableField.getName());
         return null;
     }
