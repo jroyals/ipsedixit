@@ -26,7 +26,7 @@ class ProxiedMethodHandler {
         }
 
         if ("hashCode".equals(method.getName())) {
-            return proxy.hashCode();
+            return 13; // inefficient but hopefully OK for testing purposes.
         }
 
         throw new UnsupportedOperationException("Cannot call method " + method.getName() +
