@@ -3,7 +3,7 @@
     <groupId>net.sf.ipsedixit</groupId>
     <artifactId>ipsedixit</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <name>ipsedixit</name>
     <url>http://ipsedixit.sourceforge.net</url>
     <description>
@@ -19,9 +19,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/tags/ipsedixit-1.0.1</connection>
-        <developerConnection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/tags/ipsedixit-1.0.1</developerConnection>
-        <url>http://ipsedixit.svn.sourceforge.net/viewvc/ipsedixit/tags/ipsedixit-1.0.1</url>
+        <connection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/trunk</connection>
+        <developerConnection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/trunk/</developerConnection>
+        <url>http://ipsedixit.svn.sourceforge.net/viewvc/ipsedixit/trunk</url>
     </scm>
 
     <!-- to deploy to SourceForge, see this: http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
