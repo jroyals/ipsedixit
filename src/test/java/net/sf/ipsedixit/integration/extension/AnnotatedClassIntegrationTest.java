@@ -19,6 +19,7 @@
  */
 package net.sf.ipsedixit.integration.extension;
 
+import net.sf.ipsedixit.annotation.Arbitrary;
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -27,8 +28,8 @@ import static org.junit.Assert.*;
 @Ipsedixit
 public class AnnotatedClassIntegrationTest extends IpsedixitDataPopulator {
     private final String immutable = "immutable";
-    private String arbitrary;
-    private Number mock;
+    @Arbitrary private String arbitrary;
+    @Arbitrary private Number mock;
 
     @Test
     public void hasWorked() {

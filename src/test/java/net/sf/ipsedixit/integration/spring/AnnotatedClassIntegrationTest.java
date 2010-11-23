@@ -20,6 +20,7 @@
 package net.sf.ipsedixit.integration.spring;
 
 import java.util.EventListener;
+import net.sf.ipsedixit.annotation.Arbitrary;
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -33,9 +34,9 @@ import static org.junit.Assert.*;
 @Ipsedixit
 public class AnnotatedClassIntegrationTest {
     private final String immutable = "immutable";
-    private String arbitrary;
-    private Number stubClass;
-    private EventListener stubInterface;
+    @Arbitrary private String arbitrary;
+    @Arbitrary private Number stubClass;
+    @Arbitrary private EventListener stubInterface;
 
     @Test
     public void hasWorked() {

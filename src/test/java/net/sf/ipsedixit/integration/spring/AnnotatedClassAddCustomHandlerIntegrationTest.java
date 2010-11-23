@@ -22,6 +22,7 @@ package net.sf.ipsedixit.integration.spring;
 
 import java.util.Calendar;
 import java.util.Date;
+import net.sf.ipsedixit.annotation.Arbitrary;
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import net.sf.ipsedixit.test.TodaysDateFieldHandler;
 import org.hamcrest.Matchers;
@@ -37,8 +38,8 @@ import static org.junit.Assert.*;
 @TestExecutionListeners({IpsedixitTestExecutionListener.class})
 @Ipsedixit(additionalHandlers = {TodaysDateFieldHandler.class})
 public class AnnotatedClassAddCustomHandlerIntegrationTest {
-    private Date today;
-    private Date stubDate;
+    @Arbitrary private Date today;
+    @Arbitrary private Date stubDate;
 
     @Test
     public void hasWorked() {

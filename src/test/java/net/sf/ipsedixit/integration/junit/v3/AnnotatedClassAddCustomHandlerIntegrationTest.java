@@ -22,6 +22,7 @@ package net.sf.ipsedixit.integration.junit.v3;
 
 import java.util.Calendar;
 import java.util.Date;
+import net.sf.ipsedixit.annotation.Arbitrary;
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import net.sf.ipsedixit.integration.junit.JUnit38IpsedixitTestCase;
 import net.sf.ipsedixit.test.TodaysDateFieldHandler;
@@ -32,8 +33,8 @@ import static org.junit.Assert.*;
 
 @Ipsedixit(additionalHandlers = {TodaysDateFieldHandler.class})
 public class AnnotatedClassAddCustomHandlerIntegrationTest extends JUnit38IpsedixitTestCase {
-    private Date today;
-    private Date stubDate;
+    @Arbitrary private Date today;
+    @Arbitrary private Date stubDate;
 
     public void testHasWorked() {
         assertThat(stubDate.toString(), Matchers.containsString("Proxy for java.util.Date defined by field stubDate"));
