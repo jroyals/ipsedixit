@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.ObjectAnalyser;
-import net.sf.ipsedixit.core.impl.NonFinalFieldObjectAnalyser;
+import net.sf.ipsedixit.core.impl.AnnotationOnlyObjectAnalyser;
 
 /**
  * This annotation allows some customisation of Ipsedixit in the scope of the class, or package the class is defined in.
@@ -36,7 +36,7 @@ public @interface Ipsedixit {
     /**
      * Return the {@link net.sf.ipsedixit.core.ObjectAnalyser} implementation to use.
      */
-    Class<? extends ObjectAnalyser> value() default NonFinalFieldObjectAnalyser.class;
+    Class<? extends ObjectAnalyser> value() default AnnotationOnlyObjectAnalyser.class;
 
     /**
      * Return the types of any additional {@link net.sf.ipsedixit.core.FieldHandler}'s to use.
