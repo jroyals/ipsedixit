@@ -29,7 +29,7 @@ public class DefaultRandomDataProviderUnitTest {
 
     @Before
     public void setup() {
-        defaultRandomDataProvider = DefaultDataProvider.randomDataProvider();
+        defaultRandomDataProvider = DefaultDataProvider.dataProvider();
     }
 
     @Test

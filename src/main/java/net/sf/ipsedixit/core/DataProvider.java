@@ -72,4 +72,6 @@ public interface DataProvider {
     double randomDoubleInRange(double minInclusive, double maxExclusive);
 
     <T> T proxy(Class<T> clazz);
+
+    <T> T proxy(Class<T> clazz, String additionalContextInToString);
 }

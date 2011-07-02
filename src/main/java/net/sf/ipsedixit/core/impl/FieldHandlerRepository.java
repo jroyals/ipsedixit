@@ -28,7 +28,7 @@ import net.sf.ipsedixit.core.DataProvider;
  * A repository containing the standard set of {@link net.sf.ipsedixit.core.FieldHandler} objects.
  */
 public final class FieldHandlerRepository {
-    private static final DataProvider DATA_PROVIDER = DefaultDataProvider.randomDataProvider();
+    private static final DataProvider DATA_PROVIDER = DefaultDataProvider.dataProvider();
 
     private static final List<FieldHandler> FIELD_HANDLERS = Collections.unmodifiableList(
             new ArrayList<FieldHandler>() {{
@@ -42,8 +42,7 @@ public final class FieldHandlerRepository {
         add(new ByteFieldHandler(new AnnotationNumberMetaDataCreator(), DATA_PROVIDER));
         add(new DoubleFieldHandler(new AnnotationNumberMetaDataCreator(), DATA_PROVIDER));
         add(new FloatFieldHandler(new AnnotationNumberMetaDataCreator(), DATA_PROVIDER));
-        add(new AnyInterfaceFieldHandler());
-        add(new AnyClassFieldHandler());
+        add(new ClassFieldHandler(DATA_PROVIDER));
     }});
 
     private FieldHandlerRepository() {

@@ -11,14 +11,21 @@
 package net.sf.ipsedixit.core.impl;
 
 import java.lang.reflect.Method;
-import net.sf.ipsedixit.core.MutableField;
 
-class ProxiedMethodHandler {
+class ProxiedMethodInvocationHandler {
 
-    public Object invoke(Object proxy, Method method, MutableField mutableField, Object[] args) {
+    private static final ProxiedMethodInvocationHandler INSTANCE = new ProxiedMethodInvocationHandler();
+
+    protected ProxiedMethodInvocationHandler() {
+    }
+
+    static ProxiedMethodInvocationHandler proxiedMethodInvoker() {
+        return INSTANCE;
+    }
+
+    public Object invoke(Object proxy, Method method, Object[] args, Class clazz, final String additionalContextInToString) {
         if ("toString".equals(method.getName())) {
-            return proxy.getClass().getName() + " : Proxy for " + mutableField.getType().getName() +
-                    " defined by field " + mutableField.getName();
+            return (proxy.getClass().getName() + " : Proxy for " + clazz.getName() + " " + additionalContextInToString).trim();
         }
 
         if ("equals".equals(method.getName())) {

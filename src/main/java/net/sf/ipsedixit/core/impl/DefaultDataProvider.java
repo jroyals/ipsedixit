@@ -19,6 +19,7 @@ package net.sf.ipsedixit.core.impl;
 import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.StringType;
 import org.apache.commons.lang.RandomStringUtils;
+import static net.sf.ipsedixit.core.impl.ProxyFactoryLookup.lookup;
 
 /**
  * Default implementation of DataProvider.
@@ -27,10 +28,10 @@ public class DefaultDataProvider implements DataProvider {
 
     private static final DefaultDataProvider INSTANCE = new DefaultDataProvider();
 
-    private DefaultDataProvider() {
+    protected DefaultDataProvider() {
     }
 
-    public static DefaultDataProvider randomDataProvider() {
+    public static DefaultDataProvider dataProvider() {
         return INSTANCE;
     }
 
@@ -84,6 +85,10 @@ public class DefaultDataProvider implements DataProvider {
     }
 
     public <T> T proxy(final Class<T> clazz) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return proxy(clazz, "");
+    }
+
+    public <T> T proxy(final Class<T> clazz, String additionalContextInToString) {
+        return lookup().proxyFactory(clazz).proxy(clazz, additionalContextInToString);
     }
 }

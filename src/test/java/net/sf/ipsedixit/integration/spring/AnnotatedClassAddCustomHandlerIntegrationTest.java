@@ -43,7 +43,7 @@ public class AnnotatedClassAddCustomHandlerIntegrationTest {
 
     @Test
     public void hasWorked() {
-        assertThat(stubDate.toString(), Matchers.containsString("Proxy for java.util.Date defined by field stubDate"));
+        assertThat(stubDate.toString(), Matchers.containsString("Proxy for java.util.Date"));
         Date todaysDate = truncate(new Date(), Calendar.DATE);
         assertThat(today.getTime(), equalTo(todaysDate.getTime()));
     }

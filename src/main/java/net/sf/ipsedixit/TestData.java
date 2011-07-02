@@ -28,7 +28,7 @@ import net.sf.ipsedixit.core.impl.DefaultDataProvider;
  */
 public final class TestData {
 
-    private static final DataProvider DATA_PROVIDER = DefaultDataProvider.randomDataProvider();
+    private static final DataProvider DATA_PROVIDER = DefaultDataProvider.dataProvider();
     private static final String[] WHITESPACE = {"", " ", "\t", "\n", "\r", "\r\n"};
 
     private TestData() {
@@ -175,5 +175,9 @@ public final class TestData {
      */
     public static String whitespace() {
         return randomArrayElement(WHITESPACE);
+    }
+
+    public <T> T proxy(Class<T> clazz) {
+        return DATA_PROVIDER.proxy(clazz);
     }
 }

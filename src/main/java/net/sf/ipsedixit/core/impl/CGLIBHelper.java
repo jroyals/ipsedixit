@@ -33,7 +33,7 @@ import org.objenesis.ObjenesisStd;
  */
 final class CGLIBHelper {
 
-    public static final CGLIBHelper INSTANCE = new CGLIBHelper();
+    private static final CGLIBHelper INSTANCE = new CGLIBHelper();
 
     private static final CallbackFilter IGNORE_BRIDGE_METHODS = new CallbackFilter() {
         public int accept(Method method) {
@@ -44,6 +44,10 @@ final class CGLIBHelper {
     private ObjenesisStd objenesis = new ObjenesisStd();
 
     private CGLIBHelper() {
+    }
+
+    public static CGLIBHelper cglibHelper() {
+        return INSTANCE;
     }
 
     public <T> T createProxy(final MethodInterceptor interceptor, Class<T> mockedType, Class<?>... ancillaryTypes) {

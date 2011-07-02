@@ -13,7 +13,6 @@ package net.sf.ipsedixit.core.impl;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.MutableField;
 
 /**
@@ -21,17 +20,23 @@ import net.sf.ipsedixit.core.MutableField;
  * and can also determine equality (by using a default "equals" and "hashCode") but that's all. Every other method call
  * will result in an exception being raised.
  */
-public class AnyInterfaceFieldHandler implements FieldHandler {
+public class JavaReflectProxyFactory implements ProxyFactory {
 
-    public Object getValueFor(MutableField mutableField) {
-        return Proxy.newProxyInstance(
-                resolveClassloader(mutableField),
-                new Class[]{mutableField.getType()},
-                new MutableFieldAwareInvocationHandler(mutableField));
+    protected JavaReflectProxyFactory() {
     }
 
-    private ClassLoader resolveClassloader(MutableField mutableField) {
-        String typeName = mutableField.getType().getName();
+    public static JavaReflectProxyFactory interfaceProxyFactory() {
+        return new JavaReflectProxyFactory();
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T proxy(Class<T> clazz, final String additionalContextInToString) {
+        return (T) Proxy.newProxyInstance(resolveClassLoader(clazz), new Class<?>[]{clazz}, new InternalInvocationHandler(clazz,
+                additionalContextInToString));
+    }
+
+    private ClassLoader resolveClassLoader(Class clazz) {
+        String typeName = clazz.getName();
         ClassLoader cl = getClass().getClassLoader();
         if (canLoaderResolveClass(typeName, cl)) {
             return cl;
@@ -57,16 +62,18 @@ public class AnyInterfaceFieldHandler implements FieldHandler {
         return mutableField.getType().isInterface();
     }
 
-    private static final class MutableFieldAwareInvocationHandler implements InvocationHandler {
-        private final MutableField mutableField;
-        private final ProxiedMethodHandler proxiedMethodHandler = new ProxiedMethodHandler();
+    private static final class InternalInvocationHandler implements InvocationHandler {
+        private final Class<?> clazz;
+        private final ProxiedMethodInvocationHandler proxiedMethodInvoker = ProxiedMethodInvocationHandler.proxiedMethodInvoker();
+        private final String additionalContextInToString;
 
-        private MutableFieldAwareInvocationHandler(MutableField mutableField) {
-            this.mutableField = mutableField;
+        public InternalInvocationHandler(Class<?> clazz, final String additionalContextInToString) {
+            this.clazz = clazz;
+            this.additionalContextInToString = additionalContextInToString;
         }
 
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            return proxiedMethodHandler.invoke(proxy, method, mutableField, args);
+            return proxiedMethodInvoker.invoke(proxy, method, args, clazz, additionalContextInToString);
         }
     }
 }

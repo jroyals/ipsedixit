@@ -14,16 +14,28 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
-import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.MutableField;
+import static net.sf.ipsedixit.core.impl.CGLIBHelper.cglibHelper;
 
-public class AnyClassFieldHandler implements FieldHandler {
+public class CGLIBProxyFactory implements ProxyFactory {
+
+    private static final CGLIBProxyFactory INSTANCE = new CGLIBProxyFactory();
+
+    protected CGLIBProxyFactory() {
+    }
+
+    public static CGLIBProxyFactory cglibProxyFactory() {
+        return INSTANCE;
+    }
+
     /**
-     * @param mutableField a representation of the Field that should be created.
+     *
+     * @param clazz the type to proxy
+     * @param additionalContextInToString
      * @return a CGLIB proxy that extends the type defined by the MutableField.
      */
-    public Object getValueFor(MutableField mutableField) {
-        return CGLIBHelper.INSTANCE.createProxy(new MutableFieldAwareCallback(mutableField), mutableField.getType());
+    public <T> T proxy(Class<T> clazz, final String additionalContextInToString) {
+        return cglibHelper().createProxy(new MutableFieldAwareInterceptor(clazz, additionalContextInToString), clazz);
     }
 
     /**
@@ -35,16 +47,18 @@ public class AnyClassFieldHandler implements FieldHandler {
         return !type.isPrimitive() && !type.isInterface() && !Modifier.isFinal(type.getModifiers());
     }
 
-    private static final class MutableFieldAwareCallback implements MethodInterceptor {
-        private final MutableField mutableField;
-        private final ProxiedMethodHandler proxiedMethodHandler = new ProxiedMethodHandler();
+    private static final class MutableFieldAwareInterceptor implements MethodInterceptor {
+        private final Class<?> clazz;
+        private final String additionalContextInToString;
+        private final ProxiedMethodInvocationHandler proxiedMethodInvoker = ProxiedMethodInvocationHandler.proxiedMethodInvoker();
 
-        private MutableFieldAwareCallback(MutableField mutableField) {
-            this.mutableField = mutableField;
+        private MutableFieldAwareInterceptor(Class<?> clazz, final String additionalContextInToString) {
+            this.clazz = clazz;
+            this.additionalContextInToString = additionalContextInToString;
         }
 
         public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-            return proxiedMethodHandler.invoke(obj, method, mutableField, args);
+            return proxiedMethodInvoker.invoke(obj, method, args, clazz, additionalContextInToString);
         }
     }
 
