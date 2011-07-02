@@ -16,12 +16,12 @@
 
 package net.sf.ipsedixit;
 
+import java.math.RoundingMode;
 import net.sf.ipsedixit.test.DefaultTestConfiguration;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.math.RoundingMode;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class DataPopulatorEnumIntegrationTest {
 

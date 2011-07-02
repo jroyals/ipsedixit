@@ -16,17 +16,20 @@
 
 package net.sf.ipsedixit.core.impl;
 
-import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.core.FieldHandlerFinder;
-import net.sf.ipsedixit.core.MutableField;
-import static org.easymock.classextension.EasyMock.*;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.FieldHandlerFinder;
+import net.sf.ipsedixit.core.MutableField;
+import org.junit.Before;
+import org.junit.Test;
+import static org.easymock.classextension.EasyMock.createMock;
+import static org.easymock.classextension.EasyMock.expect;
+import static org.easymock.classextension.EasyMock.replay;
+import static org.easymock.classextension.EasyMock.verify;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 public class DefaultFieldHandlerFinderUnitTest {
     private DefaultFieldHandlerFinder defaultFieldHandlerRepository;

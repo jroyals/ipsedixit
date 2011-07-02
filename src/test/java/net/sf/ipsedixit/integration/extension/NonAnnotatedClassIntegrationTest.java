@@ -21,7 +21,9 @@ package net.sf.ipsedixit.integration.extension;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class NonAnnotatedClassIntegrationTest extends IpsedixitDataPopulator {
     private final String immutable = "immutable";

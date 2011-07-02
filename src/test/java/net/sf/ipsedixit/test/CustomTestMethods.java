@@ -16,10 +16,13 @@
 
 package net.sf.ipsedixit.test;
 
-import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandler;
-import static org.easymock.EasyMock.*;
+import net.sf.ipsedixit.core.MutableField;
 import org.hamcrest.Matcher;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.reset;
+import static org.easymock.EasyMock.verify;
 
 public final class CustomTestMethods {
 

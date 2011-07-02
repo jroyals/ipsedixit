@@ -27,9 +27,9 @@ import net.sf.ipsedixit.annotation.Ipsedixit;
 import net.sf.ipsedixit.test.TodaysDateFieldHandler;
 import org.hamcrest.Matchers;
 import org.junit.Test;
-import static org.apache.commons.lang.time.DateUtils.*;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.apache.commons.lang.time.DateUtils.truncate;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 @Ipsedixit(additionalHandlers = {TodaysDateFieldHandler.class})
 public class AnnotatedClassAddCustomHandlerIntegrationTest extends IpsedixitDataPopulator {

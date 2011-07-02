@@ -24,7 +24,9 @@ import net.sf.ipsedixit.annotation.ArbitraryString;
 import net.sf.ipsedixit.integration.junit.JUnit4IpsedixitTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 @RunWith(JUnit4IpsedixitTestRunner.class)
 public class AnnotatedClassOverrideClassAnalyserIntegrationTest {

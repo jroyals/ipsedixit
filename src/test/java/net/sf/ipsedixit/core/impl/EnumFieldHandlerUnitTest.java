@@ -17,13 +17,17 @@
 package net.sf.ipsedixit.core.impl;
 
 import net.sf.ipsedixit.core.DataProvider;
-import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandler;
-import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
-import static org.easymock.classextension.EasyMock.*;
-import static org.junit.Assert.*;
+import net.sf.ipsedixit.core.MutableField;
 import org.junit.Before;
 import org.junit.Test;
+import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
+import static org.easymock.classextension.EasyMock.createMock;
+import static org.easymock.classextension.EasyMock.expect;
+import static org.easymock.classextension.EasyMock.replay;
+import static org.easymock.classextension.EasyMock.verify;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 public class EnumFieldHandlerUnitTest {
 

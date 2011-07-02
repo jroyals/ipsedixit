@@ -23,7 +23,9 @@ import net.sf.ipsedixit.annotation.Arbitrary;
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import org.hamcrest.Matchers;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @Ipsedixit
 public class AnnotatedClassIntegrationTest extends IpsedixitDataPopulator {

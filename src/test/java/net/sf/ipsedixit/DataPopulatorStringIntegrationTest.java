@@ -17,12 +17,13 @@
 package net.sf.ipsedixit;
 
 import net.sf.ipsedixit.annotation.ArbitraryString;
-import net.sf.ipsedixit.core.StringType;
 import net.sf.ipsedixit.core.StringMetaData;
+import net.sf.ipsedixit.core.StringType;
 import net.sf.ipsedixit.test.DefaultTestConfiguration;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DataPopulatorStringIntegrationTest {
 

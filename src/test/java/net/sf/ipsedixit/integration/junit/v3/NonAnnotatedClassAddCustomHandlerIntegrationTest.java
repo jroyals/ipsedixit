@@ -27,9 +27,9 @@ import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.integration.junit.JUnit38IpsedixitTestCase;
 import net.sf.ipsedixit.test.TodaysDateFieldHandler;
 import org.hamcrest.Matchers;
-import static org.apache.commons.lang.time.DateUtils.*;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.apache.commons.lang.time.DateUtils.truncate;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 public class NonAnnotatedClassAddCustomHandlerIntegrationTest extends JUnit38IpsedixitTestCase {
     private Date today;

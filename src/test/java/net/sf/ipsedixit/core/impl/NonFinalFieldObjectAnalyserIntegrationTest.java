@@ -16,14 +16,15 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import java.util.List;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.ObjectAnalyser;
 import net.sf.ipsedixit.test.ArbitraryClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class NonFinalFieldObjectAnalyserIntegrationTest {
 

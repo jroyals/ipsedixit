@@ -23,7 +23,7 @@ import net.sf.ipsedixit.annotation.Arbitrary;
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import net.sf.ipsedixit.integration.junit.JUnit38IpsedixitTestCase;
 import org.hamcrest.Matchers;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @Ipsedixit
 public class AnnotatedClassIntegrationTest extends JUnit38IpsedixitTestCase {

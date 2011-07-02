@@ -21,7 +21,7 @@ package net.sf.ipsedixit.integration.junit.v3;
 
 import net.sf.ipsedixit.integration.junit.JUnit38IpsedixitTestCase;
 import org.hamcrest.Matchers;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NonAnnotatedClassIntegrationTest extends JUnit38IpsedixitTestCase {
     private final String immutable = "immutable";

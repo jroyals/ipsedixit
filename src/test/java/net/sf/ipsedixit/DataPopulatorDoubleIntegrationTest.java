@@ -18,11 +18,12 @@ package net.sf.ipsedixit;
 
 import net.sf.ipsedixit.annotation.ArbitraryNumber;
 import net.sf.ipsedixit.core.NumberMetaData;
-import static net.sf.ipsedixit.test.CustomTestMethods.*;
 import net.sf.ipsedixit.test.DefaultTestConfiguration;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import static net.sf.ipsedixit.test.CustomTestMethods.inRange;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class DataPopulatorDoubleIntegrationTest {
 

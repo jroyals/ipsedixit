@@ -1,5 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf.ipsedixit</groupId>
     <artifactId>ipsedixit</artifactId>
@@ -27,14 +34,14 @@
 
     <!-- to deploy to SourceForge, see this: http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <distributionManagement>
-        <repository>
-            <id>sourceforge.net</id>
-            <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/m2repo/release</url>
-        </repository>
-        <snapshotRepository>
-            <id>sourceforge.net</id>
-            <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/m2repo/snapshot</url>
-        </snapshotRepository>
+        <!--<repository>-->
+            <!--<id>sourceforge.net</id>-->
+            <!--<url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/m2repo/release</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+            <!--<id>sourceforge.net</id>-->
+            <!--<url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/m2repo/snapshot</url>-->
+        <!--</snapshotRepository>-->
         <site>
             <id>sourceforge.net</id>
             <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/site</url>
@@ -109,6 +116,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>1.2.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.easymock</groupId>
             <artifactId>easymockclassextension</artifactId>
             <version>2.3</version>
@@ -122,14 +135,16 @@
         </dependency>
     </dependencies>
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>1.0-beta-7</version>
+            </extension>
+        </extensions>
+
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>2.1</version>
-                </plugin>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>

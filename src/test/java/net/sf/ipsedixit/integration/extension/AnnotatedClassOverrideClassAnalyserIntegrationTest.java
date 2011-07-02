@@ -24,7 +24,9 @@ import net.sf.ipsedixit.annotation.ArbitraryString;
 import net.sf.ipsedixit.annotation.Ipsedixit;
 import net.sf.ipsedixit.core.impl.AnnotationOnlyObjectAnalyser;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 @Ipsedixit(AnnotationOnlyObjectAnalyser.class)
 public class AnnotatedClassOverrideClassAnalyserIntegrationTest  extends IpsedixitDataPopulator {

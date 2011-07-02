@@ -16,13 +16,17 @@
 
 package net.sf.ipsedixit.core.impl;
 
-import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.DataProvider;
-import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
-import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
+import net.sf.ipsedixit.core.MutableField;
 import org.junit.Before;
 import org.junit.Test;
+import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BooleanFieldHandlerUnitTest {
 

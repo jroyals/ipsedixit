@@ -25,7 +25,9 @@ import net.sf.ipsedixit.integration.junit.JUnit4IpsedixitTestRunner;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnit4IpsedixitTestRunner.class)
 @Ipsedixit(NonFinalFieldObjectAnalyser.class)

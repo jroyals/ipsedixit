@@ -16,13 +16,12 @@
 
 package net.sf.ipsedixit.test;
 
-import net.sf.ipsedixit.core.MutableField;
-import net.sf.ipsedixit.core.FieldHandler;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
+import net.sf.ipsedixit.core.FieldHandler;
+import net.sf.ipsedixit.core.MutableField;
 
 public class JavaProxyFieldHandler implements FieldHandler, InvocationHandler {
 
