@@ -16,12 +16,12 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.StringMetaData;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.StringType;
-import net.sf.ipsedixit.core.RandomDataProvider;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -30,17 +30,17 @@ import org.apache.commons.lang.StringUtils;
 public class StringFieldHandler implements FieldHandler {
 
     private final MetaDataCreator<StringMetaData> metaDataProvider;
-    private final RandomDataProvider randomDataProvider;
+    private final DataProvider dataProvider;
 
     /**
      * Creates a StringFieldHandler.
      *
      * @param metaDataCreator to get any metadata on the field, such as maximum length.
-     * @param randomDataProvider to generate the random value.
+     * @param dataProvider to generate the random value.
      */
-    public StringFieldHandler(MetaDataCreator<StringMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
+    public StringFieldHandler(MetaDataCreator<StringMetaData> metaDataCreator, DataProvider dataProvider) {
         this.metaDataProvider = metaDataCreator;
-        this.randomDataProvider = randomDataProvider;
+        this.dataProvider = dataProvider;
     }
 
     /**
@@ -65,7 +65,7 @@ public class StringFieldHandler implements FieldHandler {
 
         appendFieldNameIfRequired(stringBuilder, mutableField, stringType, totalLength);
         appendContainedStringIfRequired(stringBuilder, stringType, stringMetaData);
-        stringBuilder.append(randomDataProvider.randomString(stringType, totalLength));
+        stringBuilder.append(dataProvider.randomString(stringType, totalLength));
 
         return StringUtils.left(stringBuilder.toString(), totalLength);
     }

@@ -16,28 +16,28 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.NumberMetaData;
 import net.sf.ipsedixit.core.MutableField;
-import net.sf.ipsedixit.core.RandomDataProvider;
 
 /**
  * Handler for Float and float fields.
  */
 public class FloatFieldHandler implements FieldHandler {
     private final MetaDataCreator<NumberMetaData> metaDataCreator;
-    private final RandomDataProvider randomDataProvider;
+    private final DataProvider dataProvider;
 
     /**
      * Creates a FloatFieldHandler.
      *
      * @param metaDataCreator to get any metadata on the field, such as maximum length.
-     * @param randomDataProvider to generate the random value.
+     * @param dataProvider to generate the random value.
      */
-    public FloatFieldHandler(MetaDataCreator<NumberMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
+    public FloatFieldHandler(MetaDataCreator<NumberMetaData> metaDataCreator, DataProvider dataProvider) {
         this.metaDataCreator = metaDataCreator;
-        this.randomDataProvider = randomDataProvider;
+        this.dataProvider = dataProvider;
     }
 
     /**
@@ -46,7 +46,7 @@ public class FloatFieldHandler implements FieldHandler {
      */
     public Float getValueFor(MutableField mutableField) {
         NumberMetaData numberMetaData = metaDataCreator.getMetaData(mutableField);
-        return (float) randomDataProvider.randomDoubleInRange(
+        return (float) dataProvider.randomDoubleInRange(
                 numberMetaData.getMinValue(), numberMetaData.getMaxValue());
     }
 

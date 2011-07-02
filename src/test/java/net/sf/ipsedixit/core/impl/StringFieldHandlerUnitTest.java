@@ -16,12 +16,12 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.StringMetaData;
 import net.sf.ipsedixit.core.StringType;
-import net.sf.ipsedixit.core.RandomDataProvider;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import org.junit.Test;
 public class StringFieldHandlerUnitTest {
     private StringFieldHandler stringFieldHandler;
     private MetaDataCreator<StringMetaData> metaDataProvider;
-    private RandomDataProvider randomDataProvider;
+    private DataProvider dataProvider;
     private StringMetaData stringMetaData;
     private MutableField mutableField;
 
@@ -43,10 +43,10 @@ public class StringFieldHandlerUnitTest {
     @Before
     public void setup() {
         metaDataProvider = createMock(MetaDataCreator.class);
-        randomDataProvider = createMock(RandomDataProvider.class);
+        dataProvider = createMock(DataProvider.class);
         stringMetaData = createMock(StringMetaData.class);
         mutableField = createMock(MutableField.class);
-        stringFieldHandler = new StringFieldHandler(metaDataProvider, randomDataProvider);
+        stringFieldHandler = new StringFieldHandler(metaDataProvider, dataProvider);
     }
 
     @Test
@@ -125,13 +125,13 @@ public class StringFieldHandlerUnitTest {
         expect(stringMetaData.length()).andReturn(length);
         expect(stringMetaData.contains()).andReturn(contains);
         expect(stringMetaData.type()).andReturn(stringType);
-        expect(randomDataProvider.randomString(stringType, length)).andReturn(randomString);
+        expect(dataProvider.randomString(stringType, length)).andReturn(randomString);
     }
 
     private Object replayAndVerifyInteractions() {
-        replay(metaDataProvider, stringMetaData, randomDataProvider, mutableField);
+        replay(metaDataProvider, stringMetaData, dataProvider, mutableField);
         Object result = stringFieldHandler.getValueFor(mutableField);
-        verify(metaDataProvider, stringMetaData, randomDataProvider, mutableField);
+        verify(metaDataProvider, stringMetaData, dataProvider, mutableField);
         return result;
     }
 }

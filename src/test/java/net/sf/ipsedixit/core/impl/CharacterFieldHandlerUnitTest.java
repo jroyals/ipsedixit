@@ -20,8 +20,7 @@ import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.NumberMetaData;
-import net.sf.ipsedixit.core.RandomDataProvider;
-import net.sf.ipsedixit.core.impl.CharacterFieldHandler;
+import net.sf.ipsedixit.core.DataProvider;
 import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
@@ -34,7 +33,7 @@ public class CharacterFieldHandlerUnitTest {
 
     private CharacterFieldHandler characterFieldHandler;
     private MetaDataCreator<NumberMetaData> metaDataCreator;
-    private RandomDataProvider randomDataProvider;
+    private DataProvider dataProvider;
     private NumberMetaData numberMetaData;
     private MutableField mutableField;
     private double minValue;
@@ -47,10 +46,10 @@ public class CharacterFieldHandlerUnitTest {
         maxValue = new Random().nextInt(100);
         randomChar = (char) new Random().nextInt(100);
         metaDataCreator = createMock(MetaDataCreator.class);
-        randomDataProvider = createMock(RandomDataProvider.class);
+        dataProvider = createMock(DataProvider.class);
         numberMetaData = createMock(NumberMetaData.class);
         mutableField = createMock(MutableField.class);
-        characterFieldHandler = new CharacterFieldHandler(metaDataCreator, randomDataProvider);
+        characterFieldHandler = new CharacterFieldHandler(metaDataCreator, dataProvider);
     }
 
     @Test
@@ -69,10 +68,10 @@ public class CharacterFieldHandlerUnitTest {
         expect(metaDataCreator.getMetaData(mutableField)).andReturn(numberMetaData);
         expect(numberMetaData.getMinValue()).andReturn(minValue);
         expect(numberMetaData.getMaxValue()).andReturn(maxValue);
-        expect(randomDataProvider.randomLongInRange((char) minValue, (char) maxValue)).andReturn((long) randomChar);
-        replay(metaDataCreator, numberMetaData, randomDataProvider);
+        expect(dataProvider.randomLongInRange((char) minValue, (char) maxValue)).andReturn((long) randomChar);
+        replay(metaDataCreator, numberMetaData, dataProvider);
         Object result = characterFieldHandler.getValueFor(mutableField);
-        verify(metaDataCreator, numberMetaData, randomDataProvider);
+        verify(metaDataCreator, numberMetaData, dataProvider);
         assertSame(randomChar, result);
     }
 }

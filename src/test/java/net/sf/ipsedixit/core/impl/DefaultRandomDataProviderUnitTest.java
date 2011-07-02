@@ -25,11 +25,11 @@ import org.junit.Test;
 
 public class DefaultRandomDataProviderUnitTest {
 
-    private DefaultRandomDataProvider defaultRandomDataProvider;
+    private DefaultDataProvider defaultRandomDataProvider;
 
     @Before
     public void setup() {
-        defaultRandomDataProvider = new DefaultRandomDataProvider();
+        defaultRandomDataProvider = DefaultDataProvider.randomDataProvider();
     }
 
     @Test

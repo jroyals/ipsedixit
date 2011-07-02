@@ -16,12 +16,11 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.NumberMetaData;
-import net.sf.ipsedixit.core.RandomDataProvider;
-import net.sf.ipsedixit.core.impl.LongFieldHandler;
 import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
@@ -34,7 +33,7 @@ public class LongFieldHandlerUnitTest {
 
     private LongFieldHandler longFieldHandler;
     private MetaDataCreator<NumberMetaData> metaDataCreator;
-    private RandomDataProvider randomDataProvider;
+    private DataProvider dataProvider;
     private NumberMetaData numberMetaData;
     private MutableField mutableField;
     private double minValue;
@@ -47,10 +46,10 @@ public class LongFieldHandlerUnitTest {
         maxValue = new Random().nextInt(100);
         randomLong = new Random().nextInt(100);
         metaDataCreator = createMock(MetaDataCreator.class);
-        randomDataProvider = createMock(RandomDataProvider.class);
+        dataProvider = createMock(DataProvider.class);
         numberMetaData = createMock(NumberMetaData.class);
         mutableField = createMock(MutableField.class);
-        longFieldHandler = new LongFieldHandler(metaDataCreator, randomDataProvider);
+        longFieldHandler = new LongFieldHandler(metaDataCreator, dataProvider);
     }
 
     @Test
@@ -69,10 +68,10 @@ public class LongFieldHandlerUnitTest {
         expect(metaDataCreator.getMetaData(mutableField)).andReturn(numberMetaData);
         expect(numberMetaData.getMinValue()).andReturn(minValue);
         expect(numberMetaData.getMaxValue()).andReturn(maxValue);
-        expect(randomDataProvider.randomLongInRange((long) minValue, (long) maxValue)).andReturn(randomLong);
-        replay(metaDataCreator, numberMetaData, randomDataProvider);
+        expect(dataProvider.randomLongInRange((long) minValue, (long) maxValue)).andReturn(randomLong);
+        replay(metaDataCreator, numberMetaData, dataProvider);
         Object result = longFieldHandler.getValueFor(mutableField);
-        verify(metaDataCreator, numberMetaData, randomDataProvider);
+        verify(metaDataCreator, numberMetaData, dataProvider);
         assertSame(randomLong, result);
     }
 }

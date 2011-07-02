@@ -17,8 +17,7 @@
 package net.sf.ipsedixit.core.impl;
 
 import net.sf.ipsedixit.core.MutableField;
-import net.sf.ipsedixit.core.RandomDataProvider;
-import net.sf.ipsedixit.core.impl.BooleanFieldHandler;
+import net.sf.ipsedixit.core.DataProvider;
 import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
@@ -29,15 +28,15 @@ public class BooleanFieldHandlerUnitTest {
 
     private BooleanFieldHandler booleanFieldHandler;
     private MutableField mutableField;
-    private RandomDataProvider randomDataProvider;
+    private DataProvider dataProvider;
 	private boolean randomBoolean;
 
     @Before
     public void setup() {
     	randomBoolean = ((int) Math.random() * 2) == 0;
-        randomDataProvider = createMock(RandomDataProvider.class);
+        dataProvider = createMock(DataProvider.class);
         mutableField = createMock(MutableField.class);
-        booleanFieldHandler = new BooleanFieldHandler(randomDataProvider);
+        booleanFieldHandler = new BooleanFieldHandler(dataProvider);
     }
 
     @Test
@@ -48,9 +47,9 @@ public class BooleanFieldHandlerUnitTest {
 
     @Test
     public void returnsTrueOrFalse() {
-    	expect(randomDataProvider.randomBoolean()).andReturn(randomBoolean);
-    	replay(randomDataProvider);
+    	expect(dataProvider.randomBoolean()).andReturn(randomBoolean);
+    	replay(dataProvider);
         assertEquals(randomBoolean, booleanFieldHandler.getValueFor(mutableField));
-        verify(randomDataProvider);
+        verify(dataProvider);
     }
 }

@@ -16,12 +16,11 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.NumberMetaData;
-import net.sf.ipsedixit.core.impl.ByteFieldHandler;
-import net.sf.ipsedixit.core.RandomDataProvider;
 import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
@@ -34,7 +33,7 @@ public class ByteFieldHandlerUnitTest {
 
     private ByteFieldHandler byteFieldHandler;
     private MetaDataCreator<NumberMetaData> metaDataCreator;
-    private RandomDataProvider randomDataProvider;
+    private DataProvider dataProvider;
     private NumberMetaData numberMetaData;
     private MutableField mutableField;
     private double minValue;
@@ -47,10 +46,10 @@ public class ByteFieldHandlerUnitTest {
         maxValue = new Random().nextInt(100);
         randomByte = (byte) new Random().nextInt(100);
         metaDataCreator = createMock(MetaDataCreator.class);
-        randomDataProvider = createMock(RandomDataProvider.class);
+        dataProvider = createMock(DataProvider.class);
         numberMetaData = createMock(NumberMetaData.class);
         mutableField = createMock(MutableField.class);
-        byteFieldHandler = new ByteFieldHandler(metaDataCreator, randomDataProvider);
+        byteFieldHandler = new ByteFieldHandler(metaDataCreator, dataProvider);
     }
 
     @Test
@@ -69,10 +68,10 @@ public class ByteFieldHandlerUnitTest {
         expect(metaDataCreator.getMetaData(mutableField)).andReturn(numberMetaData);
         expect(numberMetaData.getMinValue()).andReturn(minValue);
         expect(numberMetaData.getMaxValue()).andReturn(maxValue);
-        expect(randomDataProvider.randomLongInRange((byte) minValue, (byte) maxValue)).andReturn((long) randomByte);
-        replay(metaDataCreator, numberMetaData, randomDataProvider);
+        expect(dataProvider.randomLongInRange((byte) minValue, (byte) maxValue)).andReturn((long) randomByte);
+        replay(metaDataCreator, numberMetaData, dataProvider);
         Object result = byteFieldHandler.getValueFor(mutableField);
-        verify(metaDataCreator, numberMetaData, randomDataProvider);
+        verify(metaDataCreator, numberMetaData, dataProvider);
         assertSame(randomByte, result);
     }
 }

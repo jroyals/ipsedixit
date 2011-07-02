@@ -16,10 +16,9 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.core.RandomDataProvider;
-import net.sf.ipsedixit.core.impl.EnumFieldHandler;
 import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
 import static org.easymock.classextension.EasyMock.*;
 import static org.junit.Assert.*;
@@ -30,7 +29,7 @@ public class EnumFieldHandlerUnitTest {
 
     private MutableField mutableField;
     private Enum enumeration;
-    private RandomDataProvider randomDataProvider;
+    private DataProvider dataProvider;
     private EnumFieldHandler enumHandler;
     private Class<? extends Enum> enumType;
 
@@ -38,10 +37,10 @@ public class EnumFieldHandlerUnitTest {
     public void setup() {
         enumeration = createMock(Enum.class);
         mutableField = createMock(MutableField.class);
-        randomDataProvider = createMock(RandomDataProvider.class);
+        dataProvider = createMock(DataProvider.class);
 
         enumType = Enum.class;
-        enumHandler = new EnumFieldHandler(randomDataProvider);
+        enumHandler = new EnumFieldHandler(dataProvider);
     }
 
     @Test
@@ -57,10 +56,10 @@ public class EnumFieldHandlerUnitTest {
     @Test
     public void returnsRandomEnum() {
         expect(mutableField.getType()).andReturn(enumType);
-        expect(randomDataProvider.randomEnumValue(enumType)).andReturn(enumeration);
-        replay(mutableField, randomDataProvider);
+        expect(dataProvider.randomEnumValue(enumType)).andReturn(enumeration);
+        replay(mutableField, dataProvider);
         Object result = enumHandler.getValueFor(mutableField);
-        verify(mutableField, randomDataProvider);
+        verify(mutableField, dataProvider);
         assertSame(enumeration, result);
     }
 }

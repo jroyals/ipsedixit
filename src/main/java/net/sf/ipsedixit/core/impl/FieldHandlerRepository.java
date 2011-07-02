@@ -22,26 +22,26 @@ import java.util.List;
 import net.sf.ipsedixit.annotation.AnnotationNumberMetaDataCreator;
 import net.sf.ipsedixit.annotation.AnnotationStringMetaDataCreator;
 import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.core.RandomDataProvider;
+import net.sf.ipsedixit.core.DataProvider;
 
 /**
  * A repository containing the standard set of {@link net.sf.ipsedixit.core.FieldHandler} objects.
  */
 public final class FieldHandlerRepository {
-    private static final RandomDataProvider RANDOM_DATA_PROVIDER = new DefaultRandomDataProvider();
+    private static final DataProvider DATA_PROVIDER = DefaultDataProvider.randomDataProvider();
 
     private static final List<FieldHandler> FIELD_HANDLERS = Collections.unmodifiableList(
             new ArrayList<FieldHandler>() {{
-        add(new StringFieldHandler(new AnnotationStringMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new IntegerFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new BooleanFieldHandler(RANDOM_DATA_PROVIDER));
-        add(new EnumFieldHandler(RANDOM_DATA_PROVIDER));
-        add(new LongFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new ShortFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new CharacterFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new ByteFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new DoubleFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
-        add(new FloatFieldHandler(new AnnotationNumberMetaDataCreator(), RANDOM_DATA_PROVIDER));
+        add(new StringFieldHandler(new AnnotationStringMetaDataCreator(), DATA_PROVIDER));
+        add(new IntegerFieldHandler(new AnnotationNumberMetaDataCreator(), DATA_PROVIDER));
+        add(new BooleanFieldHandler(DATA_PROVIDER));
+        add(new EnumFieldHandler(DATA_PROVIDER));
+        add(new LongFieldHandler(new AnnotationNumberMetaDataCreator(), DATA_PROVIDER));
+        add(new ShortFieldHandler(new AnnotationNumberMetaDataCreator(), DATA_PROVIDER));
+        add(new CharacterFieldHandler(new AnnotationNumberMetaDataCreator(), DATA_PROVIDER));
+        add(new ByteFieldHandler(new AnnotationNumberMetaDataCreator(), DATA_PROVIDER));
+        add(new DoubleFieldHandler(new AnnotationNumberMetaDataCreator(), DATA_PROVIDER));
+        add(new FloatFieldHandler(new AnnotationNumberMetaDataCreator(), DATA_PROVIDER));
         add(new AnyInterfaceFieldHandler());
         add(new AnyClassFieldHandler());
     }});

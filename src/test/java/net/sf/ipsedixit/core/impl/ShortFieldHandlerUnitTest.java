@@ -16,12 +16,11 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.NumberMetaData;
-import net.sf.ipsedixit.core.impl.ShortFieldHandler;
-import net.sf.ipsedixit.core.RandomDataProvider;
 import static net.sf.ipsedixit.test.CustomTestMethods.supportsType;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
@@ -34,7 +33,7 @@ public class ShortFieldHandlerUnitTest {
 
     private ShortFieldHandler shortFieldHandler;
     private MetaDataCreator<NumberMetaData> metaDataCreator;
-    private RandomDataProvider randomDataProvider;
+    private DataProvider dataProvider;
     private NumberMetaData numberMetaData;
     private MutableField mutableField;
     private double minValue;
@@ -47,10 +46,10 @@ public class ShortFieldHandlerUnitTest {
         maxValue = new Random().nextInt(100);
         randomShort = (short) new Random().nextInt(100);
         metaDataCreator = createMock(MetaDataCreator.class);
-        randomDataProvider = createMock(RandomDataProvider.class);
+        dataProvider = createMock(DataProvider.class);
         numberMetaData = createMock(NumberMetaData.class);
         mutableField = createMock(MutableField.class);
-        shortFieldHandler = new ShortFieldHandler(metaDataCreator, randomDataProvider);
+        shortFieldHandler = new ShortFieldHandler(metaDataCreator, dataProvider);
     }
 
     @Test
@@ -69,10 +68,10 @@ public class ShortFieldHandlerUnitTest {
         expect(metaDataCreator.getMetaData(mutableField)).andReturn(numberMetaData);
         expect(numberMetaData.getMinValue()).andReturn(minValue);
         expect(numberMetaData.getMaxValue()).andReturn(maxValue);
-        expect(randomDataProvider.randomLongInRange((short) minValue, (short) maxValue)).andReturn((long) randomShort);
-        replay(metaDataCreator, numberMetaData, randomDataProvider);
+        expect(dataProvider.randomLongInRange((short) minValue, (short) maxValue)).andReturn((long) randomShort);
+        replay(metaDataCreator, numberMetaData, dataProvider);
         Object result = shortFieldHandler.getValueFor(mutableField);
-        verify(metaDataCreator, numberMetaData, randomDataProvider);
+        verify(metaDataCreator, numberMetaData, dataProvider);
         assertSame(randomShort, result);
     }
 }

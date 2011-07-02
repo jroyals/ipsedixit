@@ -16,14 +16,23 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.StringType;
-import net.sf.ipsedixit.core.RandomDataProvider;
 import org.apache.commons.lang.RandomStringUtils;
 
 /**
- * Default implementation of RandomDataProvider.
+ * Default implementation of DataProvider.
  */
-public class DefaultRandomDataProvider implements RandomDataProvider {
+public class DefaultDataProvider implements DataProvider {
+
+    private static final DefaultDataProvider INSTANCE = new DefaultDataProvider();
+
+    private DefaultDataProvider() {
+    }
+
+    public static DefaultDataProvider randomDataProvider() {
+        return INSTANCE;
+    }
 
     /**
      * {@inheritDoc}
@@ -72,5 +81,9 @@ public class DefaultRandomDataProvider implements RandomDataProvider {
      */
     public double randomDoubleInRange(double minInclusive, double maxExclusive) {
         return (Math.random() * (maxExclusive - minInclusive)) + minInclusive;
+    }
+
+    public <T> T proxy(final Class<T> clazz) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -17,21 +17,21 @@
 package net.sf.ipsedixit.core.impl;
 
 import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.core.RandomDataProvider;
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.MutableField;
 
 /**
  * Handles Java 5 enumerations by returning a random value from within the enumeration.
  */
 public class EnumFieldHandler implements FieldHandler {
-    private final RandomDataProvider randomDataProvider;
+    private final DataProvider dataProvider;
 
     /**
      * Creates a new EnumFieldHandler.
-     * @param randomDataProvider a RandomDataProvider to use when creating the random emum.
+     * @param dataProvider a DataProvider to use when creating the random emum.
      */
-    public EnumFieldHandler(RandomDataProvider randomDataProvider) {
-        this.randomDataProvider = randomDataProvider;
+    public EnumFieldHandler(DataProvider dataProvider) {
+        this.dataProvider = dataProvider;
     }
 
     /**
@@ -39,7 +39,7 @@ public class EnumFieldHandler implements FieldHandler {
      * @return a random value from within the enumerated type.
      */
     public Enum getValueFor(MutableField mutableField) {
-        return randomDataProvider.randomEnumValue((Class<? extends Enum>) mutableField.getType());
+        return dataProvider.randomEnumValue((Class<? extends Enum>) mutableField.getType());
     }
 
     /**

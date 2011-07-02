@@ -16,11 +16,11 @@
 
 package net.sf.ipsedixit;
 
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.NumberMetaData;
 import net.sf.ipsedixit.core.StringMetaData;
 import net.sf.ipsedixit.core.StringType;
-import net.sf.ipsedixit.core.RandomDataProvider;
-import net.sf.ipsedixit.core.impl.DefaultRandomDataProvider;
+import net.sf.ipsedixit.core.impl.DefaultDataProvider;
 
 /**
  * A utility class that provides methods useful for setting up random values in your tests (or production code, if you
@@ -28,7 +28,7 @@ import net.sf.ipsedixit.core.impl.DefaultRandomDataProvider;
  */
 public final class TestData {
 
-    private static final RandomDataProvider RANDOM_DATA_PROVIDER = new DefaultRandomDataProvider();
+    private static final DataProvider DATA_PROVIDER = DefaultDataProvider.randomDataProvider();
     private static final String[] WHITESPACE = {"", " ", "\t", "\n", "\r", "\r\n"};
 
     private TestData() {
@@ -56,14 +56,14 @@ public final class TestData {
      * @return a String, generated to the specified length and the specified type.
      */
     public static String randomString(StringType stringType, int length) {
-        return RANDOM_DATA_PROVIDER.randomString(stringType, length);
+        return DATA_PROVIDER.randomString(stringType, length);
     }
 
     /**
      * @return true or false.
      */
     public static boolean randomBoolean() {
-        return RANDOM_DATA_PROVIDER.randomBoolean();
+        return DATA_PROVIDER.randomBoolean();
     }
 
     /**
@@ -74,7 +74,7 @@ public final class TestData {
      * @return one of the values from the enum.
      */
     public static <E extends Enum> E randomEnum(Class<E> enumClass) {
-        return RANDOM_DATA_PROVIDER.randomEnumValue(enumClass);
+        return DATA_PROVIDER.randomEnumValue(enumClass);
     }
 
     /**
@@ -85,7 +85,7 @@ public final class TestData {
      * @return a random value from the array.
      */
     public static <T> T randomArrayElement(T[] array) {
-        return RANDOM_DATA_PROVIDER.randomArrayElement(array);
+        return DATA_PROVIDER.randomArrayElement(array);
     }
 
     /**
@@ -119,7 +119,7 @@ public final class TestData {
      * @return a long between minValue and maxValue, inclusive.
      */
     private static long randomLong(long minValue, long maxValue) {
-        return RANDOM_DATA_PROVIDER.randomLongInRange(minValue, maxValue);
+        return DATA_PROVIDER.randomLongInRange(minValue, maxValue);
     }
 
     /**
@@ -136,7 +136,7 @@ public final class TestData {
      * @return a double between minValue inclusive, and maxValue exclusive.
      */
     private static double randomDouble(double minValue, double maxValue) {
-        return RANDOM_DATA_PROVIDER.randomDoubleInRange(minValue, maxValue);
+        return DATA_PROVIDER.randomDoubleInRange(minValue, maxValue);
     }
 
     /**

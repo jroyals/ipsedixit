@@ -19,7 +19,7 @@ package net.sf.ipsedixit.core;
 /**
  * Implementations of this interface are able to generate random data.
  */
-public interface RandomDataProvider {
+public interface DataProvider {
 
     /**
      * Generate a random String in a particular format.
@@ -70,4 +70,6 @@ public interface RandomDataProvider {
      * @return a number within the specified range.
      */
     double randomDoubleInRange(double minInclusive, double maxExclusive);
+
+    <T> T proxy(Class<T> clazz);
 }

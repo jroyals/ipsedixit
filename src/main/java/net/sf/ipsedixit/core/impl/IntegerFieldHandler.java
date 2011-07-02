@@ -20,24 +20,24 @@ import net.sf.ipsedixit.core.FieldHandler;
 import net.sf.ipsedixit.core.NumberMetaData;
 import net.sf.ipsedixit.core.MetaDataCreator;
 import net.sf.ipsedixit.core.MutableField;
-import net.sf.ipsedixit.core.RandomDataProvider;
+import net.sf.ipsedixit.core.DataProvider;
 
 /**
  * Handler for Integer and int fields.
  */
 public class IntegerFieldHandler implements FieldHandler {
     private final MetaDataCreator<NumberMetaData> metaDataCreator;
-    private final RandomDataProvider randomDataProvider;
+    private final DataProvider dataProvider;
 
     /**
      * Creates a IntegerFieldHandler.
      *
      * @param metaDataCreator to get any metadata on the field, such as maximum length.
-     * @param randomDataProvider to generate the random value.
+     * @param dataProvider to generate the random value.
      */
-    public IntegerFieldHandler(MetaDataCreator<NumberMetaData> metaDataCreator, RandomDataProvider randomDataProvider) {
+    public IntegerFieldHandler(MetaDataCreator<NumberMetaData> metaDataCreator, DataProvider dataProvider) {
         this.metaDataCreator = metaDataCreator;
-        this.randomDataProvider = randomDataProvider;
+        this.dataProvider = dataProvider;
     }
 
     /**
@@ -46,7 +46,7 @@ public class IntegerFieldHandler implements FieldHandler {
      */
     public Integer getValueFor(MutableField mutableField) {
         NumberMetaData numberMetaData = metaDataCreator.getMetaData(mutableField);
-        return (int) randomDataProvider.randomLongInRange(
+        return (int) dataProvider.randomLongInRange(
                 (int) numberMetaData.getMinValue(), (int) numberMetaData.getMaxValue());
     }
 

@@ -16,24 +16,24 @@
 
 package net.sf.ipsedixit.core.impl;
 
+import net.sf.ipsedixit.core.DataProvider;
 import net.sf.ipsedixit.core.MutableField;
 import net.sf.ipsedixit.core.FieldHandler;
-import net.sf.ipsedixit.core.RandomDataProvider;
 
 /**
  * Handler for Booelean and boolean fields.
  */
 public class BooleanFieldHandler implements FieldHandler {
 
-    private final RandomDataProvider randomDataProvider;
+    private final DataProvider dataProvider;
 
     /**
      * Creates a BooleanFieldHandler.
      *
-     * @param randomDataProvider to generate the random value.
+     * @param dataProvider to generate the random value.
      */
-    public BooleanFieldHandler(RandomDataProvider randomDataProvider) {
-        this.randomDataProvider = randomDataProvider;
+    public BooleanFieldHandler(DataProvider dataProvider) {
+        this.dataProvider = dataProvider;
     }
 
     /**
@@ -41,7 +41,7 @@ public class BooleanFieldHandler implements FieldHandler {
      * @return a random double boolean.
      */
     public Boolean getValueFor(MutableField mutableField) {
-        return randomDataProvider.randomBoolean();
+        return dataProvider.randomBoolean();
     }
 
     /**
