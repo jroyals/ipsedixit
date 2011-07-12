@@ -177,7 +177,7 @@ public final class TestData {
         return randomArrayElement(WHITESPACE);
     }
 
-    public <T> T proxy(Class<T> clazz) {
+    public static <T> T stub(Class<T> clazz) {
         return DATA_PROVIDER.proxy(clazz);
     }
 }
