@@ -781,3 +781,30 @@ a:focus {
     Thanks for reading. I hope you enjoyed it at least as much as I enjoyed writing it
     for you.
 */
+
+pre {
+    color: blue;
+    font-family: monospace;
+    font-size: .75em;
+}
+
+code {
+    font-family: monospace;
+    background: #f3f3f3;
+}
+
+li {
+    list-style: circle;
+    margin-left: 2em;
+}
+
+ul {
+    margin-top: 1em;
+    line-height: 1.5em;
+}
+
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); }
+.s1 { color: rgb(165,194,92); font-weight: bold; }
+.s2 { color: rgb(128,128,128); }
+.s3 { color: rgb(104,151,187); }

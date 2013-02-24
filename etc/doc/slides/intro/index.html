@@ -164,217 +164,338 @@
         It will not be rotated or scaled.
         
     -->
-    <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
+    <div id="intro" class="step slide" data-x="-5000" data-y="-1500">
         <q>Introducing <strong>Ipsedixit</strong> by <strong>Jason Royals</strong></q>
     </div>
 
-    <!--
-        
-        The `id` attribute of the step element is used to identify it in the URL, but it's optional.
-        If it is not defined, it will get a default value of `step-N` where N is a number of slide.
-        
-        So in the example below it'll be `step-2`.
-        
-        The hash part of the url when this step is active will be `#/step-2`.
-        
-        You can also use `#step-2` in a link, to point directly to this particular step.
-        
-        Please note, that while `#/step-2` (with slash) would also work in a link it's not recommended.
-        Using classic `id`-based links like `#step-2` makes these links usable also in fallback mode.
-        
-    -->
-    <div class="step slide" data-x="0" data-y="-1500">
-        <q>Before I start, lets' get one thing out of the way first...</q>
+    <div id="intro-goals" class="step slide" data-x="-4000" data-y="-1500">
+        <q>Today, you'll learn</q>
+        <ul>
+            <li>How Ipsedixit can help you triangulate your tests</li>
+            <li>How Ipsedixit can help you stub difficult classes</li>
+            <li>How Ipsedixit can get you a Girlfriend (or Boyfriend, with a little tweaking)</li>
+        </ul>
     </div>
 
-    <div is="what" class="step" data-x="1000" data-y="-1500" data-rotate="90" data-scale="1.5"    >
-        <h1>Ip see what's it?</h1>
-        <q><strong>What the <em>heck</em></strong> is an <strong>Ipsedixit</strong>?</q>
+    <div id="intro-before" class="step slide" data-x="-3000" data-y="-1500">
+        <q>Before I start, lets' get one thing out of the way...</q>
     </div>
 
-    <!--
-        
-        This is an example of step element being scaled.
-        
-        Again, we use a `data-` attribute, this time it's `data-scale="4"`, so it means that this
-        element will be 4 times larger than the others.
-        From presentation and transitions point of view it means, that it will have to be scaled
-        down (4 times) to make it back to it's correct size.
-        
-    -->
-    <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
-        <!--<span class="try">then you should try</span>-->
-        <!--<h1>impress.js<sup>*</sup></h1>-->
-        <!--<span class="footnote"><sup>*</sup> no rhyme intended</span>-->
+    <div is="wtf" class="step" data-x="-1500" data-y="-1500" data-rotate="90" data-scale="1.5" >
+        <div style="font-size: 3em; text-align: center">WTF?</div>
+        <img style="margin-left: 300px;" src="img/db_vader_sm.png">
+        <div style="text-align: center"><strong>What the <em>heck</em></strong> is an<br/>
+            <strong>Ip see <em>what's</em> it?</strong>?</div>
+    </div>
+
+    <div id="title" class="step" data-x="-3000" data-y="0" data-scale="0.5">
 
         <q>Ipse dixit: also known as the <strong>bare assertion fallacy</strong>, is a term which is used to identify and
             describe a sort of arbitrary dogmatic statement which the speaker expects the listener to accept as valid.</q>
 
-        <span class="footnote">so sayeth the great Wikipedia</span>
+        <div class="footnote"><em>...so sayeth the great Wikipedia</em></div>
 
 
     </div>
 
-    <!--
-        
-        This element introduces rotation.
-        
-        Notation shouldn't be a surprise. We use `data-rotate="90"` attribute, meaning that this
-        element should be rotated by 90 degrees clockwise.
-        
-    -->
-    <div id="its" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
+    <div id="its" class="step" data-x="-1000" data-y="3000" data-rotate="90" data-scale="4">
         <p>Let's see how we can stretch this definition to include some <strong>code</strong></p>
         <!--<p>It's a <strong>presentation tool</strong> <br/>-->
         <!--inspired by the idea behind <a href="http://prezi.com">prezi.com</a> <br/>-->
         <!--and based on the <strong>power of CSS3 transforms and transitions</strong> in modern browsers.</p>-->
     </div>
 
-    <div id="test" class="slide step" data-x="3500" data-y="2100" data-rotate="-90" data-scale="1">
-        <!--<p>visualize your <b>big</b> <span class="thoughts">thoughts</span></p>-->
-            <pre style="font-family: Consolas; font-size: 0.75em">
-def testGetterSetter() {
+    <div id="test" class="slide step" data-x="1500" data-y="0" data-rotate="0" data-scale="1">
+        <p>We need to test drive a new class, <code>ConcurrentGirlfriendSynchronizer</code>. It has a Name, so we'll do that first.</p>
+        <p>&nbsp;</p>
+        <pre>
+@Test
+def canSetName() {
     // Given a new object
-    def o = new ConcurrentGirlfriendSyncronizerFactory()
+    def o = new ConcurrentGirlfriendSynchronizer()
 
-    // When the value of the 'something' property to 'foo'
-    o.something = "foo"
+    // When the value of the 'name' property to 'foo'
+    o.setName("foo")
 
     // Then the value of that property should be the same
     // as what it was initially set to
-    assertThat(o.getSomething(), is("foo))
+    assertThat(o.getName(), is("foo"))
 }
+        </pre>
+    </div>
+
+    <div id="test1" class="slide step" data-x="1000" data-y="800">
+        <q>In <strong>Test Driven Development</strong>, you do <em>The simplest thing that works, and no more...</em></q>
+        <p>&nbsp;</p>
+        <p>Your pair knows this, and here's their solution.</p>
+    </div>
+
+
+    <div id="test2" class="slide step" data-x="2000" data-y="800">
+            <pre>
+<span class="s0">class ConcurrentGirlfriendSynchronizer {
+    def setName(name) {
+    }
+
+    def getName() {
+        return </span><span class="s1">&quot;foo&quot;</span><span class="s0">
+    }
+}</span>
             </pre>
-
-        <q>Looks pretty simple...</q>
+        <q>Test is green, but does this look right?</q>
     </div>
 
-    <div id="test1" class="slide step" data-x="3500" data-y="2900" data-scale="1">
-        <q>In Test Driven Development, you do <em>The simplest thing that works, and no more...</em></q>
+    <div id="facepalm" class="step" data-x="500" data-y="1600" data-rotate="90" data-scale="0.5">
+        <img src="img/picard-facepalm.jpg"/>
     </div>
 
+    <div id="test2a" class="slide step" data-x="1500" data-y="1600">
+        <q>Fix with <strong>Triangulation</strong>...</q>
+        <p>&nbsp;</p>
+        <pre>
+</span><span class="s2">// Now implement it properly, smart***</span><span class="s0">
+def canSetName2() {
+    </span><span class="s2">// Given a new Synchronizer</span><span class="s0">
+    def o = new ConcurrentGirlfriendSynchronizer()
 
-    <div id="test2" class="slide step" data-x="4100" data-y="3600" data-rotate="-90" data-scale="1">
-        <!--<p>visualize your <b>big</b> <span class="thoughts">thoughts</span></p>-->
-            <pre style="font-family: Consolas; font-size: 0.75em">
-def getSomething() {
-    return "foo"
+    </span><span class="s2">// When the value of the 'name' property to 'bar'</span><span class="s0">
+    o.setName(</span><span class="s1">&quot;bar&quot;</span><span class="s0">)
+
+    </span><span class="s2">// Then the value of that property should be the same</span><span class="s0">
+    </span><span class="s2">// as what it was initially set to</span><span class="s0">
+    assertThat(o.getName(), is(</span><span class="s1">&quot;bar&quot;</span><span class="s0">))
 }
-            </pre>
 
-        <q>This passes the test, but is it <em>correct?</em></q>
+        </pre>
+    </div>
+
+    <div id="test2a1" class="slide step" data-x="2500" data-y="1600">
+        <q>What's the problem?</q>
+
+        <ul>
+            <li>Need at least 2 tests to implement triangulation</li>
+            <li>Have to remember to do it</li>
+            <li>More test code to write and maintain</li>
+            <li>Who really does this?</li>
+        </ul>
+        <q>Triangulation can be a <em>pain</em>.</q>
+    </div>
+
+    <div id="test2b2" class="slide step" data-x="3500" data-y="-1000">
+        <q>Now we'll add a <code>Girlfriend</code> to the synchronizer</q>
+        <p>&nbsp;</p>
+        <p>Problem is, <code>Girlfriend</code>'s are really hard to create!</p>
+    </div>
+
+    <div id="test2b" class="slide step" data-x="4500" data-y="-800" data-scale="0.9">
+        <pre>
+<span class="s0">@Test def canAddGirlfriendToEmptySynchronizer() {
+    </span><span class="s2">// Given a new Synchronizer</span><span class="s0">
+    def o = new ConcurrentGirlfriendSynchronizer()
+    </span><span class="s2">// And a Girlfriend to add.</span><span class="s0">
+    </span><span class="s2">// PLEASE DO NOT CHANGE config.xml OR THIS WILL BREAK!!</span><span class="s0">
+    </span><span class="s2">// None of this setup is relevant to what we're testing.</span><span class="s0">
+    def fac = GirlfriendFactory.newInstance(</span><span class="s1">&quot;config.xml&quot;</span><span class="s0">)
+    def props = new GirlfriendProperties(
+           hair: Color.BROWN, eyes: Color.BROWN, age: [</span><span class="s3">18</span><span class="s0">..</span><span class="s3">40</span><span class="s0">])
+    def gf = fac.newGirlfriend(props)
+
+    </span><span class="s2">// When we add a Girlfriend...</span><span class="s0">
+    o.addGirlfriend(gf)
+
+    </span><span class="s2">// Then there is one Girlfriend in the synchronizer...</span><span class="s0">
+    assertThat(o.size(), is(</span><span class="s3">1</span><span class="s0">))
+    </span><span class="s2">// And the right Girlfriend is in the synchronizer</span><span class="s0">
+    assertThat(o.getGirlfriends(), contains(gf))
+</span></pre>
+    </div>
+
+    <div id="test2c" class="slide step" data-x="5400" data-y="-600" data-scale="0.8">
+        <q>What's the problem?</q>
+
+        <ul>
+            <li>Getting a <code>Girlfriend</code> to test with is <em>hard</em></li>
+            <li>Setup of test distracts from the intent of the test</li>
+            <li>Fragile - imagine if <code>config.xml</code> is changed, it might break things</li>
+        </ul>
+    </div>
+
+    <div id="test2d" class="slide step" data-x="6200" data-y="-400" data-scale="0.7">
+        <q>Some possible fixes?</q>
+
+        <ul>
+            <li>Manually create a stub <code>Girlfriend</code>. What if it's a big interface? What if it changes?</li>
+            <li>Create a Mock for it? But all we need a Stub, and <a href="http://martinfowler.com/articles/mocksArentStubs.html">Mocks aren't stubs</a>.</li>
+            <li>What else could there possibly be (and it might fix the triangulation thing too)?</li>
+        </ul>
+    </div>
+
+    <div id="test2e" class="slide step" data-x="6500" data-y="1000" data-rotate="90" data-scale="2">
+        <img style="margin-left: 200px;" src="https://a248.e.akamai.net/camo.github.com/120db5e48d5e16a2eaccfc9df1085cae2b729c40/687474703a2f2f6970736564697869742e66726167737465616c6572732e636f6d2f696d616765732f6970736564697869742e6a7067">
+        <q style="text-align: center"><b>Ipsedixit</b> can provide <br/><b>Auto Triangulation</b> and <strong>Lightweight Stubs</strong></q>
+    </div>
+
+    <div id="ip-triangle-example" class="slide step" data-x="6500" data-y="3000" data-rotate="90" data-scale="2">
+        <p>Let's rewrite that "name" test using <b>Ipsedixit</b>.</p>
+        <p>&nbsp;</p>
+        <pre>
+<span class="s0">class ConcurrentGirlfriendSynchronizer {
+@Test def canSetName() {
+    </span><span class="s2">// Given a new object</span><span class="s0">
+    def o = new ConcurrentGirlfriendSynchronizer()
+    </span><span class="s2">// And a name to use...</span><span class="s0">
+    def name = TestData.randomString()
+
+    </span><span class="s2">// When the value of the 'name' property to some value</span><span class="s0">
+    o.setName(name)
+
+    </span><span class="s2">// Then the value of that property should be the same</span><span class="s0">
+    </span><span class="s2">// as what it was initially set to</span><span class="s0">
+    assertThat(o.getName(), is(name))
+}
+</span>
+        </pre>
+    </div>
+
+    <div id="ip-triangle-points" class="slide step" data-x="6500" data-y="5000" data-rotate="90" data-scale="2">
+        <p><b>Ipsedixit</b> gives you <em>Automatic Triangulation</em> by randomising values.</p>
+
+        <ul>
+            <li>If you don't really care what the value is, let Ipsedixit make it up for you</li>
+            <li>No two test runs will run the same - hard coding values <em>won't work</em></li>
+            <li><code>TestData</code> is Ipsedixit's main utility class. It has a bunch of handy methods</li>
+        </ul>
+    </div>
+
+    <div id="ip-stubs" class="slide step" data-x="5000" data-y="3000" data-rotate="90" data-scale="1.5">
+        <p>Let's rewrite that "add <code>Girlfriend</code>" test using <b>Ipsedixit</b>.</p>
+        <p>&nbsp;</p>
+        <pre>
+<span class="s0">@Test def canAddGirlfriendToEmptySynchronizer() {
+    </span><span class="s2">// Given a new Synchronizer</span><span class="s0">
+    def o = new ConcurrentGirlfriendSynchronizer()
+    </span><span class="s2">// And a Girlfriend to add</span><span class="s0">
+    def gf = TestData.stub(Girlfriend.class)
+
+    </span><span class="s2">// When we add the Girlfriend...</span><span class="s0">
+    o.addGirlfriend(gf)
+
+    </span><span class="s2">// Then there is one Girlfriend in the synchronizer...</span><span class="s0">
+    assertThat(o.size(), is(</span><span class="s2">1</span><span class="s0">))
+    </span><span class="s2">// And the right Girlfriend is in the synchronizer</span><span class="s0">
+    assertThat(o.getGirlfriends(), contains(gf))
+}</span></pre>
+    </div>
+
+    <div id="test2g" class="slide step" data-x="5000" data-y="5000" data-rotate="90" data-scale="1.5">
+        <p>By introducing <b>Ipsedixit</b>, we've simplified creation of <b>Stubs</b></p>
+
+        <ul>
+            <li>Ipsedixit can give you stubs for Interfaces and non-final Classes</li>
+            <li>Tests are a <em>lot</em> easier to read. No messy and distracting setup.</li>
+            <li>Stubs implement <code>equals</code>, <code>toString</code> and <code>hashCode</code></li>
+            <li>Stubs will throw exceptions for any other method invocation</li>
+        </ul>
+
+        <p>&nbsp;</p>
+        <p><b>Ipsedixit makes it easy to get a <code>Girlfriend</code>!</b></p>
+    </div>
+
+
+    <div id="test2g1a" class="slide step" data-x="3500" data-y="4000" data-rotate="90" data-scale="1.3">
+        <p>You can also use <strong>Annotations</strong></p>
+        <p>&nbsp;</p>
+        <pre>
+<span class="s0">class ConcurrentGirlfriendSynchronizerTest {
+    @Arbitrary Girlfriend gf
+    @Arbitrary String name
+    @ArbitraryNumber(min=</span><span class="s1">18</span><span class="s0">, max=</span><span class="s1">100</span><span class="s0">) int age
+
+    @Before def setup() {
+        IpsedixitAnnotations.initArbitraries(this)
+    }
+
+    @Test def canSetName() {
+        ...
+    }
+
+    @Test def canAddGirlfriendToEmptySynchronizer() {
+        ...
+    }</span></pre>
+    </div>
+
+    <div id="test2g1ax" class="slide step" data-x="0" data-y="6000" data-rotate="180" data-scale="2">
+        <q><strong>Ipsedixit</strong> can help you test.</q>
+        <ul>
+            <li>You want some value but you don't care what it is</li>
+            <li>You want a stub object that is strictly <em>not</em> a mock</li>
+            <li>You want some utility methods to select values from a List or Array, provide whitespace, inline stubs and more</li>
+        </ul>
+    </div>
+
+    <div id="test2g1az" class="slide step" data-x="-2000" data-y="6000" data-rotate="180" data-scale="1.8">
+        <q><strong>Ipsedixit</strong> is on Github.</q>
+
+        <img width="250px;" height="200px;" src="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1361400666"/>
+
+        <p>http://github.com/jroyals/ipsedixit</p>
+    </div>
+
+    <div id="test2g1ay" class="slide step" data-x="-3800" data-y="6000" data-rotate="180" data-scale="1.6">
+        <q><strong>Ipsedixit</strong> is in Maven Central.</q>
+
+        <pre>
+&lt;dependency>
+    &lt;groupId>net.sf.ipsedixit&lt;/groupId>
+    &lt;artefactId>ipsedixit&lt;/artefactId>
+    &lt;version>1.0.2&lt;/version>
+&lt;/dependency>
+        </pre>
     </div>
 
     <!--
-        
-        And now it gets really exciting! We move into third dimension!
-        
-        Along with `data-x` and `data-y`, you can define the position on third (Z) axis, with
-        `data-z`. In the example below we use `data-z="-3000"` meaning that element should be
-        positioned far away from us (by 3000px).
-        
-    -->
-    <!--<div id="tiny" class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">-->
-        <!--<p>and <b>tiny</b> ideas</p>-->
-    <!--</div>-->
 
-    <!--
-        
-        This step here doesn't introduce anything new when it comes to data attributes, but you
-        should notice in the demo that some words of this text are being animated.
-        It's a very basic CSS transition that is applied to the elements when this step element is
-        reached.
-        
-        At the very beginning of the presentation all step elements are given the class of `future`.
-        It means that they haven't been visited yet.
-        
-        When the presentation moves to given step `future` is changed to `present` class name.
-        That's how animation on this step works - text moves when the step has `present` class.
-        
-        Finally when the step is left the `present` class is removed from the element and `past`
-        class is added.
-        
-        So basically every step element has one of three classes: `future`, `present` and `past`.
-        Only one current step has the `present` class.
-        
-    -->
-    <div id="ing" class="step" data-x="3500" data-y="-850" data-rotate="270" data-scale="6">
-        <p>by <b class="positioning">positioning</b>, <b class="rotating">rotating</b> and <b class="scaling">scaling</b> them on an infinite canvas</p>
-    </div>
-
-    <div id="imagination" class="step" data-x="6700" data-y="-300" data-scale="6">
-        <p>the only <b>limit</b> is your <b class="imagination">imagination</b></p>
-    </div>
-
-    <div id="source" class="step" data-x="6300" data-y="2000" data-rotate="20" data-scale="4">
-        <p>want to know more?</p>
-        <q><a href="http://github.com/bartaz/impress.js">use the source</a>, Luke!</q>
-    </div>
-
-    <div id="one-more-thing" class="step" data-x="6000" data-y="4000" data-scale="2">
-        <p>one more thing...</p>
-    </div>
-
-    <!--
-        
-        And the last one shows full power and flexibility of impress.js.
-        
-        You can not only position element in 3D, but also rotate it around any axis.
-        So this one here will get rotated by -40 degrees (40 degrees anticlockwise) around X axis and
-        10 degrees (clockwise) around Y axis.
-        
-        You can of course rotate it around Z axis with `data-rotate-z` - it has exactly the same effect
-        as `data-rotate` (these two are basically aliases).
-        
-    -->
-    <div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
-        <p><span class="have">have</span> <span class="you">you</span> <span class="noticed">noticed</span> <span class="its">it's</span> <span class="in">in</span> <b>3D<sup>*</sup></b>?</p>
-        <span class="footnote">* beat that, prezi ;)</span>
-    </div>
-
-    <!--
-        
         So to make a summary of all the possible attributes used to position presentation steps, we have:
-        
+
         * `data-x`, `data-y`, `data-z` - they define the position of **the center** of step element on
             the canvas in pixels; their default value is 0;
         * `data-rotate-x`, `data-rotate-y`, 'data-rotate-z`, `data-rotate` - they define the rotation of
             the element around given axis in degrees; their default value is 0; `data-rotate` and `data-rotate-z`
             are exactly the same;
         * `data-scale` - defines the scale of step element; default value is 1
-        
+
         These values are used by impress.js in CSS transformation functions, so for more information consult
         CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
-        
+
     -->
-    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="15">
     </div>
 
 </div>
 
 <!--
-    
+
     Hint is not related to impress.js in any way.
-    
+
     But it can show you how to use impress.js features in creative way.
-    
+
     When the presentation step is shown (selected) its element gets the class of "active" and the body element
     gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
     so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
     the id of `bored`) is active, body element gets a class of `impress-on-bored`.
-    
+
     This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
     the first step of presentation is visible for a couple of seconds.
-    
+
     ...
-    
+
     And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
     It's just a quick and dirty workaround to get different hint text for touch devices.
     In a real world it should be at least placed in separate JS file ... and the touch content should be
     probably just hidden somewhere in HTML - not hard-coded in the script.
-    
+
     Just sayin' ;)
-    
+
 -->
 <div class="hint">
     <p>Use a spacebar or arrow keys to navigate</p>
