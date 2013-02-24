@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -12,7 +13,7 @@
     <packaging>jar</packaging>
     <version>1.0.3-SNAPSHOT</version>
     <name>ipsedixit</name>
-    <url>http://ipsedixit.sourceforge.net</url>
+    <url>https://github.com/jroyals/ipsedixit</url>
     <description>
         Ipsedixit is a lightweight provider of arbitrary data, mocks and dummies for your Java testing pleasure. It is designed to reduce the amount
         of boilerplate setup code in your tests, allowing you to spend more time solving more interesting problems. Check out the wiki for the latest
@@ -26,29 +27,20 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/trunk</connection>
-        <developerConnection>scm:svn:https://ipsedixit.svn.sourceforge.net/svnroot/ipsedixit/trunk/</developerConnection>
-        <url>http://ipsedixit.svn.sourceforge.net/viewvc/ipsedixit/trunk</url>
+        <connection>scm:git:https://github.com/jroyals/ipsedixit.git</connection>
+        <developerConnection>scm:git:https://github.com/jroyals/ipsedixit.git</developerConnection>
+        <url>https://github.com/jroyals/ipsedixit.git</url>
     </scm>
 
-    <!-- to deploy to SourceForge, see this: http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <distributionManagement>
-        <!--<repository>-->
-            <!--<id>sourceforge.net</id>-->
-            <!--<url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/m2repo/release</url>-->
-        <!--</repository>-->
-        <!--<snapshotRepository>-->
-            <!--<id>sourceforge.net</id>-->
-            <!--<url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/m2repo/snapshot</url>-->
-        <!--</snapshotRepository>-->
         <site>
-            <id>sourceforge.net</id>
-            <url>scp://shell.sourceforge.net/home/groups/i/ip/ipsedixit/htdocs/site</url>
+            <id>ipsedixit.github</id>
+            <url>scm:git:https://git@github.com/jroyals/ipsedixit.git</url>
         </site>
     </distributionManagement>
     <issueManagement>
-        <system>Sourceforge Tracker</system>
-        <url>http://sourceforge.net/tracker/?group_id=234053</url>
+        <system>Github</system>
+        <url>https://github.com/jroyals/ipsedixit/issues</url>
     </issueManagement>
     <developers>
         <developer>
@@ -134,20 +126,39 @@
         </dependency>
     </dependencies>
     <build>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh</artifactId>
-                <version>1.0-beta-7</version>
-            </extension>
-        </extensions>
-
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.0-beta-3</version>
+                    <version>3.1</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.wagon</groupId>
+                            <artifactId>wagon-scm</artifactId>
+                            <version>2.2</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-manager-plexus</artifactId>
+                            <version>1.8</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-provider-gitexe</artifactId>
+                            <version>1.8</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-api</artifactId>
+                            <version>1.8</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.4</version>
                 </plugin>
             </plugins>
         </pluginManagement>
